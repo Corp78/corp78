@@ -1,0 +1,148 @@
+.container {
+    width: fit-content;
+    min-width: 210px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    user-select: none;
+
+}
+
+.titleContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    border-right: solid 2px transparent;
+    border-left: solid 2px transparent;
+    border-radius: 8px;
+
+    @media screen and (max-width: 990px) {
+        padding: 8px 0;
+    }
+
+}
+
+.dropDownIcon {
+    transform: rotate(-90deg);
+    transition: transform .2s ease-in-out;
+    @media screen and (max-width: 990px) {
+        transform: rotate(0deg);
+    }
+}
+
+.dropDownBlack {
+    @media screen and (max-width: 990px) {
+        display: none;
+    }
+}
+
+.dropDownWhite {
+    display: none;
+    @media screen and (max-width: 990px) {
+        display: block;
+    }
+}
+
+.container:hover .dropDownIcon {
+    transform: rotate(0deg);
+}
+
+.titleContainer:hover {
+    border-left: solid 2px rgb(var(--green-4));
+    border-right: solid 2px rgb(var(--green-4));
+    border-radius: 8px;
+    @media screen and (max-width: 990px) {
+        border-left: solid 2px rgb(var(--green-3));
+        border-right: solid 2px rgb(var(--green-2));
+    }
+}
+
+.linksContainer {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    margin-top: 40px;
+    max-height: fit-content;
+    background: rgb(var(--green-1));
+    z-index: 90;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px 0 rgba(var(--black), .1);
+    padding: 8px;
+    @media screen and (max-width: 990px) {
+        position: relative;
+        margin-top: 16px;
+        display: flex;
+        background: transparent;
+        box-shadow: none;
+        animation: slideFromTop 0.3s ease-in;
+    }
+}
+
+.container:hover > .linksContainer {
+    display: flex;
+    animation: slideFromTop 0.3s ease-in;
+}
+
+.linksContainer:hover {
+    display: flex;
+}
+
+@keyframes slideFromTop {
+    0% {
+        max-height: 0;
+    }
+    100% {
+        max-height: 400px;
+        height: fit-content;
+    }
+}
+
+
+.linkBox {
+    width: 100%;
+    padding: 8px 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .1s ease-in;
+    border-right: solid 2px transparent;
+    border-left: solid 2px transparent;
+    border-radius: 8px;
+}
+
+.linkTitle {
+    font-weight: 500;
+    @media screen and (max-width: 990px) {
+        color: rgb(var(--white));
+        font-weight: 400;
+    }
+}
+
+.stroke-expand-down {
+    stroke: aliceblue;
+}
+
+.linkBox:hover {
+    border-left: solid 2px rgb(var(--green-4));
+    border-right: solid 2px rgb(var(--green-4));
+    border-radius: 8px;
+    @media screen and (max-width: 990px) {
+        border-left: solid 2px rgb(var(--green-3));
+        border-right: solid 2px rgb(var(--green-3));
+    }
+}
+
+.mainTitle {
+    @media screen and (max-width: 990px) {
+        color: rgb(var(--white));
+    }
+}

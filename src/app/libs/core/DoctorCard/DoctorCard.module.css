@@ -1,0 +1,53 @@
+.container {
+    max-width: 280px;
+    width: 100%;
+    min-width: 280px;
+    padding: 8px 8px 16px;
+    border-radius: 16px;
+    background: rgba(var(--white), .8);
+    box-shadow: 0 4px 16px 0 rgba(var(--black), .2);
+    border: solid 1px rgba(var(--black), .15);
+}
+.imageContainer {
+    width: 100%;
+    height: 350px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    border: solid 1px rgba(var(--black), .1);
+}
+
+.image {
+    object-fit: cover;
+}
+
+.name {
+    padding-top: 12px;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+}
+
+.description {
+    padding-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    width: 100%;
+}
+
+.left {
+    transform: rotate(-5deg);
+    @media screen and (max-width: 712px) {
+        transform: rotate(0deg);
+    }
+}
+
+.right {
+    transform: rotate(5deg);
+    @media screen and (max-width: 712px) {
+        transform: rotate(0deg);
+    }
+}

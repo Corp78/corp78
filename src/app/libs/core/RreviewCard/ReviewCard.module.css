@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 500px;
+    padding: 24px;
+}
+
+.startsContainer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.titleContainer {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.star {
+    color: black;
+    font-size: 24px;
+}
+
+.title {
+
+}
+
+.date {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.description {
+    font-weight: 400;
+}
+
+.provenance {
+    font-weight: 300;
+    font-size: 13px;
+}

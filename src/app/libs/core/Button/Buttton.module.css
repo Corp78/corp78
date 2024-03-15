@@ -1,0 +1,49 @@
+.blockColor {
+    color: rgb(var(--white));
+    background: rgb(var(--green-4));
+    min-width: 80px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    border: 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 10px 16px;
+    line-height: 1.5;
+    gap: 8px;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+
+}
+
+.blockColor:hover {
+    background: rgba(var(--green-5), .98);
+}
+
+.full {
+    width: 100%;
+}
+
+.line {
+    background: transparent;
+    text-decoration: none;
+    color: rgb(var(--green-5));
+    border-bottom: 2px solid transparent;
+}
+
+.line:hover {
+    background: transparent;
+    border-bottom: 1px solid rgb(var(--green-2));
+}
+
+.white {
+    background: rgb(var(--green-2));
+    color: rgb(var(--black));
+}
+
+.white:hover {
+    background: rgba(var(--green-1), .8);
+}

@@ -1,0 +1,106 @@
+.container {
+    width: 100%;
+    background: rgb(var(--green-5));
+    margin: -32px auto 0;
+    border-radius: 32px 32px 0 0;
+    box-shadow: 0 0 60px 16px rgba(var(--green-5), .25);
+    border-top: solid 1px rgba(var(--green-1), .8);
+    position: relative;
+    padding-bottom: 24px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    gap: 16px;
+    margin: 0 auto;
+    padding: 32px 32px 64px;
+}
+
+.title {
+    color: rgb(var(--green-1));
+    padding-bottom: 16px;
+}
+
+.box {
+    max-width: 1400px;
+    display: flex;
+    gap: 24px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (max-width: 1040px) {
+        flex-direction: column;
+        width: 500px;
+        margin: 0 auto;
+        align-items: flex-start;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+
+}
+
+.mapContainer {
+    width: 500px;
+    padding: 8px;
+    height: 500px;
+    background: rgba(var(--green-1), .9);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 4px 0 16px 4px rgba(var(--green-1), .2);
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1;
+    }
+}
+
+.map {
+    filter: invert(90%)  saturate(100%) hue-rotate(200deg) brightness(100%) contrast(100%);
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+}
+
+.infoContainer {
+    display: flex;
+    padding-left: 32px;
+    justify-content: center;
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+
+    @media screen and (max-width: 1040px) {
+        padding-left: 0px;
+    }
+}
+
+.infoContent {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.info {
+    color: rgb(var(--green-1));
+    font-weight: 500;
+}
+
+.separatorRight {
+    height: 32px;
+    border-right: solid 3px rgb(var(--green-2));
+    padding-right: 8px;
+    border-radius: 4px;
+    margin-left: -16px;
+}
+
+
+.icon {
+    font-size: 24px;
+    color: rgb(var(--green-1));
+}
+

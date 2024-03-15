@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 250px);
+    padding: 50px;
+    margin: 0 auto;
+    gap: 16px;
+    max-width: 1600px;
+
+    @media screen and (max-width: 1378px) {
+        flex-direction: column;
+        padding: 0;
+    }
+}
+.title {
+    color: rgb(var(--green-5));
+    width: auto;
+    text-align: left;
+    @media screen and (max-width: 1378px) {
+        text-align: center;
+        padding: 0 30px 32px;
+    }
+}
+
+.titleContainer {
+    max-width: 50%;
+    @media screen and (max-width: 1378px) {
+        max-width: 100%;
+    }
+}
+.doctorCardsContainer {
+    display: flex;
+    gap: 80px;
+
+    @media screen and (max-width: 712px) {
+        gap: 16px;
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: scroll;
+        padding: 24px 8px;
+        scrollbar-width: none; /* For Firefox */
+        -ms-overflow-style: none; /* For Internet Explorer and Edge */
+    }
+
+}
+
