@@ -15,6 +15,7 @@ export const Header = () => {
 
     const closeOrOpenMenu = () => {
         setOpenMenu(!openMenu);
+        console.log(openMenu)
     }
 
     const scrollTo = (id: string) => {
@@ -29,7 +30,7 @@ export const Header = () => {
 
 
     return (
-        <div className={classes.mainContainer}>
+        <div className={classes.mainContainer} >
             <div className={classes.container}>
                 <h5>Corp78</h5>
                 <div className={classnames(classes.menuContainer, {
