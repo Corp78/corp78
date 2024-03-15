@@ -23,6 +23,7 @@ export const DoctorCard = ({name, description, left, right}: Props) => {
             </div>
             <h5 className={classes.name}>{name}</h5>
             <p className={classes.description}>{description}</p>
+
         </div>
 
     );
