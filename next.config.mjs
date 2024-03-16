@@ -13,11 +13,9 @@ const nextConfig = {
 }
 
 
-/*
-const nextConfig = {
+/*const nextConfig = {
 
-}
-*/
+}*/
 
 
 

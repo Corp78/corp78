@@ -92,7 +92,7 @@
 }
 
 .separator {
-    display: none;
+    background: transparent;
 
     @media screen and (max-width: 990px) {
         display: block;
