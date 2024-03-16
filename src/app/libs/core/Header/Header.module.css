@@ -78,6 +78,16 @@
         padding: 32px 16px;
         overflow-y: scroll;
 
+        &.openMenu {
+            transform: translateX(0px);
+            animation: openMenu 0.3s ease-in-out;
+        }
+
+        &.closeMenu {
+            transform: translateX(400px);
+            animation: closeMenu 0.3s ease-in-out;
+        }
+
     }
 }
 
@@ -102,24 +112,6 @@
     }
 }
 
-
-.openMenu {
-    @media screen and (max-width: 990px) {
-        transform: translateX(0px);
-        display: block;
-        animation: openMenu 0.3s ease-in-out;
-    }
-
-}
-
-.closeMenu {
-    @media screen and (max-width: 990px) {
-        transform: translateX(400px);
-        display: block;
-        animation: closeMenu 0.3s ease-in-out;
-    }
-
-}
 
 
 @keyframes openMenu {

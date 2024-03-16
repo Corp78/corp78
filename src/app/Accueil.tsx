@@ -18,9 +18,11 @@ export const Acceuil = () => {
             </div>
             <div className={classes.doctorCardsContainer}>
                 <DoctorCard name="Docteur Quentin Hays"
-                            description="Spécialisé en rétine cataracte, chirurgie réfractive" left/>
+                            description="Spécialisé en rétine cataracte, chirurgie réfractive"
+                            image ="/Quentin.png" left/>
                 <DoctorCard name="Docteur Karen Bitton-Chappe"
-                            description="Spécialisé en paupière, contract, glaucome, chirurgie réfractive" right/>
+                            description="Spécialisé en paupière, contract, glaucome, chirurgie réfractive"
+                            image="/Karen.jpg" right/>
             </div>
 
         </div>

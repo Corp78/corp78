@@ -37,6 +37,10 @@
     @media screen and (max-width: 712px) {
         gap: 16px;
         width: 100%;
+        justify-content: center;
+    }
+
+    @media screen and (max-width: 600px) {
         justify-content: flex-start;
         overflow-x: scroll;
         padding: 24px 8px;
