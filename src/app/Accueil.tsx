@@ -14,7 +14,7 @@ export const Acceuil = () => {
     return (
         <div className={classes.container} id="home">
             <div className={classes.titleContainer}>
-                <h1 className={classes.title}>Cabinet Ophtalmologique rétine paupière 78</h1>
+                <h1 className={classes.title}>Cabinet Ophtalmologique Rétine Paupière 78</h1>
             </div>
             <div className={classes.doctorCardsContainer}>
                 <DoctorCard name="Docteur Quentin Hays"
