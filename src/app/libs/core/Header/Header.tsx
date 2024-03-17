@@ -32,7 +32,12 @@ export const Header = () => {
     return (
         <div className={classes.mainContainer} >
             <div className={classes.container}>
-                <h5>Corp78</h5>
+                <div className={classes.nameContainer}>
+                    <div className={classes.logoContainer}>
+                        <Image className={classes.image} src="/logo.svg" alt="corp78" width={64} height={64}/>
+                    </div>
+                    <h5 className={classes.name}>Corp78</h5>
+                </div>
                 <div className={classnames(classes.menuContainer, {
                     [classes.openMenu]: openMenu,
                     [classes.closeMenu]: !openMenu,

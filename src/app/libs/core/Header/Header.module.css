@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    padding: 32px 16px;
+    padding: 16px 16px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -130,4 +130,20 @@
     100% {
         transform: translateX(400px);
     }
+}
+
+.nameContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
+}
+
+.logoContainer {
+    width: 64px;
+    height: 64px;
+}
+
+.name {
+    color: rgb(var(--green-5))
 }
