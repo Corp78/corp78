@@ -21,7 +21,7 @@ export const Acceuil = () => {
                             description="Spécialisé en rétine cataracte, chirurgie réfractive"
                             image ="/Quentin.png" left/>
                 <DoctorCard name="Docteur Karen Bitton-Chappe"
-                            description="Spécialisé en paupière, contract, glaucome, chirurgie réfractive"
+                            description="Spécialisée en paupière, contract, glaucome, chirurgie réfractive"
                             image="/Karen.jpg" right/>
             </div>
 
