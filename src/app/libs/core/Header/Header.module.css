@@ -142,8 +142,28 @@
 .logoContainer {
     width: 64px;
     height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    @media screen and (max-width: 990px) {
+        width: 48px;
+        height: 48px;
+    }
 }
 
 .name {
     color: rgb(var(--green-5))
+}
+
+.logo {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+
+    @media screen and (max-width: 990px) {
+        width: 48px;
+        height: 48px;
+    }
 }

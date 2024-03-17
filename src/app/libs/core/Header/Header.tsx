@@ -34,7 +34,7 @@ export const Header = () => {
             <div className={classes.container}>
                 <div className={classes.nameContainer}>
                     <div className={classes.logoContainer}>
-                        <Image className={classes.image} src="/logo.svg" alt="corp78" width={64} height={64}/>
+                        <Image className={classes.logo} src="/logo.svg" alt="corp78" fill sizes="(max-width: 64px) , (max-width: 64px)" />
                     </div>
                     <h5 className={classes.name}>Corp78</h5>
                 </div>
