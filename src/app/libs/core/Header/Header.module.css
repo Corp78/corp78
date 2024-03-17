@@ -135,7 +135,7 @@
 .nameContainer {
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    gap: 16px;
     align-items: center;
 }
 
