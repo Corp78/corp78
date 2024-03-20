@@ -39,10 +39,10 @@
     padding-bottom: 40px;
     gap: 16px;
 
-    @media screen and (max-width: 1550px) {
+    @media (max-width: 1550px) {
         grid-template-columns: repeat(2, 1fr);
     }
-    @media screen and (max-width: 1050px) {
+    @media (max-width: 1050px) {
         grid-template-columns: repeat(1, 1fr);
         gap: 0;
     }
@@ -50,8 +50,8 @@
 
 .backgroundCircle1 {
     position: absolute;
-    background: rgba(var(--green-4), .2);
-    width: 50%;
+    background: rgba(var(--green-4), .1);
+    width: 60%;
     top: 0;
     left: 0;
     border-radius: 50%;
@@ -61,8 +61,8 @@
 
 .backgroundCircle2 {
     position: absolute;
-    background: rgba(var(--green-4), .2);
-    width: 50%;
+    background: rgba(var(--green-4), .1);
+    width: 60%;
     right: 0;
     bottom: 0;
     border-radius: 50%;

@@ -2,6 +2,7 @@ import React from 'react';
 import classes from "./DoctorCard.module.css";
 import Image from 'next/image'
 import classnames from "classnames";
+import {ListPoint} from "@/app/libs/core";
 
 interface Props {
     name: string;
@@ -27,7 +28,7 @@ export const DoctorCard = ({name, specialities, image, left, right}: Props) => {
             <div className={classes.specialistDescription}>
                 <p className={classnames(classes.description, classes.specialist)}>Spécialiste en :</p>
                 {specialities.map(speciality => (
-                    <li key={speciality} className={classes.description}>{speciality}</li>
+                    <ListPoint key={speciality} text={speciality} />
                 ))}
             </div>
 

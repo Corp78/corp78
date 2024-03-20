@@ -40,14 +40,14 @@
 
 .left {
     transform: rotate(-5deg);
-    @media screen and (max-width: 712px) {
+    @media (max-width: 712px) {
         transform: rotate(0deg);
     }
 }
 
 .right {
     transform: rotate(5deg);
-    @media screen and (max-width: 712px) {
+    @media (max-width: 712px) {
         transform: rotate(0deg);
     }
 }

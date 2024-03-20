@@ -5,3 +5,4 @@ export * from './DoctorCard/DoctorCard';
 export * from './ExpertiseCard/ExpertiseCard';
 export * from './RreviewCard/ReviewCard';
 export * from './Footer/Footer';
+export * from './ListPoint/ListPoint';

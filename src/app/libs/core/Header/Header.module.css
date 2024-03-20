@@ -23,10 +23,10 @@
 
 .dropDownContainer {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
 
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         flex-direction: column;
         align-items: center;
         width: 100%;
@@ -35,7 +35,7 @@
 }
 
 .meeting {
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         display: none;
     }
 }
@@ -45,23 +45,26 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         display: block;
     }
 }
 
 .closeMenuButtonContainer {
+    display: none;
     width: 100%;
-    display: flex;
     flex-direction: row-reverse;
     padding: 0 16px;
+    @media (max-width: 1170px) {
+        display: flex;
+    }
 }
 
 .menuContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         z-index: 100;
         transform: translateX(400px);
         position: fixed;
@@ -94,7 +97,7 @@
 .separator {
     background: transparent;
 
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         display: block;
         border-radius: 2px;
         width: 90%;
@@ -106,7 +109,7 @@
 
 .meetingMenu {
     display: none;
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         display: block;
         padding-bottom: 16px;
     }
@@ -147,7 +150,7 @@
     align-items: center;
     position: relative;
 
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         width: 48px;
         height: 48px;
     }
@@ -162,7 +165,7 @@
     height: 64px;
     object-fit: cover;
 
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         width: 48px;
         height: 48px;
     }

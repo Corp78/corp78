@@ -21,7 +21,7 @@
     border-left: solid 2px transparent;
     border-radius: 8px;
 
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         padding: 8px 0;
     }
 
@@ -30,20 +30,20 @@
 .dropDownIcon {
     transform: rotate(-90deg);
     transition: transform .2s ease-in-out;
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         transform: rotate(0deg);
     }
 }
 
 .dropDownBlack {
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         display: none;
     }
 }
 
 .dropDownWhite {
     display: none;
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         display: block;
     }
 }
@@ -56,7 +56,7 @@
     border-left: solid 2px rgb(var(--green-4));
     border-right: solid 2px rgb(var(--green-4));
     border-radius: 8px;
-    @media screen and (max-width: 990px) {
+    @media (max-width: 990px) {
         border-left: solid 2px rgb(var(--green-3));
         border-right: solid 2px rgb(var(--green-2));
     }
@@ -78,7 +78,7 @@
     border-radius: 16px;
     box-shadow: 0 4px 16px 0 rgba(var(--black), .1);
     padding: 8px;
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         position: relative;
         margin-top: 16px;
         display: flex;
@@ -121,7 +121,7 @@
 
 .linkTitle {
     font-weight: 500;
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         color: rgb(var(--white));
         font-weight: 400;
     }
@@ -135,14 +135,14 @@
     border-left: solid 2px rgb(var(--green-4));
     border-right: solid 2px rgb(var(--green-4));
     border-radius: 8px;
-    @media screen and (max-width: 990px) {
+    @media (max-width: 990px) {
         border-left: solid 2px rgb(var(--green-3));
         border-right: solid 2px rgb(var(--green-3));
     }
 }
 
 .mainTitle {
-    @media screen and (max-width: 990px) {
+    @media (max-width: 1170px) {
         color: rgb(var(--white));
     }
 }
