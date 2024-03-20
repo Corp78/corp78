@@ -24,18 +24,18 @@
 .name {
     padding-top: 12px;
     font-size: 14px;
-    text-align: center;
+    text-align: left;
     width: 100%;
 }
 
 .description {
-    padding-top: 8px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     font-size: 14px;
     line-height: 1.5;
-    text-align: center;
+    text-align: left;
     width: 100%;
+    color: rgb(var(--black))
 }
 
 .left {
@@ -50,4 +50,14 @@
     @media screen and (max-width: 712px) {
         transform: rotate(0deg);
     }
+}
+
+.specialistDescription {
+    padding-top: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
 }

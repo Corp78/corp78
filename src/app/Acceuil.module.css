@@ -33,6 +33,7 @@
 .doctorCardsContainer {
     display: flex;
     gap: 80px;
+    padding-bottom: 24px;
 
     @media screen and (max-width: 712px) {
         gap: 16px;

@@ -27,7 +27,7 @@ export const Contact = () => {
                         <div className={classes.infoContent}>
                             <FaMapMarkerAlt className={classes.icon}/>
                             <div className={classes.separatorRight}/>
-                            <p className={classes.info}> 2 rue de la beauce, Maurepas, 78310</p>
+                            <p className={classes.info}> 14 rue de Monfort, Maurepas, 78310</p>
                         </div>
                         <div className={classes.infoContent}>
                             <FaPhoneFlip className={classes.icon}/>
