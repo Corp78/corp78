@@ -7,7 +7,7 @@ const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
     title: "Corp78",
-    description: "Cabinet Ophtalmologique rétine paupière 78",
+    description: "Cabinet Ophtalmologique rétine paupière 78 pariwest",
 };
 
 export default function RootLayout({

@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import classes from "./Contact.module.css";
 import {FaMapMarkerAlt, FaTrain} from "react-icons/fa";
@@ -32,12 +34,12 @@ export const Contact = () => {
                         <div className={classes.infoContent}>
                             <FaPhoneFlip className={classes.icon}/>
                             <div className={classes.separatorRight}/>
-                            <p className={classes.info}>0648487290</p>
+                            <p className={classes.info}>0600000000</p>
                         </div>
                         <div className={classes.infoContent}>
                             <MdEmail className={classes.icon}/>
                             <div className={classes.separatorRight}/>
-                            <p className={classes.info}>quentin.hays@corp78.fr</p>
+                            <p className={classes.info}>test@test.com</p>
                         </div>
                         <div className={classes.infoContent}>
                             <FaTrain className={classes.icon}/>

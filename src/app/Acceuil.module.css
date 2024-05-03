@@ -24,6 +24,17 @@
     }
 }
 
+.open {
+    padding-top: 20px;
+    color: rgb(var(--green-3));
+    width: auto;
+    text-align: left;
+    @media (max-width: 1378px) {
+        text-align: center;
+        padding: 0 30px 32px;
+    }
+}
+
 .titleContainer {
     max-width: 50%;
     @media (max-width: 1378px) {

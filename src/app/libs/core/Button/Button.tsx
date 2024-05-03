@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import classnames from 'classnames';
 import classes from "./Buttton.module.css";
@@ -43,7 +45,7 @@ export const Button = (props: BaseButtonProps & GenericButtonProps) => {
                 },
                 className,
             )}
-            onClick={onClick}
+            onClick={() =>  alert("Nous sommes impatients de vous accueillir, mais les réservations seront disponibles ultérieurement. Merci de votre patience.")}
             onSubmit={onClick}
             type={type}
             {...rest}

@@ -65,7 +65,9 @@ export const Header = () => {
                         <DropDown title="Contact" onClick={() => scrollTo('contact')}></DropDown>
 
                         <div className={classes.meetingMenu}>
+                            <div>
                             <Button className={classes.test} text="Prendre rendez-vous" white></Button>
+                            </div>
                         </div>
 
                     </div>

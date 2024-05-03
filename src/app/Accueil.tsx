@@ -14,10 +14,11 @@ export const Acceuil = () => {
     return (
         <div className={classes.container} id="home">
             <div className={classes.titleContainer}>
-                <h1 className={classes.title}>Cabinet Ophtalmologique Rétine Paupière 78</h1>
+                <h1 className={classes.title}>Cabinet Ophtalmologique Pariwest</h1>
+                <h2 className={classes.open}>Ouverture début juillet</h2>
             </div>
             <div className={classes.doctorCardsContainer}>
-                <DoctorCard name="Docteur Quentin Hays"
+            <DoctorCard name="Docteur Quentin Hays"
                             specialities={["chirurgie rétine / vitréo-maculaire", "chirurgie de la cataracte", "chirurgie réfractive"]}
                             image ="/Quentin.png" left/>
                 <DoctorCard name="Docteur Karen Bitton-Chappe"
