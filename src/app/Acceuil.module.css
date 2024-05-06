@@ -25,13 +25,15 @@
 }
 
 .open {
-    padding-top: 20px;
     color: rgb(var(--green-3));
     width: auto;
     text-align: left;
     @media (max-width: 1378px) {
         text-align: center;
-        padding: 0 30px 32px;
+    }
+
+    @media (max-width: 700px) {
+        padding-bottom: 0px;
     }
 }
 
@@ -53,8 +55,11 @@
     }
 
     @media (max-width: 600px) {
-        justify-content: flex-start;
-        overflow-x: scroll;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+
         padding: 24px 8px;
         scrollbar-width: none; /* For Firefox */
         -ms-overflow-style: none; /* For Internet Explorer and Edge */

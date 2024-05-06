@@ -36,7 +36,6 @@ export const Header = () => {
                     <div className={classes.logoContainer}>
                         <Image className={classes.logo} src="/logo.svg" alt="corp78" fill sizes="(max-width: 64px) , (max-width: 64px)" />
                     </div>
-                    <h5 className={classes.name}>Corp78</h5>
                 </div>
                 <div className={classnames(classes.menuContainer, {
                     [classes.openMenu]: openMenu,
@@ -62,11 +61,13 @@ export const Header = () => {
                         }, {title: "Lentilles", href: "/lentilles"}, {title: "DMLA", href: "/dmla"}]}
                                   onClick={() => scrollTo('expertise')}></DropDown>
                         <div className={classes.separator}/>
+                        <DropDown title="Actualités"/>
+                        <div className={classes.separator}/>
                         <DropDown title="Contact" onClick={() => scrollTo('contact')}></DropDown>
 
                         <div className={classes.meetingMenu}>
                             <div>
-                            <Button className={classes.test} text="Prendre rendez-vous" white></Button>
+                                <Button className={classes.test} text="Prendre rendez-vous" white></Button>
                             </div>
                         </div>
 
