@@ -27,6 +27,8 @@ export const Acceuil = () => {
         return Math.round(Math.random());
     }, [])
 
+    console.log(random)
+
 
     return (
         <div className={classes.container} id="home">
@@ -34,6 +36,7 @@ export const Acceuil = () => {
                 <h1 className={classes.title}>Cabinet Ophtalmologique Pariwest</h1>
                 <h2 className={classes.open}>Ouverture début juillet</h2>
             </div>
+            <p>{random}</p>
             <div className={classes.doctorCardsContainer}>
                 <DoctorCard name={random === 0 ? doctorsInfo.quentin.name : doctorsInfo.karen.name}
                             specialities={random === 0 ? doctorsInfo.quentin.specialities : doctorsInfo.karen.specialities}
