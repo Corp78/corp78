@@ -1,3 +1,5 @@
+"use client"
+
 import React, {useMemo} from 'react';
 import classes from "./Acceuil.module.css";
 import {DoctorCard} from "@/app/libs/core";
@@ -9,6 +11,7 @@ interface LinkDropDown {
 
 
 export const Acceuil = () => {
+    const [random, setRandom] = useState(() => Math.round(Math.random()));
 
     const doctorsInfo = {
         quentin: {
@@ -23,9 +26,6 @@ export const Acceuil = () => {
         }
     }
 
-    const random = useMemo(() => {
-        return Math.round(Math.random());
-    }, [])
 
     console.log(random)
 
