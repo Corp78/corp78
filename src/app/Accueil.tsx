@@ -1,17 +1,17 @@
 "use client"
 
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./Acceuil.module.css";
 import {DoctorCard} from "@/app/libs/core";
 
-interface LinkDropDown {
-    title: string;
-    href: string;
-}
-
 
 export const Acceuil = () => {
-    const [random, _] = useState(() => Math.round(Math.random()));
+    const [random, setRandom] = useState(0); // Initialize random state
+
+    useEffect(() => {
+        setRandom(Math.round(Math.random())); // Update random state on component mount
+    }, []); // Run only once on component mount
+
 
     const doctorsInfo = {
         quentin: {
@@ -26,6 +26,8 @@ export const Acceuil = () => {
         }
     }
 
+    const doctor1 = random === 0 ? doctorsInfo.quentin : doctorsInfo.karen;
+    const doctor2 = random === 0 ? doctorsInfo.karen : doctorsInfo.quentin;
 
     return (
         <div className={classes.container} id="home">
@@ -34,15 +36,9 @@ export const Acceuil = () => {
                 <h2 className={classes.open}>Ouverture début juillet</h2>
             </div>
             <div className={classes.doctorCardsContainer}>
-                <DoctorCard name={random === 0 ? doctorsInfo.quentin.name : doctorsInfo.karen.name}
-                            specialities={random === 0 ? doctorsInfo.quentin.specialities : doctorsInfo.karen.specialities}
-                            image={random === 0 ? doctorsInfo.quentin.image : doctorsInfo.karen.image} left/>
-                <DoctorCard name={random === 0 ? doctorsInfo.karen.name : doctorsInfo.quentin.name}
-                            specialities={random === 0 ? doctorsInfo.karen.specialities : doctorsInfo.quentin.specialities}
-                            image={random === 0 ? doctorsInfo.karen.image : doctorsInfo.quentin.image} right/>
+                <DoctorCard name={doctor1.name} specialities={doctor1.specialities} image={doctor1.image} left/>
+                <DoctorCard name={doctor2.name} specialities={doctor2.specialities} image={doctor2.image} right/>
             </div>
-
         </div>
-
     );
 };
