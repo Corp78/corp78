@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import classes from "./Acceuil.module.css";
 import {DoctorCard} from "@/app/libs/core";
 
@@ -11,7 +11,7 @@ interface LinkDropDown {
 
 
 export const Acceuil = () => {
-    const [random, setRandom] = useState(() => Math.round(Math.random()));
+    const [random, _] = useState(() => Math.round(Math.random()));
 
     const doctorsInfo = {
         quentin: {
@@ -27,16 +27,12 @@ export const Acceuil = () => {
     }
 
 
-    console.log(random)
-
-
     return (
         <div className={classes.container} id="home">
             <div className={classes.titleContainer}>
                 <h1 className={classes.title}>Cabinet Ophtalmologique Pariwest</h1>
                 <h2 className={classes.open}>Ouverture début juillet</h2>
             </div>
-            <p>{random}</p>
             <div className={classes.doctorCardsContainer}>
                 <DoctorCard name={random === 0 ? doctorsInfo.quentin.name : doctorsInfo.karen.name}
                             specialities={random === 0 ? doctorsInfo.quentin.specialities : doctorsInfo.karen.specialities}
