@@ -1,0 +1,12 @@
+.title {
+    color: rgb(var(--green-4));
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: rgb(var(--green-1));
+}
