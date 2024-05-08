@@ -20,7 +20,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 type GenericButtonProps = ButtonProps;
 
-export const Button = (props: BaseButtonProps & GenericButtonProps) => {
+export const ButtonLink = (props: BaseButtonProps & GenericButtonProps) => {
     const {
         color,
         className,
@@ -35,7 +35,7 @@ export const Button = (props: BaseButtonProps & GenericButtonProps) => {
 
 
     return (
-        <button
+        <a
             className={classnames(
                 classes.blockColor,
                 {
@@ -52,6 +52,6 @@ export const Button = (props: BaseButtonProps & GenericButtonProps) => {
         >
             {props.children}
             {props.text && props.text}
-        </button>
+        </a>
     );
 };

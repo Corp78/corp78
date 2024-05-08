@@ -3,9 +3,9 @@
 import React, {useState} from 'react';
 import classes from "./Header.module.css";
 import {DropDown} from "@/app/libs/core/DropDown/DropDown";
-import {Button} from "@/app/libs/core";
 import Image from "next/image";
 import classnames from "classnames";
+import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 
 
 export const Header = () => {
@@ -22,19 +22,20 @@ export const Header = () => {
         const targetDiv = document.getElementById(id);
         let scrollPosition = (targetDiv?.getBoundingClientRect().top || 0) + window.scrollY - 116;
         if (id === "home") {
-           scrollPosition = 0;
+            scrollPosition = 0;
         }
-        window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+        window.scrollTo({top: scrollPosition, behavior: 'smooth'});
         setOpenMenu(false);
     };
 
 
     return (
-        <div className={classes.mainContainer} >
+        <div className={classes.mainContainer}>
             <div className={classes.container}>
                 <div className={classes.nameContainer}>
                     <div className={classes.logoContainer}>
-                        <Image className={classes.logo} src="/logo.svg" alt="corp78" fill sizes="(max-width: 64px) , (max-width: 64px)" />
+                        <Image className={classes.logo} src="/logo.svg" alt="corp78" fill
+                               sizes="(max-width: 64px) , (max-width: 64px)"/>
                     </div>
                 </div>
                 <div className={classnames(classes.menuContainer, {
@@ -67,14 +68,20 @@ export const Header = () => {
 
                         <div className={classes.meetingMenu}>
                             <div>
-                                <Button className={classes.test} text="Prendre rendez-vous" white></Button>
+                                <ButtonLink className={classes.test} text="Prendre rendez-vous" white
+                                            href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
+                                            target="_blank"
+                                            rel="noopener noreferrer"></ButtonLink>
                             </div>
                         </div>
 
                     </div>
                 </div>
                 <div className={classes.meeting}>
-                    <Button text="Prendre rendez-vous"></Button>
+                    <ButtonLink text="Prendre rendez-vous"
+                                href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
+                                target="_blank"
+                                rel="noopener noreferrer"></ButtonLink>
                 </div>
                 <div className={classes.menuButton} onClick={closeOrOpenMenu}>
                     <Image className={classes.image} src="/IoMenu.svg" alt="menu" width={40} height={40}/>

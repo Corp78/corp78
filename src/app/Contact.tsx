@@ -5,7 +5,7 @@ import classes from "./Contact.module.css";
 import {FaMapMarkerAlt, FaTrain} from "react-icons/fa";
 import {FaPhoneFlip} from "react-icons/fa6";
 import {MdEmail} from "react-icons/md";
-import {Button} from "@/app/libs/core";
+import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 
 
 export const Contact = () => {
@@ -47,7 +47,10 @@ export const Contact = () => {
                             <p className={classes.info}>15min à pied de la gare (La Verrière)</p>
                         </div>
                         <div>
-                            <Button text="Prendre rendez-vous" white></Button>
+                            <ButtonLink text="Prendre rendez-vous" white
+                                        href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
+                                        target="_blank"
+                                        rel="noopener noreferrer"></ButtonLink>
                         </div>
                     </div>
                 </div>
