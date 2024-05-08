@@ -48,7 +48,7 @@ export const Header = () => {
                                 <Image className={classes.image} src="/IoClose.svg" alt="menu" width={40} height={40}/>
                             </div>
                         </div>
-                        <DropDown title="Acceuil" onClick={() => scrollTo('home')}></DropDown>
+                        <DropDown title="Accueil" onClick={() => scrollTo('home')}></DropDown>
                         <div className={classes.separator}/>
                         <DropDown title="Expertises" linksDropDown={[{
                             title: "Chirurgie Réfractive",
