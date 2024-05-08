@@ -39,14 +39,14 @@ export const Contact = () => {
                         <div className={classes.infoContent}>
                             <MdEmail className={classes.icon}/>
                             <div className={classes.separatorRight}/>
-                            <p className={classes.info}>test@test.com</p>
+                            <p className={classes.info}>cab.oph.pariwest@gmail.com</p>
                         </div>
                         <div className={classes.infoContent}>
                             <FaTrain className={classes.icon}/>
                             <div className={classes.separatorRight}/>
                             <p className={classes.info}>15min à pied de la gare (La Verrière)</p>
                         </div>
-                        <div className={classes.buttonContainer}>
+                        <div>
                             <Button text="Prendre rendez-vous" white></Button>
                         </div>
                     </div>
