@@ -9,7 +9,7 @@ export const Expertise = () => {
     return (
         <div className={classes.container} id="expertise">
             <div className={classes.content}>
-                <h2>Notre Expertises</h2>
+                <h2>Nos Expertises</h2>
             </div>
             <div className={classes.expertiseContainer}>
                 <div className={classes.expertiseContent}>
