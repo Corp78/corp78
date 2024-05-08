@@ -49,8 +49,7 @@ export const Contact = () => {
                         <div>
                             <ButtonLink text="Prendre rendez-vous" white
                                         href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
-                                        target="_blank"
-                                        rel="noopener noreferrer"></ButtonLink>
+                            ></ButtonLink>
                         </div>
                     </div>
                 </div>

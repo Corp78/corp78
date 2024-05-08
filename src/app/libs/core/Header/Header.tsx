@@ -70,8 +70,7 @@ export const Header = () => {
                             <div>
                                 <ButtonLink className={classes.test} text="Prendre rendez-vous" white
                                             href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
-                                            target="_blank"
-                                            rel="noopener noreferrer"></ButtonLink>
+                                ></ButtonLink>
                             </div>
                         </div>
 
@@ -79,9 +78,7 @@ export const Header = () => {
                 </div>
                 <div className={classes.meeting}>
                     <ButtonLink text="Prendre rendez-vous"
-                                href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
-                                target="_blank"
-                                rel="noopener noreferrer"></ButtonLink>
+                                href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"></ButtonLink>
                 </div>
                 <div className={classes.menuButton} onClick={closeOrOpenMenu}>
                     <Image className={classes.image} src="/IoMenu.svg" alt="menu" width={40} height={40}/>

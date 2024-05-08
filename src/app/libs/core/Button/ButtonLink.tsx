@@ -1,7 +1,6 @@
-"use client"
-
 import React from "react";
 import classnames from 'classnames';
+import Link from 'next/link';
 import classes from "./Buttton.module.css";
 
 interface BaseButtonProps {
@@ -14,44 +13,42 @@ interface BaseButtonProps {
     full?: boolean;
     line?: boolean;
     white?: boolean;
+    href: string;
 }
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 type GenericButtonProps = ButtonProps;
 
 export const ButtonLink = (props: BaseButtonProps & GenericButtonProps) => {
     const {
-        color,
         className,
         onClick,
         type,
-        iconClassName,
         full,
         line,
         white,
+        href,
         ...rest
     } = props;
 
-
     return (
-        <a
-            className={classnames(
-                classes.blockColor,
-                {
-                    [classes.full]: props.full,
-                    [classes.line]: props.line,
-                    [classes.white]: props.white
-                },
-                className,
-            )}
-            onClick={onClick}
-            onSubmit={onClick}
-            type={type}
-            {...rest}
+        <Link href={href} target="_blank"
+              rel="noopener noreferrer"
+              className={classnames(
+                  classes.blockColor,
+                  {
+                      [classes.full]: props.full,
+                      [classes.line]: props.line,
+                      [classes.white]: props.white
+                  },
+                  className,
+              )}
+              onClick={onClick}
+              type={type}
         >
             {props.children}
             {props.text && props.text}
-        </a>
+        </Link>
     );
 };

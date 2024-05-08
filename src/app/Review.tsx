@@ -2,8 +2,9 @@
 
 import React from 'react';
 import classes from "./Review.module.css";
-import {Button, ReviewCard} from "@/app/libs/core";
+import {ReviewCard} from "@/app/libs/core";
 import {useRouter} from "next/navigation";
+import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 
 
 export const Review = () => {
@@ -60,10 +61,8 @@ export const Review = () => {
 
             </div>
             <div className={classes.buttonContainer}>
-                <Button text="Ajouter un avis"
-                        onClick={() => {
-                            window.open('https://www.google.com/search?sca_esv=b8d6872986dba9cf&tbm=lcl&sxsrf=ACQVn09Fc4SY6AIks7ExPYS_QH8OHEozfg:1710498612636&q=Dr+Quentin+HAYS+-+Laser+Myopie+-+Chirurgie+Cataracte+et+R%C3%A9tine+-+Ophtalmologue+Paris+Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2NbcwNzYxMTY3MDI2NbU0NTUz3MDI-IoxyqVIIbA0Na8kM0_BwzEyWEFXwSexOLVIwbcyvyAzFch1zsgsKi1KB7KdE0sSixKTS1IVUksUgg6vBOoBKfAvyChJzMnNz8lPL01VCEgsyixWcCzLLF7ESkPDAc9O60XUAAAA&rldimm=5787344370235595561&hl=fr-FR&sa=X&ved=2ahUKEwjiiMfxh_aEAxWzBfsDHejcAlgQ9fQKegQIGxAF&biw=1768&bih=1039&dpr=1#lkt=LocalPoiReviews', '_blank')
-                        }}
+                <ButtonLink text="Ajouter un avis"
+                            href="https://www.google.com/search?sca_esv=d7773eb477db942c&tbm=lcl&sxsrf=ADLYWIJ8AKDsZhwXPr88-SBufS5qkyFM1A:1715197140358&q=Dr+Quentin+HAYS+-+Laser+Myopie+-+Chirurgie+Cataracte+et+R%C3%A9tine+-+Ophtalmologue+Paris+Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2NbcwNzYxMTY3MDI2NbU0NTUz3MDI-IoxyqVIIbA0Na8kM0_BwzEyWEFXwSexOLVIwbcyvyAzFch1zsgsKi1KB7KdE0sSixKTS1IVUksUgg6vBOoBKfAvyChJzMnNz8lPL01VCEgsyixWcCzLLF7ESkPDAc9O60XUAAAA&rldimm=5787344370235595561&hl=fr-FR&sa=X&ved=2ahUKEwje85Si5_6FAxU1VKQEHUvjATwQ9fQKegQINBAF&biw=1850&bih=972&dpr=1#lkt=LocalPoiReviews"
                 />
             </div>
         </div>
