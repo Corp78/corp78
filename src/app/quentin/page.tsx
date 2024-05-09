@@ -1,8 +1,9 @@
 "use client"
 
 import {useRouter} from "next/navigation";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import classes from "./page.module.css";
+import {Loading} from "@/app/libs/core";
 
 const QuentinPage = () => {
 
@@ -15,7 +16,7 @@ const QuentinPage = () => {
 
     return (
         <div className={classes.container}>
-            <h1 className={classes.title}>Loading</h1>
+            <Loading/>
         </div>
     );
 };

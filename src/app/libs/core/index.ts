@@ -6,3 +6,4 @@ export * from './ExpertiseCard/ExpertiseCard';
 export * from './RreviewCard/ReviewCard';
 export * from './Footer/Footer';
 export * from './ListPoint/ListPoint';
+export * from './Loading/Loading'
