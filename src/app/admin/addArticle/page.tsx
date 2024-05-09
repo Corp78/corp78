@@ -15,7 +15,6 @@ const Page = () => {
                     <textarea className={classes.textarea} onChange={(e) => setArticle(e.target.value)}/>
                 </div>
                 <div className={classes.separator}/>
-
                 <div className={classes.container_view}>
                     <ReactMarkdown className={classes.markdown}>{article}</ReactMarkdown>
                 </div>

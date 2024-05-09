@@ -18,7 +18,8 @@
 
 .container_view {
     padding-left: 20px;
-    flex: 1
+    flex: 1;
+    overflow: auto;
 }
 
 .markdown {
@@ -38,13 +39,13 @@
     background: rgb(var(--green-1));
     border-radius: 16px;
     border: 2px solid rgb(var(--green-3));
-    overflow: hidden;
     color: rgb(var(--black));
     padding: 8px;
     resize: none; /* Allow vertical resizing */
     box-sizing: border-box; /* Include padding in the height */
     font-size: 16px; /* Adjust font size if needed */
     line-height: 1.5; /* Adjust line height for better readability */
+    overflow: auto;
 }
 
 .textarea:focus {
@@ -52,14 +53,135 @@
     border: 2px solid rgb(var(--green-4));
 }
 
+/* Style des titres */
+.markdown h1 {
+    font-size: 30px;
+    font-weight: 900;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: rgb(var(--green-5));
+}
+
+.markdown h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: rgb(var(--green-5));
+}
+
+.markdown h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: rgb(var(--green-5));
+}
+
+.markdown strong {
+    font-weight: bold;
+}
+
+.markdown em {
+    font-style: italic;
+}
+
+/* Style des paragraphes */
 .markdown p {
+    margin-bottom: 15px;
     font-weight: normal;
 }
 
-.markdown ol {
-    list-style: decimal;
+.markdown li {
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(var(--black));
+    font-size: 16px;
+    line-height: 1.5;
 }
 
-.markdown ul {
-    list-style: circle;
+/* Style des listes */
+.markdown ul,
+.markdown ol {
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+.markdown ol {
+    margin-bottom: 15px;
+    margin-left: 20px;
+    list-style: none; /* Remove default markers */
+    counter-reset: custom-counter; /* Reset the counter */
+}
+
+.markdown ol li {
+    position: relative; /* Position relative for absolute positioning of marker */
+    margin-bottom: 8px;
+    padding-left: 20px;
+}
+
+/* Style des marqueurs personnalisés pour les listes ordonnées */
+.markdown ol li::before {
+    content: counter(custom-counter) "."; /* Use a counter for the marker */
+    counter-increment: custom-counter; /* Increment the counter */
+    position: absolute;
+    left: -20px; /* Position the marker */
+    top: 0;
+    font-weight: 600;
+    font-size: 15px;
+    padding-left: 20px;
+}
+
+.markdown ul li {
+    position: relative; /* Position relative for absolute positioning of marker */
+    margin-bottom: 8px;
+    padding-left: 20px;
+}
+
+/* Style des marqueurs personnalisés pour les listes non ordonnées */
+.markdown ul li::before {
+    content: ''; /* No content for the marker */
+    position: absolute;
+    left: 0; /* Position the marker */
+    top: 50%;
+    transform: translateY(-50%); /* Center the marker vertically */
+    width: 8px; /* Marker width */
+    height: 8px; /* Marker height */
+    background-color: rgb(var(--green-5)); /* Marker color */
+    border-radius: 50%; /* Make the marker round */
+}
+
+/* Style des liens */
+.markdown a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.markdown a:hover {
+    text-decoration: underline;
+}
+
+/* Style des blocs de code */
+.markdown pre {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+.markdown code {
+    font-family: Consolas, Monaco, 'Courier New', Courier, monospace;
+}
+
+/* Style des citations */
+.markdown blockquote {
+    margin: 10px;
+    border: 1px solid rgb(var(--green-3));
+    background: rgba(var(--green-2), .3);
+    padding: 10px;
+    border-radius: 8px;
+    width: fit-content;
+}
+
+.markdown blockquote p {
+    margin: 0;
 }
