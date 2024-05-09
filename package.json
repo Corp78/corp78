@@ -17,6 +17,7 @@
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-jss": "^10.10.0",
+    "react-markdown": "^8.0.6",
     "react-qr-code": "^2.0.12",
     "tss-react": "^4.9.4"
   },
