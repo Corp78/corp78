@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import classes from './page.module.css'
 import ReactMarkdown from "react-markdown";
 import {ButtonIcon} from "@/app/libs/core";
@@ -13,7 +13,24 @@ const Page = () => {
 
     const [article, setArticle] = useState("");
 
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files && event.target?.files[0];
+        if (file) {
+            setSelectedImage(file);
+            // You can perform additional tasks with the selected image here
+        }
+    };
+
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+        if (!selectedImage) {
+            return;
+        }
+        console.log(URL.createObjectURL(selectedImage))
+    }, [selectedImage])
 
     const addTag = (tag: string, moveCursorToEnd: boolean = true, positionAdjustment: number = 0) => {
         if (textareaRef.current) {
@@ -60,7 +77,7 @@ const Page = () => {
             while (startOfLine >= 0 && currentValue[startOfLine] !== '\n') {
                 startOfLine--;
             }
-            startOfLine++; // Move to the start of the line
+            startOfLine++;
 
             const currentLine = currentValue.substring(startOfLine, currentCursorPosition);
 
@@ -84,12 +101,47 @@ const Page = () => {
                     currentValue.substring(currentCursorPosition);
                 textareaRef.current.setSelectionRange(currentCursorPosition + 3, currentCursorPosition + 3); // Move cursor to the right
                 event.preventDefault(); // Prevent default behavior of Enter key
+            } else if (/^[0-9]+\.\s/.test(currentLine)) {
+                // Remove the previous line
+                const currentNumberMatch = /^[0-9]+/.exec(currentLine);
+                let nextLineValue = '';
+                let nextLineNumber;
+                if (/^[0-9]+\.\s*$/.test(currentLine)) {
+                    const newValue =
+                        currentValue.substring(0, startOfLine - 1) + "\n\n"
+                    currentValue.substring(currentCursorPosition);
+
+                    // Update textarea value and cursor position
+                    textareaRef.current.value = newValue;
+                    textareaRef.current.setSelectionRange(startOfLine + 1, startOfLine + 1); // Move cursor to the start of the next line
+                    event.preventDefault(); // Prevent default behavior of Enter key
+                } else {
+                    if (currentNumberMatch) {
+                        const currentNumber = parseInt(currentNumberMatch[0], 10);
+                        nextLineNumber = currentNumber + 1;
+                        nextLineValue = nextLineNumber + '. ';
+                    }
+                    textareaRef.current.value =
+                        currentValue.substring(0, currentCursorPosition) + '\n' +
+                        nextLineValue +
+                        currentValue.substring(currentCursorPosition);
+                    textareaRef.current.setSelectionRange(currentCursorPosition + nextLineValue.length + 1, currentCursorPosition + nextLineValue.length + 1); // Move cursor to the right
+                    event.preventDefault(); // Prevent default behavior of Enter key
+                }
             }
         }
     };
 
     return (
         <div className={classes.editor_content}>
+            <div className={classes.select}>
+                <input type="text"/>
+                <input
+                    type="file"
+                    accept="image/*" // Limit to image files only
+                    onChange={handleImageChange}
+                />
+            </div>
             <div className={classes.header}>
                 <ButtonIcon onClick={() => addTag("# ")}>
                     <p>T1</p>
@@ -116,7 +168,7 @@ const Page = () => {
                     <BsFillChatQuoteFill className={classes.icon} onClick={() => addTag("\> ")}/>
                 </ButtonIcon>
                 <ButtonIcon>
-                    <RiSeparator className={classes.icon} onClick={() => addTag("\n---\n")}/>
+                    <RiSeparator className={classes.icon} onClick={() => addTag("\n___\n\n")}/>
                 </ButtonIcon>
             </div>
             <div className={classes.container_editable}>
@@ -125,7 +177,11 @@ const Page = () => {
                           onKeyDown={handleKeyDown}/>
             </div>
             <div className={classes.container_view}>
-                <ReactMarkdown className={classes.markdown}>{article}</ReactMarkdown>
+                <ReactMarkdown
+                    className={classes.markdown}>
+                    {`![selectedImage](http://localhost:3000/2635aee3-869a-41b3-be68-80ee3d41cf09)\n`}
+                    {article}
+                </ReactMarkdown>
             </div>
         </div>
     );
