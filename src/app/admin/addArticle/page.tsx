@@ -1,36 +1,84 @@
 "use client"
 
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import classes from './page.module.css'
 import ReactMarkdown from "react-markdown";
 import {ButtonIcon} from "@/app/libs/core";
 import {FaBold, FaListOl, FaListUl} from "react-icons/fa6";
-import {FaItalic} from "react-icons/fa";
+import {FaExchangeAlt, FaItalic} from "react-icons/fa";
 import {BsFillChatQuoteFill} from "react-icons/bs";
 import {RiSeparator} from "react-icons/ri";
+import NextImage from "next/image"
+import {IoMdBook} from "react-icons/io";
+import classnames from "classnames";
+import {Formik} from "formik";
+
+interface initialValues {
+    title: string;
+    image: string;
+    article: string;
+}
 
 const Page = () => {
 
     const [article, setArticle] = useState("");
 
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [editorBook, setEditorBook] = useState<boolean>(true);
+    const [viewPage, setViewPage] = useState<boolean>(true)
 
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+    const resizeImage = (file: File, maxWidth: number, maxHeight: number): Promise<string | null> => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height *= maxWidth / width;
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width *= maxHeight / height;
+                            height = maxHeight;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    const ctx = canvas.getContext('2d');
+                    if (ctx) {
+                        ctx.drawImage(img, 0, 0, width, height);
+                        resolve(canvas.toDataURL('image/jpeg'));
+                    } else {
+                        resolve(null);
+                    }
+                };
+                img.src = event.target?.result as string;
+            };
+            reader.readAsDataURL(file);
+        });
+    };
+
+    const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files && event.target?.files[0];
+        setImageUrl(file ? file.name : '')
         if (file) {
-            setSelectedImage(file);
-            // You can perform additional tasks with the selected image here
+            const resizedImageUrl = await resizeImage(file, 1900, 1900); // Resize to maximum width and height of 300px
+            return resizedImageUrl ? resizedImageUrl : ''
         }
+        return ''
     };
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-    useEffect(() => {
-        if (!selectedImage) {
-            return;
-        }
-        console.log(URL.createObjectURL(selectedImage))
-    }, [selectedImage])
+    const [imageUrl, setImageUrl] = useState<string>('');
 
     const addTag = (tag: string, moveCursorToEnd: boolean = true, positionAdjustment: number = 0) => {
         if (textareaRef.current) {
@@ -133,57 +181,105 @@ const Page = () => {
     };
 
     return (
-        <div className={classes.editor_content}>
-            <div className={classes.select}>
-                <input type="text"/>
-                <input
-                    type="file"
-                    accept="image/*" // Limit to image files only
-                    onChange={handleImageChange}
-                />
-            </div>
-            <div className={classes.header}>
-                <ButtonIcon onClick={() => addTag("# ")}>
-                    <p>T1</p>
-                </ButtonIcon>
-                <ButtonIcon onClick={() => addTag("## ")}>
-                    <p>T2</p>
-                </ButtonIcon>
-                <ButtonIcon onClick={() => addTag("### ")}>
-                    <p>T3</p>
-                </ButtonIcon>
-                <ButtonIcon onClick={() => addTag("- ")}>
-                    <FaListUl className={classes.icon}/>
-                </ButtonIcon>
-                <ButtonIcon onClick={() => addTag("1. ")}>
-                    <FaListOl className={classes.icon}/>
-                </ButtonIcon>
-                <ButtonIcon>
-                    <FaBold className={classes.icon} onClick={() => addTag(" ****", false, -2)}/>
-                </ButtonIcon>
-                <ButtonIcon>
-                    <FaItalic className={classes.icon} onClick={() => addTag(" **", false, -1)}/>
-                </ButtonIcon>
-                <ButtonIcon>
-                    <BsFillChatQuoteFill className={classes.icon} onClick={() => addTag("\> ")}/>
-                </ButtonIcon>
-                <ButtonIcon>
-                    <RiSeparator className={classes.icon} onClick={() => addTag("\n___\n\n")}/>
-                </ButtonIcon>
-            </div>
-            <div className={classes.container_editable}>
-                <textarea ref={textareaRef} value={article} className={classes.textarea}
-                          onChange={(e) => setArticle(e.target.value)}
-                          onKeyDown={handleKeyDown}/>
-            </div>
-            <div className={classes.container_view}>
-                <ReactMarkdown
-                    className={classes.markdown}>
-                    {`![selectedImage](http://localhost:3000/2635aee3-869a-41b3-be68-80ee3d41cf09)\n`}
-                    {article}
-                </ReactMarkdown>
-            </div>
-        </div>
+        <Formik initialValues={{title: '', image: '', article: ''}} onSubmit={(values) => {
+            console.log(values)
+        }}>
+            {({
+                  values,
+                  handleSubmit,
+                  handleChange,
+                  setFieldValue,
+              }) => (
+                <form className={classes.page} onSubmit={handleSubmit}>
+                    <div className={classnames(classes.editor_content, {
+                        [classes.editor_content_book]: editorBook,
+                        [classes.editor_content_view]: !editorBook && viewPage,
+                        [classes.editor_content_edit]: !editorBook && !viewPage,
+                    })}>
+
+                        <div className={classes.select}>
+                            <input name="title" type="text" placeholder="Titre de l'article" onChange={handleChange}
+                                   value={values.title}/>
+                            <div className={classes.fileInput}>
+                                <label htmlFor="file-upload" className={classes.fileUpload}>
+                                    Choisir une image
+                                </label>
+                                <p>{imageUrl}</p>
+                            </div>
+                            <input id="file-upload" type="file"
+                                   accept="image/*" // Limit to image files only
+                                   onChange={async (e) => {
+                                       const res = await handleImageChange(e)
+                                       await setFieldValue('image', res);
+                                   }}/>
+                        </div>
+                        <div className={classes.header}>
+                            <ButtonIcon onClick={() => addTag("# ")}>
+                                <p>T1</p>
+                            </ButtonIcon>
+                            <ButtonIcon onClick={() => addTag("## ")}>
+                                <p>T2</p>
+                            </ButtonIcon>
+                            <ButtonIcon onClick={() => addTag("### ")}>
+                                <p>T3</p>
+                            </ButtonIcon>
+                            <ButtonIcon onClick={() => addTag("- ")}>
+                                <FaListUl className={classes.icon}/>
+                            </ButtonIcon>
+                            <ButtonIcon onClick={() => addTag("1. ")}>
+                                <FaListOl className={classes.icon}/>
+                            </ButtonIcon>
+                            <ButtonIcon>
+                                <FaBold className={classes.icon} onClick={() => addTag(" ****", false, -2)}/>
+                            </ButtonIcon>
+                            <ButtonIcon>
+                                <FaItalic className={classes.icon} onClick={() => addTag(" **", false, -1)}/>
+                            </ButtonIcon>
+                            <ButtonIcon>
+                                <BsFillChatQuoteFill className={classes.icon} onClick={() => addTag("\> ")}/>
+                            </ButtonIcon>
+                            <ButtonIcon>
+                                <RiSeparator className={classes.icon} onClick={() => addTag("\n___\n\n")}/>
+                            </ButtonIcon>
+                            <div className={classes.separator}/>
+                            <ButtonIcon onClick={() => {
+                                setEditorBook(!editorBook);
+                            }}>
+                                <IoMdBook className={classes.icon}/>
+                            </ButtonIcon>
+                            {!editorBook &&
+                                <ButtonIcon onClick={() => {
+                                    setViewPage(!viewPage);
+                                }}>
+                                    <FaExchangeAlt className={classes.icon}/>
+                                </ButtonIcon>
+                            }
+                        </div>
+                        <div className={classes.container_editable}>
+                            <textarea ref={textareaRef} value={values.article} name="article"
+                                      className={classes.textarea}
+                                      onChange={handleChange}
+                                      onKeyDown={handleKeyDown}
+                            />
+                        </div>
+                        <div className={classes.container_view_block}>
+                            <div className={classes.container_view}>
+                                {
+                                    values.image && <div className={classes.imageContainer}>
+                                        <NextImage src={values.image} alt="image article" objectFit="cover" fill/>
+                                    </div>
+                                }
+                                <ReactMarkdown
+                                    className={classes.markdown}>
+                                    {`# ${values.title}\n` + values.article}
+                                </ReactMarkdown>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            )}
+        </Formik>
     );
 };
 
