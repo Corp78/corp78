@@ -21,7 +21,6 @@ interface initialValues {
 
 const Page = () => {
 
-    const [article, setArticle] = useState("");
 
     const [editorBook, setEditorBook] = useState<boolean>(true);
     const [viewPage, setViewPage] = useState<boolean>(true)
@@ -70,7 +69,7 @@ const Page = () => {
         const file = event.target.files && event.target?.files[0];
         setImageUrl(file ? file.name : '')
         if (file) {
-            const resizedImageUrl = await resizeImage(file, 1900, 1900); // Resize to maximum width and height of 300px
+            const resizedImageUrl = await resizeImage(file, 1200, 1200); // Resize to maximum width and height of 300px
             return resizedImageUrl ? resizedImageUrl : ''
         }
         return ''
