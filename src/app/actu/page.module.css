@@ -1,0 +1,36 @@
+.page_container {
+    background: rgba(var(--green-1), 1);
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.actuContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+
+    @media (max-width: 990px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    gap: 56px;
+    flex-direction: column;
+    padding: 40px 20px;
+    align-self: center;
+    max-width: 1400px;
+
+    @media (max-width: 990px) {
+        gap: 20px;
+    }
+
+}

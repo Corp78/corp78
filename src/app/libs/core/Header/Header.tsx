@@ -1,11 +1,12 @@
 "use client"
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./Header.module.css";
 import {DropDown} from "@/app/libs/core/DropDown/DropDown";
 import Image from "next/image";
 import classnames from "classnames";
 import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 
 
 export const Header = () => {
@@ -13,9 +14,13 @@ export const Header = () => {
 
     const [openMenu, setOpenMenu] = useState(false);
 
+    const router = useRouter();
+    const searchParams = useSearchParams()
+    const pathname = usePathname()
+
+
     const closeOrOpenMenu = () => {
         setOpenMenu(!openMenu);
-        console.log(openMenu)
     }
 
     const scrollTo = (id: string) => {
@@ -26,6 +31,22 @@ export const Header = () => {
         }
         window.scrollTo({top: scrollPosition, behavior: 'smooth'});
         setOpenMenu(false);
+    }
+
+
+    useEffect(() => {
+        const param = searchParams.get("tab");
+        if (param) {
+            scrollTo(param);
+        }
+    }, [searchParams]);
+
+    const goTo = (id: string) => {
+        if (pathname !== "/") {
+            router.push(`/?tab=${id}`);
+        } else {
+            scrollTo(id)
+        }
     };
 
 
@@ -48,7 +69,7 @@ export const Header = () => {
                                 <Image className={classes.image} src="/IoClose.svg" alt="menu" width={40} height={40}/>
                             </div>
                         </div>
-                        <DropDown title="Accueil" onClick={() => scrollTo('home')}></DropDown>
+                        <DropDown title="Accueil" onClick={() => goTo('home')}></DropDown>
                         <div className={classes.separator}/>
                         <DropDown title="Expertises" linksDropDown={[{
                             title: "Chirurgie Réfractive",
@@ -60,11 +81,13 @@ export const Header = () => {
                             title: "Glaucome",
                             href: "/glaucome"
                         }, {title: "Lentilles", href: "/lentilles"}, {title: "DMLA", href: "/dmla"}]}
-                                  onClick={() => scrollTo('expertise')}></DropDown>
+                                  onClick={() => goTo('expertise')}></DropDown>
                         <div className={classes.separator}/>
-                        <DropDown title="Actualités"/>
+                        <DropDown title="Actualités" onClick={() => {
+                            router.push("/actu")
+                        }}/>
                         <div className={classes.separator}/>
-                        <DropDown title="Contact" onClick={() => scrollTo('contact')}></DropDown>
+                        <DropDown title="Contact" onClick={() => goTo('contact')}></DropDown>
 
                         <div className={classes.meetingMenu}>
                             <div>

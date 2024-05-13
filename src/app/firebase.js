@@ -1,19 +1,15 @@
-import firebase from 'firebase';
-import 'firebase/analytics';
+import {getApps, initializeApp} from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    appId: process.env.APP_ID,
-    measurementId: process.env.MEASURMENT_ID
+    apiKey: `${process.env.NEXT_PUBLIC_FIREBASE_APIKEY}`,
+    authDomain: `${process.env.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN}`,
+    projectId: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECTID}`,
+    storageBucket: `${process.env.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET}`,
+    messagingSenderId: `${process.env.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID}`,
+    appId: `${process.env.NEXT_PUBLIC_FIREBASE_APPID}`,
+    measurementId: `${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENTID}`
 };
+// Initialize Firebase
+let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-if (typeof window !== 'undefined' && !firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig)
-    if ('measurementId' in firebaseConfig) firebase.analytics()
-}
-
-export default firebase;
+export default firebase_app;

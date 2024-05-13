@@ -3,13 +3,11 @@
 import React from 'react';
 import classes from "./Review.module.css";
 import {ReviewCard} from "@/app/libs/core";
-import {useRouter} from "next/navigation";
 import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 
 
 export const Review = () => {
 
-    const router = useRouter()
 
     return (
         <div className={classes.container} id="review">

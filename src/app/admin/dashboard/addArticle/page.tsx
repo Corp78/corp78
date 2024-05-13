@@ -3,7 +3,7 @@
 import React, {useRef, useState} from "react";
 import classes from './page.module.css'
 import ReactMarkdown from "react-markdown";
-import {ButtonIcon} from "@/app/libs/core";
+import {ButtonIcon, Loading} from "@/app/libs/core";
 import {FaBold, FaListOl, FaListUl} from "react-icons/fa6";
 import {FaExchangeAlt, FaItalic} from "react-icons/fa";
 import {BsFillChatQuoteFill} from "react-icons/bs";
@@ -12,8 +12,13 @@ import NextImage from "next/image"
 import {IoMdBook} from "react-icons/io";
 import classnames from "classnames";
 import {Formik} from "formik";
+import {getDownloadURL, getStorage, ref, uploadString} from "@firebase/storage";
+import firebase_app from "@/app/firebase";
+import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
+import {addDoc, collection, getFirestore} from "@firebase/firestore";
+import {v4 as uuidv4} from 'uuid';
 
-interface initialValues {
+interface Values {
     title: string;
     image: string;
     article: string;
@@ -22,6 +27,7 @@ interface initialValues {
 const Page = () => {
 
 
+    const {loading} = useRequireAuth()
     const [editorBook, setEditorBook] = useState<boolean>(true);
     const [viewPage, setViewPage] = useState<boolean>(true)
 
@@ -179,10 +185,58 @@ const Page = () => {
         }
     };
 
+
+    const uploadFile = async (base64String: string): Promise<string | null> => {
+        try {
+            // Check if the user is authenticated
+            const storage = getStorage(firebase_app);
+
+            // Extract base64 string without data URL prefix
+            const base64Data = base64String.split(',')[1];
+
+            // Upload file to Firebase Storage
+            const storageRef = ref(storage, uuidv4());
+            await uploadString(storageRef, base64Data, 'base64');
+
+            // Get download URL of the uploaded file
+            const downloadURL = await getDownloadURL(storageRef);
+            console.log('File uploaded to:', downloadURL);
+            return downloadURL;
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            return null;
+        }
+    };
+
+    const handleSubmit = async (values: Values) => {
+        try {
+            const db = getFirestore(firebase_app);
+            const collectionRef = collection(db, 'articles');
+            const imageUrl = await uploadFile(values.image);
+            if (!imageUrl) {
+                return;
+            }
+            const data = {
+                title: values.title,
+                imageUrl,
+                article: Buffer.from(values.article).toString('base64'),
+                pin: true,
+            };
+            await addDoc(collectionRef, data);
+
+            console.log('Data added to collection successfully.');
+        } catch (error) {
+            console.error('Error adding data to collection:', error);
+        }
+    }
+
+    if (loading) {
+        return <Loading/>
+    }
+
+
     return (
-        <Formik initialValues={{title: '', image: '', article: ''}} onSubmit={(values) => {
-            console.log(values)
-        }}>
+        <Formik initialValues={{title: '', image: '', article: ''}} onSubmit={handleSubmit}>
             {({
                   values,
                   handleSubmit,
@@ -253,6 +307,7 @@ const Page = () => {
                                     <FaExchangeAlt className={classes.icon}/>
                                 </ButtonIcon>
                             }
+                            <input type="submit"/>
                         </div>
                         <div className={classes.container_editable}>
                             <textarea ref={textareaRef} value={values.article} name="article"
