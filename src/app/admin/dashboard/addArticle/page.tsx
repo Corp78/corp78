@@ -219,7 +219,7 @@ const Page = () => {
             const data = {
                 title: values.title,
                 imageUrl,
-                article: Buffer.from(values.article).toString('base64'),
+                article: values.article,
                 pin: true,
             };
             await addDoc(collectionRef, data);

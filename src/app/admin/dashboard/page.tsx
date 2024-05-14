@@ -31,6 +31,9 @@ const Dashboard = () => {
             <h1>Page Admin Connected</h1>
             {user && <p>Connected</p>}
             {user && <Button onClick={handleSignOut}>Disconnect</Button>}
+            {user && <Button onClick={() => {
+                window.location.href = "/admin/dashboard/addArticle"
+            }}>Ajouter un article</Button>}
         </div>
     );
 };
