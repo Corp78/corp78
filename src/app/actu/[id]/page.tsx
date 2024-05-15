@@ -8,11 +8,14 @@ import React, {useEffect, useState} from "react";
 import {doc, getDoc, getFirestore} from "@firebase/firestore";
 import firebase_app from "@/app/firebase";
 import {Article} from "@/app/interfaces/articles";
+import {IoMdArrowRoundBack} from "react-icons/io";
+import {useRouter} from "next/navigation";
 
 
 const ArticlePage = ({params}: { params: { id: string } }) => {
 
     const [article, setArticle] = useState<Article | null>(null);
+    const router = useRouter()
 
     const getArticleById = async (articleId: string): Promise<Article | null> => {
         try {
@@ -55,6 +58,11 @@ const ArticlePage = ({params}: { params: { id: string } }) => {
 
     return (
         <div className={classes_2.container_view_block}>
+            <div className={classes.buttonReturn} onClick={() => {
+                router.push("/actu")
+            }}>
+                <IoMdArrowRoundBack className={classes.iconReturn}/>
+            </div>
             {
                 article && <div className={classes.container_view}>
                     {

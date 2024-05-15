@@ -4,12 +4,17 @@ import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import firebase_app from "@/app/firebase";
 import {useState} from 'react';
 import {useFormik} from 'formik';
+import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
+import {Loading} from "@/app/libs/core";
+import {useRouter} from "next/navigation";
 
 
 const Admin = () => {
     const [error, setError] = useState<string>('');
+    const {user, loading} = useRequireAuth({allowAnonymous: true})
 
     const auth = getAuth(firebase_app);
+    const router = useRouter()
 
     const formik = useFormik({
         initialValues: {
@@ -25,6 +30,14 @@ const Admin = () => {
             }
         },
     });
+
+    if (loading) {
+        return <Loading addDiv/>
+    }
+
+    if (user) {
+        router.push("/admin/dashboard")
+    }
 
     return (
         <div>

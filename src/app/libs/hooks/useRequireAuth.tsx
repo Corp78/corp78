@@ -7,7 +7,11 @@ interface AuthState {
     loading: boolean;
 }
 
-export const useRequireAuth = (): AuthState => {
+interface Props {
+    allowAnonymous?: boolean | undefined;
+}
+
+export const useRequireAuth = (props: Props): AuthState => {
     const [authState, setAuthState] = useState<AuthState>({
         user: null,
         loading: true,
@@ -17,14 +21,14 @@ export const useRequireAuth = (): AuthState => {
         const auth = getAuth(firebase_app);
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setAuthState({user, loading: false});
-            if (!user) {
+            if (!user && !props.allowAnonymous) {
                 // Redirect to login page or handle unauthorized access
                 window.location.href = "/"
             }
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [props?.allowAnonymous]);
 
     return authState;
 };

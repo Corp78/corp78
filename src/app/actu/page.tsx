@@ -38,12 +38,14 @@ export default function Actu() {
             <Header/>
             <div className={classes.container}>
                 <h1>Actualités</h1>
-                <div className={classes.actuContainer}>
-                    {articles?.map((article: Article) => (
-                        <ActuCard key={article.id} id={article.id} image={article.imageUrl} title={article.title}
-                                  date="12 / 12 / 2024"
-                                  description={article.article}/>
-                    ))}
+                <div className={classes.actuMainContainer}>
+                    <div className={classes.actuContainer}>
+                        {articles?.map((article: Article) => (
+                            <ActuCard key={article.id} id={article.id} image={article.imageUrl} title={article.title}
+                                      date="12 / 12 / 2024"
+                                      description={article.article}/>
+                        ))}
+                    </div>
                 </div>
             </div>
             <Footer/>
