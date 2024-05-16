@@ -11,7 +11,7 @@ import {useRouter} from "next/navigation";
 
 const Admin = () => {
     const [error, setError] = useState<string>('');
-    const {user, loading} = useRequireAuth({allowAnonymous: true})
+    const {user, loading} = useRequireAuth(true)
 
     const auth = getAuth(firebase_app);
     const router = useRouter()

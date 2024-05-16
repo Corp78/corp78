@@ -7,28 +7,31 @@ interface AuthState {
     loading: boolean;
 }
 
-interface Props {
-    allowAnonymous?: boolean | undefined;
-}
-
-export const useRequireAuth = (props: Props): AuthState => {
-    const [authState, setAuthState] = useState<AuthState>({
-        user: null,
-        loading: true,
+export const useRequireAuth = (allowAnonymous?: boolean): AuthState => {
+    const [authState, setAuthState] = useState<AuthState>(() => {
+        // Check if authentication state is stored in sessionStorage
+        const cachedAuthState = sessionStorage.getItem('authState');
+        if (cachedAuthState) {
+            return JSON.parse(cachedAuthState);
+        } else {
+            return {user: null, loading: true};
+        }
     });
 
     useEffect(() => {
         const auth = getAuth(firebase_app);
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setAuthState({user, loading: false});
-            if (!user && !props.allowAnonymous) {
+            const newAuthState = {user, loading: false};
+            setAuthState(newAuthState);
+            sessionStorage.setItem('authState', JSON.stringify(newAuthState));
+            if (!user && allowAnonymous) {
                 // Redirect to login page or handle unauthorized access
-                window.location.href = "/"
+                window.location.href = "/";
             }
         });
 
         return () => unsubscribe();
-    }, [props?.allowAnonymous]);
+    }, [allowAnonymous]);
 
     return authState;
 };

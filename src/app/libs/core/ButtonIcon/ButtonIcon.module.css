@@ -6,9 +6,27 @@
     height: 32px;
     justify-content: center;
     align-items: center;
-    background: rgb(var(--green-1));
+    background: rgb(var(--green-5));
+    outline: none;
+    border: none;
 }
 
 .container:hover {
     cursor: pointer;
+}
+
+.pin {
+    background: rgb(var(--green-3));
+}
+
+.notPin {
+    background: #9e6f6f;
+}
+
+.change {
+    opacity: .5;
+}
+
+.delete {
+    background: #72161f;
 }

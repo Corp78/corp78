@@ -3,7 +3,7 @@
     border-radius: 16px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: min-content min-content auto;
     align-items: center;
     grid-template-areas:
         "image"
@@ -29,6 +29,12 @@
     transition: all .2s ease-in-out;
     cursor: pointer;
 
+}
+
+.container_addArticle {
+    background: rgba(var(--green-5), .05);
+    border-bottom: 2px solid rgb(var(--green-5));
+    border-top: 2px solid rgb(var(--green-5));
 }
 
 .imageContainer {

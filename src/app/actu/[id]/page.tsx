@@ -5,38 +5,16 @@ import classes_2 from "./page.module.css";
 import NextImage from "next/image";
 import ReactMarkdown from "react-markdown";
 import React, {useEffect, useState} from "react";
-import {doc, getDoc, getFirestore} from "@firebase/firestore";
-import firebase_app from "@/app/firebase";
 import {Article} from "@/app/interfaces/articles";
 import {IoMdArrowRoundBack} from "react-icons/io";
 import {useRouter} from "next/navigation";
+import {getArticleById} from "@/app/libs/utils/utilsFunction";
 
 
 const ArticlePage = ({params}: { params: { id: string } }) => {
 
     const [article, setArticle] = useState<Article | null>(null);
     const router = useRouter()
-
-    const getArticleById = async (articleId: string): Promise<Article | null> => {
-        try {
-            const db = getFirestore(firebase_app);
-            const articleRef = doc(db, 'articles', articleId); // Reference to the specific document by its ID
-            const articleDoc = await getDoc(articleRef);
-
-            if (articleDoc.exists()) {
-                return {
-                    id: articleDoc.id,
-                    ...articleDoc.data()
-                } as Article;
-            } else {
-                console.error('Article not found');
-                window.location.href = "/actu"
-                return null;
-            }
-        } catch (error) {
-            throw error;
-        }
-    };
 
 
     useEffect(() => {
@@ -79,5 +57,6 @@ const ArticlePage = ({params}: { params: { id: string } }) => {
         </div>
     );
 };
+
 
 export default ArticlePage;

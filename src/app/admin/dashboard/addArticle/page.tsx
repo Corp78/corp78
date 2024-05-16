@@ -1,11 +1,11 @@
 "use client"
 
-import React, {useRef, useState} from "react";
+import React, {useMemo, useRef, useState} from "react";
 import classes from './page.module.css'
 import ReactMarkdown from "react-markdown";
 import {ButtonIcon, Loading} from "@/app/libs/core";
 import {FaBold, FaListOl, FaListUl} from "react-icons/fa6";
-import {FaExchangeAlt, FaItalic} from "react-icons/fa";
+import {FaExchangeAlt, FaItalic, FaSave} from "react-icons/fa";
 import {BsFillChatQuoteFill} from "react-icons/bs";
 import {RiSeparator} from "react-icons/ri";
 import NextImage from "next/image"
@@ -15,14 +15,31 @@ import {Formik} from "formik";
 import {getDownloadURL, getStorage, ref, uploadString} from "@firebase/storage";
 import firebase_app from "@/app/firebase";
 import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
-import {addDoc, collection, getFirestore} from "@firebase/firestore";
+import {addDoc, collection, doc, getFirestore} from "@firebase/firestore";
 import {v4 as uuidv4} from 'uuid';
+import {MdDelete, MdPushPin} from "react-icons/md";
+import {useRouter, useSearchParams} from "next/navigation";
+import * as Yup from 'yup';
+import {deepEqual, getArticleById} from "@/app/libs/utils/utilsFunction";
+import {IoClose} from "react-icons/io5";
 
 interface Values {
-    title: string;
-    image: string;
-    article: string;
+    title: string | null;
+    image: string | null;
+    article: string | null;
+    pin: boolean;
+    date: Date | null;
 }
+
+
+const valuesSchema = Yup.object().shape({
+    title: Yup.string().required('Title is required'),
+    image: Yup.string().required('Image is required'),
+    article: Yup.string().required('Article content is required'),
+    pin: Yup.boolean().required('Pin status is required'),
+    date: Yup.date().nullable().required('Date is required'),
+});
+
 
 const Page = () => {
 
@@ -30,6 +47,11 @@ const Page = () => {
     const {loading} = useRequireAuth()
     const [editorBook, setEditorBook] = useState<boolean>(true);
     const [viewPage, setViewPage] = useState<boolean>(true)
+
+    const router = useRouter()
+    const searchParams = useSearchParams()
+
+    const id = searchParams.get('id')
 
 
     const resizeImage = (file: File, maxWidth: number, maxHeight: number): Promise<string | null> => {
@@ -82,6 +104,7 @@ const Page = () => {
     };
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+
 
     const [imageUrl, setImageUrl] = useState<string>('');
 
@@ -212,7 +235,7 @@ const Page = () => {
         try {
             const db = getFirestore(firebase_app);
             const collectionRef = collection(db, 'articles');
-            const imageUrl = await uploadFile(values.image);
+            const imageUrl = await uploadFile(values.image || '');
             if (!imageUrl) {
                 return;
             }
@@ -223,6 +246,7 @@ const Page = () => {
                 pin: true,
             };
             await addDoc(collectionRef, data);
+            router.push("/admin/dashboard")
 
             console.log('Data added to collection successfully.');
         } catch (error) {
@@ -230,18 +254,47 @@ const Page = () => {
         }
     }
 
+    const handleDelete = async () => {
+        const db = getFirestore(firebase_app);
+        const documentRef = doc(db, 'articles', id)
+    }
+
+    const initialValue: Values = useMemo(async () => {
+        const default: Values = {
+            title: null,
+            image: null,
+            article: null,
+            pin: true,
+            date: new Date()
+        }
+        if (!id) {
+            return  default
+        }
+        const article = await getArticleById(id)
+        return {
+            title: article.title,
+            image: null,
+            article: null,
+            pin: true,
+            date: new Date()
+        }
+    }, [])
+
+
     if (loading) {
         return <Loading/>
     }
 
 
     return (
-        <Formik initialValues={{title: '', image: '', article: ''}} onSubmit={handleSubmit}>
+        <Formik initialValues={initialValue} onSubmit={handleSubmit} validationSchema={valuesSchema}>
             {({
                   values,
                   handleSubmit,
                   handleChange,
                   setFieldValue,
+                  errors,
+                  touched
               }) => (
                 <form className={classes.page} onSubmit={handleSubmit}>
                     <div className={classnames(classes.editor_content, {
@@ -249,16 +302,45 @@ const Page = () => {
                         [classes.editor_content_view]: !editorBook && viewPage,
                         [classes.editor_content_edit]: !editorBook && !viewPage,
                     })}>
+                        <div className={classes.save}>
+
+                            <ButtonIcon indicator={values.pin} onClick={async () => {
+                                await setFieldValue("pin", !values.pin)
+                            }}>
+                                <MdPushPin className={classes.icon}/>
+                            </ButtonIcon>
+
+
+                            <ButtonIcon type="submit" change={deepEqual(initialValue, values)}>
+                                <FaSave className={classes.icon}/>
+                            </ButtonIcon>
+
+                            <ButtonIcon onClick={() => {
+                                router.push("/admin/dashboard");
+                            }}>
+                                <IoClose className={classes.icon}/>
+                            </ButtonIcon>
+
+                            {id && <ButtonIcon del onClick={async () => {
+                                router.push("/admin/dashboard");
+                            }}>
+                                <MdDelete className={classes.icon}/>
+                            </ButtonIcon>}
+
+
+                        </div>
 
                         <div className={classes.select}>
                             <input name="title" type="text" placeholder="Titre de l'article" onChange={handleChange}
-                                   value={values.title}/>
+                                   value={values.title || ''}/>
+                            {touched.title && errors.title && <p className={classes.error}>{errors.title}</p>}
                             <div className={classes.fileInput}>
                                 <label htmlFor="file-upload" className={classes.fileUpload}>
                                     Choisir une image
                                 </label>
                                 <p>{imageUrl}</p>
                             </div>
+                            {touched.image && errors.image && <p className={classes.error}>{errors.image}</p>}
                             <input id="file-upload" type="file"
                                    accept="image/*" // Limit to image files only
                                    onChange={async (e) => {
@@ -268,13 +350,13 @@ const Page = () => {
                         </div>
                         <div className={classes.header}>
                             <ButtonIcon onClick={() => addTag("# ")}>
-                                <p>T1</p>
+                                <p className={classes.icon}>T1</p>
                             </ButtonIcon>
                             <ButtonIcon onClick={() => addTag("## ")}>
-                                <p>T2</p>
+                                <p className={classes.icon}>T2</p>
                             </ButtonIcon>
                             <ButtonIcon onClick={() => addTag("### ")}>
-                                <p>T3</p>
+                                <p className={classes.icon}>T3</p>
                             </ButtonIcon>
                             <ButtonIcon onClick={() => addTag("- ")}>
                                 <FaListUl className={classes.icon}/>
@@ -307,10 +389,12 @@ const Page = () => {
                                     <FaExchangeAlt className={classes.icon}/>
                                 </ButtonIcon>
                             }
-                            <input type="submit"/>
                         </div>
                         <div className={classes.container_editable}>
-                            <textarea ref={textareaRef} value={values.article} name="article"
+                            {touched.article && errors.article && <p className={classes.error}>{errors.article}</p>}
+                            <textarea ref={textareaRef}
+                                      value={(values.article || '')}
+                                      name="article"
                                       className={classes.textarea}
                                       onChange={handleChange}
                                       onKeyDown={handleKeyDown}
@@ -325,7 +409,7 @@ const Page = () => {
                                 }
                                 <ReactMarkdown
                                     className={classes.markdown}>
-                                    {`# ${values.title}\n` + values.article}
+                                    {`# ${values.title || ''}\n` + (values.article || '')}
                                 </ReactMarkdown>
                             </div>
                         </div>

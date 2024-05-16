@@ -1,41 +1,57 @@
 "use client"
 
-import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
-import {Button, Loading} from "@/app/libs/core";
-import {signOut} from "@firebase/auth";
-import {getAuth} from "firebase/auth";
+import {ActuCard} from "@/app/libs/core";
+import classes from "./page.module.css";
+import {collection, getDocs, getFirestore, query, where} from "@firebase/firestore";
 import firebase_app from "@/app/firebase";
+import {useEffect, useState} from "react";
+import {Article} from "@/app/interfaces/articles";
+import {useRouter} from "next/navigation";
 
-const Dashboard = () => {
 
-    const {user, loading} = useRequireAuth()
+export default function Actu() {
 
-    const handleSignOut = async () => {
-        try {
-            const auth = getAuth(firebase_app);
-            await signOut(auth);
-            window.location.href = "/admin"
-        } catch (error) {
-            console.error('Error signing out:', error);
-        }
-    };
+    const [articles, setArticles] = useState<Article[] | null>()
+    const router = useRouter();
 
-    if (loading) {
-        // Render loading indicator while waiting for authentication state
-        return <Loading addDiv/>
+    const getArticles = async () => {
+        const db = getFirestore(firebase_app);
+        const q = query(collection(db, 'articles'), where('pin', "==", true));
+        const querySnapshot = await getDocs(q);
+
+
+        return querySnapshot.docs.map(doc => (
+            {
+                id: doc.id,
+                ...doc.data()
+            })) as Article[];
     }
+
+    useEffect(() => {
+        (async () => {
+            const _articles = await getArticles();
+            setArticles(_articles);
+        })()
+    }, [router]);
 
 
     return (
-        <div style={{background: "#fff", minHeight: "100vh"}}>
-            <h1>Page Admin Connected</h1>
-            {user && <p>Connected</p>}
-            {user && <Button onClick={handleSignOut}>Disconnect</Button>}
-            {user && <Button onClick={() => {
-                window.location.href = "/admin/dashboard/addArticle"
-            }}>Ajouter un article</Button>}
+        <div className={classes.page_container}>
+            <div className={classes.container}>
+                <h1>Admin Actualités</h1>
+                <div className={classes.actuMainContainer}>
+                    <div className={classes.actuContainer}>
+                        <ActuCard key={0} id="0" image="/addArticle.png" title="Ajouter un article"
+                                  date="12 / 12 / 2024"
+                                  description="Créer un article"/>
+                        {articles?.map((article: Article) => (
+                            <ActuCard key={article.id} id={article.id} image={article.imageUrl} title={article.title}
+                                      date="12 / 12 / 2024"
+                                      description={article.article}/>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
     );
-};
-
-export default Dashboard;
+}

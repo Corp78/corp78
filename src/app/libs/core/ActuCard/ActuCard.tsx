@@ -2,6 +2,7 @@ import React, {useMemo} from "react";
 import classes from "./ActuCard.module.css";
 import Image from 'next/image'
 import {useRouter} from "next/navigation";
+import classnames from "classnames";
 
 interface Props {
     id: string;
@@ -14,6 +15,7 @@ interface Props {
 export const ActuCard = ({id, title, image, date, description}: Props) => {
 
     const router = useRouter();
+    const isAdd = id === "0";
 
     function removeMarkdownFormatting(text: string): string {
         // Regular expressions to match Markdown syntax
@@ -28,11 +30,17 @@ export const ActuCard = ({id, title, image, date, description}: Props) => {
     }, [description])
 
     return (
-        <div className={classes.container} onClick={() => {
-            router.push(`/actu/${id}`)
+        <div className={classnames(classes.container, {
+            [classes.container_addArticle]: isAdd,
+        })} onClick={() => {
+            if (isAdd) {
+                router.push("/admin/dashboard/addArticle")
+            } else {
+                router.push(`/actu/${id}`)
+            }
         }}>
             <div className={classes.imageContainer}>
-                <Image src={image} alt="image" fill/>
+                <Image src={image} alt="image" fill objectFit="cover"/>
             </div>
             <div className={classes.date}>
                 <p>{date}</p>

@@ -4,4 +4,5 @@ export interface Article {
     pin: boolean;
     id: string;
     imageUrl: string;
+    date: Date;
 }
