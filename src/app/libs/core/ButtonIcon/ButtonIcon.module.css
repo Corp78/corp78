@@ -9,10 +9,13 @@
     background: rgb(var(--green-5));
     outline: none;
     border: none;
+    transition: all .2s ease-in-out;
 }
 
 .container:hover {
     cursor: pointer;
+    box-shadow: 0 0 2px 2px rgb(var(--green-2));
+    opacity: .8;
 }
 
 .pin {
@@ -26,6 +29,13 @@
 .change {
     opacity: .5;
 }
+
+.change:hover {
+    cursor: auto;
+    box-shadow: none;
+    opacity: .5;
+}
+
 
 .delete {
     background: #72161f;

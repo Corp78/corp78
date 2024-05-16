@@ -24,8 +24,7 @@ export const useRequireAuth = (allowAnonymous?: boolean): AuthState => {
             const newAuthState = {user, loading: false};
             setAuthState(newAuthState);
             sessionStorage.setItem('authState', JSON.stringify(newAuthState));
-            if (!user && allowAnonymous) {
-                // Redirect to login page or handle unauthorized access
+            if (!user && !allowAnonymous) {
                 window.location.href = "/";
             }
         });

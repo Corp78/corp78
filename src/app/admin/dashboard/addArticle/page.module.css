@@ -91,6 +91,10 @@
     max-width: 600px;
 }
 
+.imageText {
+
+}
+
 .select input[type="file"] {
     display: none
 }
@@ -110,6 +114,7 @@
     flex-direction: row;
     align-items: center;
     gap: 8px;
+    overflow: hidden;
 }
 
 .select .fileInput p {

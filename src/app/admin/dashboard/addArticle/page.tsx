@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useMemo, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import classes from './page.module.css'
 import ReactMarkdown from "react-markdown";
 import {ButtonIcon, Loading} from "@/app/libs/core";
@@ -15,12 +15,12 @@ import {Formik} from "formik";
 import {getDownloadURL, getStorage, ref, uploadString} from "@firebase/storage";
 import firebase_app from "@/app/firebase";
 import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
-import {addDoc, collection, doc, getFirestore} from "@firebase/firestore";
+import {addDoc, collection, getFirestore} from "@firebase/firestore";
 import {v4 as uuidv4} from 'uuid';
 import {MdDelete, MdPushPin} from "react-icons/md";
 import {useRouter, useSearchParams} from "next/navigation";
 import * as Yup from 'yup';
-import {deepEqual, getArticleById} from "@/app/libs/utils/utilsFunction";
+import {deepEqual, deleteArticleById, getArticleById} from "@/app/libs/utils/utilsFunction";
 import {IoClose} from "react-icons/io5";
 
 interface Values {
@@ -254,13 +254,11 @@ const Page = () => {
         }
     }
 
-    const handleDelete = async () => {
-        const db = getFirestore(firebase_app);
-        const documentRef = doc(db, 'articles', id)
-    }
+    const [initialValues, setInitialValues] = useState<Values | null>(null);
+    const [articleIsSet, setArticleIsSet] = useState(false)
 
-    const initialValue: Values = useMemo(async () => {
-        const default: Values = {
+    const getInitialValues = async () => {
+        const def: Values = {
             title: null,
             image: null,
             article: null,
@@ -268,26 +266,35 @@ const Page = () => {
             date: new Date()
         }
         if (!id) {
-            return  default
+            return def;
         }
         const article = await getArticleById(id)
+        if (!article) return def;
+        setArticleIsSet(true)
         return {
             title: article.title,
-            image: null,
-            article: null,
-            pin: true,
-            date: new Date()
+            image: article.imageUrl,
+            article: article.article,
+            pin: article.pin,
+            date: article.date,
         }
-    }, [])
+    }
+
+    useEffect(() => {
+        (async () => {
+            const inti = await getInitialValues()
+            setInitialValues(inti)
+        })()
+    }, []);
 
 
-    if (loading) {
-        return <Loading/>
+    if (loading || !initialValues) {
+        return <Loading addDiv/>
     }
 
 
     return (
-        <Formik initialValues={initialValue} onSubmit={handleSubmit} validationSchema={valuesSchema}>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={valuesSchema}>
             {({
                   values,
                   handleSubmit,
@@ -311,21 +318,24 @@ const Page = () => {
                             </ButtonIcon>
 
 
-                            <ButtonIcon type="submit" change={deepEqual(initialValue, values)}>
+                            <ButtonIcon type="submit" change={deepEqual(initialValues, values)}>
                                 <FaSave className={classes.icon}/>
                             </ButtonIcon>
+
+                            {articleIsSet && id &&
+                                <ButtonIcon del onClick={async () => {
+                                    await deleteArticleById(id, initialValues?.image);
+                                    router.push('/admin/dashboard')
+                                }}>
+                                    <MdDelete className={classes.icon}/>
+                                </ButtonIcon>
+                            }
 
                             <ButtonIcon onClick={() => {
                                 router.push("/admin/dashboard");
                             }}>
                                 <IoClose className={classes.icon}/>
                             </ButtonIcon>
-
-                            {id && <ButtonIcon del onClick={async () => {
-                                router.push("/admin/dashboard");
-                            }}>
-                                <MdDelete className={classes.icon}/>
-                            </ButtonIcon>}
 
 
                         </div>
@@ -338,7 +348,7 @@ const Page = () => {
                                 <label htmlFor="file-upload" className={classes.fileUpload}>
                                     Choisir une image
                                 </label>
-                                <p>{imageUrl}</p>
+                                <p className={classes.imageText}>{imageUrl || values.image}</p>
                             </div>
                             {touched.image && errors.image && <p className={classes.error}>{errors.image}</p>}
                             <input id="file-upload" type="file"

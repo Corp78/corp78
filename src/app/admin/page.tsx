@@ -37,6 +37,7 @@ const Admin = () => {
 
     if (user) {
         router.push("/admin/dashboard")
+        return <Loading addDiv/>
     }
 
     return (
