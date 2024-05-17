@@ -76,6 +76,10 @@
     overflow: hidden;
 }
 
+.imageContainer img {
+    object-fit: cover;
+}
+
 .date {
     grid-area: date;
     padding-top: 8px;

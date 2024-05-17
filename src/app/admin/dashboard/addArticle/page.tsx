@@ -12,23 +12,29 @@ import NextImage from "next/image"
 import {IoMdBook} from "react-icons/io";
 import classnames from "classnames";
 import {Formik} from "formik";
-import {getDownloadURL, getStorage, ref, uploadString} from "@firebase/storage";
 import firebase_app from "@/app/firebase";
 import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
 import {addDoc, collection, getFirestore} from "@firebase/firestore";
-import {v4 as uuidv4} from 'uuid';
 import {MdDelete, MdPushPin} from "react-icons/md";
 import {useRouter, useSearchParams} from "next/navigation";
 import * as Yup from 'yup';
-import {deepEqual, deleteArticleById, getArticleById} from "@/app/libs/utils/utilsFunction";
+import {
+    deepEqual,
+    deleteArticleById,
+    getArticleById,
+    removeImageByUrl,
+    updateArticleById,
+    uploadFile
+} from "@/app/libs/utils/utilsFunction";
 import {IoClose} from "react-icons/io5";
+import {Article} from "@/app/interfaces/articles";
 
 interface Values {
     title: string | null;
     image: string | null;
     article: string | null;
     pin: boolean;
-    date: Date | null;
+    date: Date;
 }
 
 
@@ -37,7 +43,7 @@ const valuesSchema = Yup.object().shape({
     image: Yup.string().required('Image is required'),
     article: Yup.string().required('Article content is required'),
     pin: Yup.boolean().required('Pin status is required'),
-    date: Yup.date().nullable().required('Date is required'),
+    date: Yup.date().required('Date is required'),
 });
 
 
@@ -209,44 +215,31 @@ const Page = () => {
     };
 
 
-    const uploadFile = async (base64String: string): Promise<string | null> => {
-        try {
-            // Check if the user is authenticated
-            const storage = getStorage(firebase_app);
-
-            // Extract base64 string without data URL prefix
-            const base64Data = base64String.split(',')[1];
-
-            // Upload file to Firebase Storage
-            const storageRef = ref(storage, `${uuidv4()}.png`);
-            await uploadString(storageRef, base64Data, 'base64');
-
-            // Get download URL of the uploaded file
-            const downloadURL = await getDownloadURL(storageRef);
-            console.log('File uploaded to:', downloadURL);
-            return downloadURL;
-        } catch (error) {
-            console.error('Error uploading file:', error);
-            return null;
-        }
-    };
-
     const handleSubmit = async (values: Values) => {
         try {
-            const db = getFirestore(firebase_app);
-            const collectionRef = collection(db, 'articles');
-            const imageUrl = await uploadFile(values.image || '');
+            const imageUrl = values.image !== initialValues?.image ? await uploadFile(values.image || '') : values.image;
+
+            console.log(imageUrl)
             if (!imageUrl) {
                 return;
             }
-            const data = {
-                title: values.title,
+            const data: Partial<Article> = {
+                title: values.title || '',
                 imageUrl,
-                article: values.article,
-                pin: true,
+                article: values.article || '',
+                pin: values.pin,
                 date: values.date,
             };
-            await addDoc(collectionRef, data);
+            if (articleIsSet && id) {
+                if (initialValues?.image && imageUrl !== initialValues?.image) {
+                    await removeImageByUrl(initialValues?.image)
+                }
+                await updateArticleById(id, data);
+            } else {
+                const db = getFirestore(firebase_app);
+                const collectionRef = collection(db, 'articles');
+                await addDoc(collectionRef, data);
+            }
             router.push("/admin/dashboard")
 
             console.log('Data added to collection successfully.');
@@ -415,9 +408,12 @@ const Page = () => {
                             <div className={classes.container_view}>
                                 {
                                     values.image && <div className={classes.imageContainer}>
-                                        <NextImage src={values.image} alt="image article" objectFit="cover" fill/>
+                                        <NextImage src={values.image} alt="image article" fill/>
                                     </div>
                                 }
+                                <div style={{color: "black"}}>
+                                    {JSON.stringify(values)}
+                                </div>
                                 <ReactMarkdown
                                     className={classes.markdown}>
                                     {`# ${values.title || ''}\n` + (values.article || '')}

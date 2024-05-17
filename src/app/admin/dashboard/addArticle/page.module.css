@@ -408,6 +408,7 @@
 }
 
 .imageContainer img {
+    object-fit: cover;
     position: absolute;
     width: 100%;
     height: 100%;

@@ -11,7 +11,7 @@ import {getArticles} from "@/app/libs/utils/utilsFunction";
 export default function Actu() {
 
     const [articles, setArticles] = useState<Article[] | null>(null)
-    const [reload, setReload] = useState()
+    const [reload, setReload] = useState(false)
     const router = useRouter();
 
 
@@ -33,6 +33,7 @@ export default function Actu() {
                                   description="Créer un article"/>
                         {articles?.map((article: Article) => (
                             <ActuCard key={article.id} id={article.id} image={article.imageUrl} title={article.title}
+                                      pin={article.pin}
                                       date={article.date}
                                       description={article.article} isAdmin onDelete={() => {
                                 setReload(!reload)

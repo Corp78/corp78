@@ -3,12 +3,13 @@ import classes from "./ActuCard.module.css";
 import Image from 'next/image'
 import {useRouter} from "next/navigation";
 import classnames from "classnames";
-import {deleteArticleById, formatDateDMY} from "@/app/libs/utils/utilsFunction";
+import {deleteArticleById, formatDateDMY, updateArticleById} from "@/app/libs/utils/utilsFunction";
 import {ButtonIcon} from "@/app/libs/core";
 import {MdDelete, MdEdit, MdPushPin} from "react-icons/md";
 
 interface Props {
     id: string;
+    pin?: boolean;
     title: string;
     image: string;
     date?: Date;
@@ -17,7 +18,7 @@ interface Props {
     onDelete?: () => void;
 }
 
-export const ActuCard = ({id, title, image, date = new Date(), description, isAdmin, onDelete}: Props) => {
+export const ActuCard = ({id, pin, title, image, date = new Date(), description, isAdmin, onDelete}: Props) => {
 
     const router = useRouter();
     const isAdd = id === "0";
@@ -51,7 +52,14 @@ export const ActuCard = ({id, title, image, date = new Date(), description, isAd
             {
                 isAdmin &&
                 <div className={classes.header}>
-                    <ButtonIcon indicator={true}>
+                    <ButtonIcon indicator={pin} onClick={async () => {
+                        await updateArticleById(id, {
+                            pin: !pin
+                        })
+                        if (onDelete !== undefined) {
+                            onDelete();
+                        }
+                    }}>
                         <MdPushPin className={classes.icon}/>
                     </ButtonIcon>
                     <ButtonIcon onClick={async () => {
@@ -71,7 +79,7 @@ export const ActuCard = ({id, title, image, date = new Date(), description, isAd
                 </div>
             }
             <div className={classes.imageContainer}>
-                <Image src={image} alt="image" fill objectFit="cover"/>
+                <Image src={image} alt="image" fill priority={true}/>
             </div>
             <div className={classes.date}>
                 <p>{formatDateDMY(date)}</p>

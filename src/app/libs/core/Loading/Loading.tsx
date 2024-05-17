@@ -12,8 +12,8 @@ export const Loading = ({addDiv}: Props) => {
     const load = (
         <div className={classes.container}>
             <Image className={classnames(classes.image, classes.container)} src={"/contour_eye.svg"} alt="contour"
-                   fill/>
-            <Image className={classnames(classes.image, classes.iris)} src={"/iris.svg"} alt="eye" fill/>
+                   fill priority/>
+            <Image className={classnames(classes.image, classes.iris)} src={"/iris.svg"} alt="eye" fill priority/>
         </div>
     )
 
