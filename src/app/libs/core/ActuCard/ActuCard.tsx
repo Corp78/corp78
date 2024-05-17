@@ -22,9 +22,10 @@ export const ActuCard = ({id, title, image, date = new Date(), description, isAd
     const router = useRouter();
     const isAdd = id === "0";
 
+
     function removeMarkdownFormatting(text: string): string {
         // Regular expressions to match Markdown syntax
-        const markdownRegex = /(?:\*|_|\~|`|\[|\]|\(|\)|\{|\}|#|\+|\-|\.|\!|\>|\<|\=|\^|\|)/g;
+        const markdownRegex = /[*_~`\[\](){}#+\-.!><=^|]/g;
 
         // Replace Markdown syntax with an empty string
         return text.replace(markdownRegex, '');
@@ -33,6 +34,7 @@ export const ActuCard = ({id, title, image, date = new Date(), description, isAd
     const desc = useMemo(() => {
         return removeMarkdownFormatting(description);
     }, [description])
+
 
     return (
         <div className={classnames(classes.container, {
@@ -60,7 +62,9 @@ export const ActuCard = ({id, title, image, date = new Date(), description, isAd
 
                     <ButtonIcon del onClick={async () => {
                         await deleteArticleById(id, image);
-                        onDelete && onDelete()
+                        if (onDelete !== undefined) {
+                            onDelete();
+                        }
                     }}>
                         <MdDelete className={classes.icon}/>
                     </ButtonIcon>

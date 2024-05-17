@@ -90,7 +90,7 @@ export const deleteArticleById = async (documentId: string, imageUrl?: string | 
     const storage = getStorage(firebase_app);
     try {
         if (imageUrl) {
-            const imageRef = ref(storage, imageUrl);
+            const imageRef = ref(storage, imageUrl)
             await deleteObject(imageRef);
         }
         const documentRef = doc(db, 'articles', documentId);

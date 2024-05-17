@@ -10,7 +10,8 @@ import {getArticles} from "@/app/libs/utils/utilsFunction";
 
 export default function Actu() {
 
-    const [articles, setArticles] = useState<Article[] | null>()
+    const [articles, setArticles] = useState<Article[] | null>(null)
+    const [reload, setReload] = useState()
     const router = useRouter();
 
 
@@ -19,7 +20,7 @@ export default function Actu() {
             const _articles = await getArticles();
             setArticles(_articles);
         })()
-    }, [router]);
+    }, [router, reload]);
 
 
     return (
@@ -34,8 +35,7 @@ export default function Actu() {
                             <ActuCard key={article.id} id={article.id} image={article.imageUrl} title={article.title}
                                       date={article.date}
                                       description={article.article} isAdmin onDelete={() => {
-                                const newArticles = articles?.filter((a) => a.id !== article.id)
-                                setArticles(newArticles);
+                                setReload(!reload)
                             }}/>
                         ))}
                     </div>

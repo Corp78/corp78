@@ -218,7 +218,7 @@ const Page = () => {
             const base64Data = base64String.split(',')[1];
 
             // Upload file to Firebase Storage
-            const storageRef = ref(storage, uuidv4());
+            const storageRef = ref(storage, `${uuidv4()}.png`);
             await uploadString(storageRef, base64Data, 'base64');
 
             // Get download URL of the uploaded file
@@ -244,6 +244,7 @@ const Page = () => {
                 imageUrl,
                 article: values.article,
                 pin: true,
+                date: values.date,
             };
             await addDoc(collectionRef, data);
             router.push("/admin/dashboard")
