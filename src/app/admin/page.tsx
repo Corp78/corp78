@@ -2,7 +2,7 @@
 
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import firebase_app from "@/app/firebase";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Form, Formik} from 'formik';
 import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
 import {Button, Input, Loading} from "@/app/libs/core";
@@ -12,26 +12,30 @@ import * as Yup from 'yup';
 
 
 const Admin = () => {
-    const [error, setError] = useState<string>('');
-    const {user, loading} = useRequireAuth(true)
 
-    const auth = getAuth(firebase_app);
+
+    const [error, setError] = useState<string>('');
+    const {user, loading} = useRequireAuth(true);
+
     const router = useRouter()
+    const auth = getAuth(firebase_app);
 
     const validationSchema = Yup.object().shape({
         email: Yup.string().email('Adresse e-mail invalide').required('Champ requis'),
         password: Yup.string().required('Champ requis'),
     });
 
+    useEffect(() => {
+        if (user) {
+            router.push("/admin/dashboard");
+        }
+    }, [user, router]);
 
-    if (loading) {
+
+    if (loading || user) {
         return <Loading addDiv/>
     }
 
-    if (user) {
-        router.push("/admin/dashboard")
-        return <Loading addDiv/>
-    }
 
     return (
         <div className={classes.container}>
