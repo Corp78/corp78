@@ -7,6 +7,8 @@ import Image from "next/image";
 import classnames from "classnames";
 import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {Button} from "@/app/libs/core";
+import {signOut} from "@/app/libs/utils/utilsFunction";
 
 interface Props {
     admin?: boolean;
@@ -108,6 +110,11 @@ export const Header = ({admin}: Props) => {
                     <ButtonLink text="Prendre rendez-vous"
                                 href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"></ButtonLink>
                 </div>
+                }
+                {
+                    admin && <Button text="Se deconnecter" onClick={async () => {
+                        await signOut();
+                    }}/>
                 }
                 <div className={classes.menuButton} onClick={closeOrOpenMenu}>
                     <Image className={classes.image} src="/IoMenu.svg" alt="menu" width={40} height={40}/>

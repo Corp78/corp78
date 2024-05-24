@@ -50,7 +50,7 @@ const valuesSchema = Yup.object().shape({
 const Page = () => {
 
 
-    const {loading} = useRequireAuth()
+    const {user, loading} = useRequireAuth()
     const [editorBook, setEditorBook] = useState<boolean>(true);
     const [viewPage, setViewPage] = useState<boolean>(true)
     const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
@@ -284,7 +284,7 @@ const Page = () => {
     }, []);
 
 
-    if (loading || !initialValues) {
+    if (loading || !initialValues || !user) {
         return <Loading addDiv/>
     }
 

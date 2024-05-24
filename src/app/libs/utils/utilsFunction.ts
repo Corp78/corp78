@@ -3,6 +3,7 @@ import {collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, update
 import firebase_app from "@/app/firebase";
 import {deleteObject, getDownloadURL, getStorage, ref, uploadString} from "@firebase/storage";
 import {v4 as uuidv4} from "uuid";
+import {getAuth} from "firebase/auth";
 
 export function deepEqual<T>(obj1: T, obj2: T): boolean {
     if (typeof obj1 !== 'object' || typeof obj2 !== 'object' || obj1 === null || obj2 === null) {
@@ -143,6 +144,11 @@ export const updateArticleById = async (documentId: string, dataToUpdate: Partia
         throw error; // Optionally re-throw the error for handling in the caller function
     }
 };
+
+export const signOut = async () => {
+    const auth = getAuth(firebase_app);
+    await auth.signOut();
+}
 
 export const formatDateDMY = (date: Date): string => {
 
