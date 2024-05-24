@@ -8,8 +8,11 @@ import classnames from "classnames";
 import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 
+interface Props {
+    admin?: boolean;
+}
 
-export const Header = () => {
+export const Header = ({admin}: Props) => {
 
 
     const [openMenu, setOpenMenu] = useState(false);
@@ -54,7 +57,9 @@ export const Header = () => {
         <div className={classes.mainContainer}>
             <div className={classes.container}>
                 <div className={classes.nameContainer}>
-                    <div className={classes.logoContainer}>
+                    <div className={classes.logoContainer} onClick={() => {
+                        goTo('home')
+                    }}>
                         <Image className={classes.logo} src="/logo.svg" alt="corp78" fill
                                sizes="(max-width: 64px) , (max-width: 64px)"/>
                     </div>
@@ -70,8 +75,8 @@ export const Header = () => {
                             </div>
                         </div>
                         <DropDown title="Accueil" onClick={() => goTo('home')}></DropDown>
-                        <div className={classes.separator}/>
-                        <DropDown title="Expertises" linksDropDown={[{
+                        {!admin && <div className={classes.separator}/>}
+                        {!admin && <DropDown title="Expertises" linksDropDown={[{
                             title: "Chirurgie Réfractive",
                             href: "/réfractive"
                         }, {title: "Chirurgie Cataracte", href: "/cataracte"}, {
@@ -81,13 +86,13 @@ export const Header = () => {
                             title: "Glaucome",
                             href: "/glaucome"
                         }, {title: "Lentilles", href: "/lentilles"}, {title: "DMLA", href: "/dmla"}]}
-                                  onClick={() => goTo('expertise')}></DropDown>
+                                             onClick={() => goTo('expertise')}></DropDown>}
                         <div className={classes.separator}/>
                         <DropDown title="Actualités" onClick={() => {
                             router.push("/actu")
                         }}/>
                         <div className={classes.separator}/>
-                        <DropDown title="Contact" onClick={() => goTo('contact')}></DropDown>
+                        {!admin && <DropDown title="Contact" onClick={() => goTo('contact')}></DropDown>}
 
                         <div className={classes.meetingMenu}>
                             <div>
@@ -99,10 +104,11 @@ export const Header = () => {
 
                     </div>
                 </div>
-                <div className={classes.meeting}>
+                {!admin && <div className={classes.meeting}>
                     <ButtonLink text="Prendre rendez-vous"
                                 href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"></ButtonLink>
                 </div>
+                }
                 <div className={classes.menuButton} onClick={closeOrOpenMenu}>
                     <Image className={classes.image} src="/IoMenu.svg" alt="menu" width={40} height={40}/>
                 </div>

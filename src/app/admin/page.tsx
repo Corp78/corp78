@@ -3,10 +3,12 @@
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import firebase_app from "@/app/firebase";
 import {useState} from 'react';
-import {useFormik} from 'formik';
+import {Form, Formik} from 'formik';
 import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
-import {Loading} from "@/app/libs/core";
+import {Button, Input, Loading} from "@/app/libs/core";
 import {useRouter} from "next/navigation";
+import classes from './page.module.css';
+import * as Yup from 'yup';
 
 
 const Admin = () => {
@@ -16,20 +18,11 @@ const Admin = () => {
     const auth = getAuth(firebase_app);
     const router = useRouter()
 
-    const formik = useFormik({
-        initialValues: {
-            pseudo: '',
-            password: ''
-        },
-        onSubmit: async (values) => {
-            try {
-                await signInWithEmailAndPassword(auth, values.pseudo, values.password);
-                window.location.href = "/admin/dashboard"
-            } catch (error) {
-                setError('Identifiants incorrects. Veuillez réessayer.');
-            }
-        },
+    const validationSchema = Yup.object().shape({
+        email: Yup.string().email('Adresse e-mail invalide').required('Champ requis'),
+        password: Yup.string().required('Champ requis'),
     });
+
 
     if (loading) {
         return <Loading addDiv/>
@@ -41,32 +34,29 @@ const Admin = () => {
     }
 
     return (
-        <div>
-            <h1>Page Admin</h1>
-            <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <label htmlFor="pseudo">Pseudo</label>
-                    <input
-                        id="pseudo"
-                        name="pseudo"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.pseudo}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Mot de passe</label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        onChange={formik.handleChange}
-                        value={formik.values.password}
-                    />
-                </div>
-                {error && <div>{error}</div>}
-                <button type="submit">Se connecter</button>
-            </form>
+        <div className={classes.container}>
+            <div className={classes.content}>
+                <h2 className={classes.title}>Admin Connexion</h2>
+                <Formik initialValues={{
+                    email: '',
+                    password: ''
+                }} onSubmit={async (values) => {
+                    try {
+                        await signInWithEmailAndPassword(auth, values.email, values.password);
+                        router.push("/admin/dashboard")
+                    } catch (error) {
+                        setError('Identifiants incorrects. Veuillez réessayer.');
+                    }
+                }}
+                        validationSchema={validationSchema}>
+                    <Form className={classes.form}>
+                        <Input title="E-mail" name="email"/>
+                        <Input title="Mot de passe" name="password" type="password" eye/>
+                        <Button text="Se connecter" type="submit"/>
+                        <p className={classes.error}>{error}</p>
+                    </Form>
+                </Formik>
+            </div>
         </div>
     );
 };

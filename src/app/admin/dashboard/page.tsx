@@ -1,6 +1,6 @@
 "use client"
 
-import {ActuCard} from "@/app/libs/core";
+import {ActuCard, Header} from "@/app/libs/core";
 import classes from "./page.module.css";
 import {useEffect, useState} from "react";
 import {Article} from "@/app/interfaces/articles";
@@ -25,6 +25,7 @@ export default function Actu() {
 
     return (
         <div className={classes.page_container}>
+            <Header admin/>
             <div className={classes.container}>
                 <h1>Admin Actualités</h1>
                 <div className={classes.actuMainContainer}>

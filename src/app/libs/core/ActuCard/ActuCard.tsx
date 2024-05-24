@@ -1,10 +1,12 @@
-import React, {useMemo} from "react";
+"use client"
+
+import React, {useMemo, useState} from "react";
 import classes from "./ActuCard.module.css";
 import Image from 'next/image'
 import {useRouter} from "next/navigation";
 import classnames from "classnames";
 import {deleteArticleById, formatDateDMY, updateArticleById} from "@/app/libs/utils/utilsFunction";
-import {ButtonIcon} from "@/app/libs/core";
+import {ButtonIcon, Modal} from "@/app/libs/core";
 import {MdDelete, MdEdit, MdPushPin} from "react-icons/md";
 
 interface Props {
@@ -22,6 +24,8 @@ export const ActuCard = ({id, pin, title, image, date = new Date(), description,
 
     const router = useRouter();
     const isAdd = id === "0";
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
     function removeMarkdownFormatting(text: string): string {
@@ -68,14 +72,22 @@ export const ActuCard = ({id, pin, title, image, date = new Date(), description,
                         <MdEdit className={classes.icon}/>
                     </ButtonIcon>
 
-                    <ButtonIcon del onClick={async () => {
+                    <ButtonIcon del onClick={() => setModalIsOpen(true)}>
+                        <MdDelete className={classes.icon}/>
+                    </ButtonIcon>
+                    <Modal title="Etes vous sur de vouloir supprimer cette article ? " isOpen={modalIsOpen}
+                           onRequestClose={() => {
+                               setModalIsOpen(false)
+                           }} onSubmit={async () => {
                         await deleteArticleById(id, image);
                         if (onDelete !== undefined) {
                             onDelete();
                         }
-                    }}>
-                        <MdDelete className={classes.icon}/>
-                    </ButtonIcon>
+                        setModalIsOpen(false)
+                    }}
+                           buttonTitle="Supprimer">
+                        Cette action est irreversible
+                    </Modal>
                 </div>
             }
             <div className={classes.imageContainer}>

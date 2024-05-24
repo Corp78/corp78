@@ -3,7 +3,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import classes from './page.module.css'
 import ReactMarkdown from "react-markdown";
-import {ButtonIcon, Loading} from "@/app/libs/core";
+import {ButtonIcon, Loading, Modal} from "@/app/libs/core";
 import {FaBold, FaListOl, FaListUl} from "react-icons/fa6";
 import {FaExchangeAlt, FaItalic, FaSave} from "react-icons/fa";
 import {BsFillChatQuoteFill} from "react-icons/bs";
@@ -53,6 +53,8 @@ const Page = () => {
     const {loading} = useRequireAuth()
     const [editorBook, setEditorBook] = useState<boolean>(true);
     const [viewPage, setViewPage] = useState<boolean>(true)
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+    const [modalCloseIsOpen, setModalCLoseIsOpen] = useState<boolean>(false);
 
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -317,19 +319,43 @@ const Page = () => {
                             </ButtonIcon>
 
                             {articleIsSet && id &&
-                                <ButtonIcon del onClick={async () => {
-                                    await deleteArticleById(id, initialValues?.image);
-                                    router.push('/admin/dashboard')
+                                <ButtonIcon del onClick={() => {
+                                    setModalIsOpen(true);
                                 }}>
                                     <MdDelete className={classes.icon}/>
                                 </ButtonIcon>
                             }
+                            {articleIsSet && id &&
+                                <Modal title="Etes vous sur de vouloir supprimer cette article ? " isOpen={modalIsOpen}
+                                       onRequestClose={() => {
+                                           setModalIsOpen(false)
+                                       }} onSubmit={async () => {
+                                    await deleteArticleById(id, initialValues?.image);
+                                    router.push('/admin/dashboard')
+                                    setModalIsOpen(false)
+                                }}
+                                       buttonTitle="Supprimer">
+                                    Cette action est irreversible
+                                </Modal>}
 
                             <ButtonIcon onClick={() => {
-                                router.push("/admin/dashboard");
+                                !deepEqual(initialValues, values) ?
+                                    setModalCLoseIsOpen(true) : router.push("/admin/dashboard");
                             }}>
                                 <IoClose className={classes.icon}/>
                             </ButtonIcon>
+
+                            <Modal title="Etes vous sur de vouloir quitter sans sauvegarder ? "
+                                   isOpen={modalCloseIsOpen}
+                                   onRequestClose={() => {
+                                       setModalCLoseIsOpen(false)
+                                   }} onSubmit={() => {
+                                router.push("/admin/dashboard");
+                                setModalCLoseIsOpen(false)
+                            }}
+                                   buttonTitle="Quitter">
+                                Vous perdrez toutes les modification si vous quitter sans sauvegarder.
+                            </Modal>
 
 
                         </div>
@@ -411,9 +437,6 @@ const Page = () => {
                                         <NextImage src={values.image} alt="image article" fill/>
                                     </div>
                                 }
-                                <div style={{color: "black"}}>
-                                    {JSON.stringify(values)}
-                                </div>
                                 <ReactMarkdown
                                     className={classes.markdown}>
                                     {`# ${values.title || ''}\n` + (values.article || '')}

@@ -8,4 +8,6 @@ export * from './Footer/Footer';
 export * from './ListPoint/ListPoint';
 export * from './Loading/Loading';
 export * from './ButtonIcon/ButtonIcon';
-export * from './ActuCard/ActuCard'
+export * from './ActuCard/ActuCard';
+export * from './Input/Input'
+export * from './Modal/Modal';
