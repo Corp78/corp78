@@ -1,0 +1,11 @@
+.container_view_block {
+    width: 100%;
+    min-height: 100vh;
+    background: rgb(var(--green-1));
+    padding: 56px 24px;
+    position: relative;
+    @media (max-width: 800px) {
+        padding: 24px;
+    }
+
+}

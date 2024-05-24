@@ -1,21 +1,31 @@
 "use client"
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./Header.module.css";
 import {DropDown} from "@/app/libs/core/DropDown/DropDown";
 import Image from "next/image";
 import classnames from "classnames";
 import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {Button} from "@/app/libs/core";
+import {signOut} from "@/app/libs/utils/utilsFunction";
 
+interface Props {
+    admin?: boolean;
+}
 
-export const Header = () => {
+export const Header = ({admin}: Props) => {
 
 
     const [openMenu, setOpenMenu] = useState(false);
 
+    const router = useRouter();
+    const searchParams = useSearchParams()
+    const pathname = usePathname()
+
+
     const closeOrOpenMenu = () => {
         setOpenMenu(!openMenu);
-        console.log(openMenu)
     }
 
     const scrollTo = (id: string) => {
@@ -26,6 +36,22 @@ export const Header = () => {
         }
         window.scrollTo({top: scrollPosition, behavior: 'smooth'});
         setOpenMenu(false);
+    }
+
+
+    useEffect(() => {
+        const param = searchParams.get("tab");
+        if (param) {
+            scrollTo(param);
+        }
+    }, [searchParams]);
+
+    const goTo = (id: string) => {
+        if (pathname !== "/") {
+            router.push(`/?tab=${id}`);
+        } else {
+            scrollTo(id)
+        }
     };
 
 
@@ -33,7 +59,9 @@ export const Header = () => {
         <div className={classes.mainContainer}>
             <div className={classes.container}>
                 <div className={classes.nameContainer}>
-                    <div className={classes.logoContainer}>
+                    <div className={classes.logoContainer} onClick={() => {
+                        goTo('home')
+                    }}>
                         <Image className={classes.logo} src="/logo.svg" alt="corp78" fill
                                sizes="(max-width: 64px) , (max-width: 64px)"/>
                     </div>
@@ -48,9 +76,9 @@ export const Header = () => {
                                 <Image className={classes.image} src="/IoClose.svg" alt="menu" width={40} height={40}/>
                             </div>
                         </div>
-                        <DropDown title="Accueil" onClick={() => scrollTo('home')}></DropDown>
-                        <div className={classes.separator}/>
-                        <DropDown title="Expertises" linksDropDown={[{
+                        <DropDown title="Accueil" onClick={() => goTo('home')}></DropDown>
+                        {!admin && <div className={classes.separator}/>}
+                        {!admin && <DropDown title="Expertises" linksDropDown={[{
                             title: "Chirurgie Réfractive",
                             href: "/réfractive"
                         }, {title: "Chirurgie Cataracte", href: "/cataracte"}, {
@@ -60,11 +88,13 @@ export const Header = () => {
                             title: "Glaucome",
                             href: "/glaucome"
                         }, {title: "Lentilles", href: "/lentilles"}, {title: "DMLA", href: "/dmla"}]}
-                                  onClick={() => scrollTo('expertise')}></DropDown>
+                                             onClick={() => goTo('expertise')}></DropDown>}
                         <div className={classes.separator}/>
-                        <DropDown title="Actualités"/>
+                        <DropDown title="Actualités" onClick={() => {
+                            router.push("/actu")
+                        }}/>
                         <div className={classes.separator}/>
-                        <DropDown title="Contact" onClick={() => scrollTo('contact')}></DropDown>
+                        {!admin && <DropDown title="Contact" onClick={() => goTo('contact')}></DropDown>}
 
                         <div className={classes.meetingMenu}>
                             <div>
@@ -76,10 +106,16 @@ export const Header = () => {
 
                     </div>
                 </div>
-                <div className={classes.meeting}>
+                {!admin && <div className={classes.meeting}>
                     <ButtonLink text="Prendre rendez-vous"
                                 href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"></ButtonLink>
                 </div>
+                }
+                {
+                    admin && <Button text="Se deconnecter" onClick={async () => {
+                        await signOut();
+                    }}/>
+                }
                 <div className={classes.menuButton} onClick={closeOrOpenMenu}>
                     <Image className={classes.image} src="/IoMenu.svg" alt="menu" width={40} height={40}/>
                 </div>

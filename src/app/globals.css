@@ -33,7 +33,7 @@
             #00000020,
             #00000010,
             #00000010,
-            #00000080
+            #dce7cb
     );
 
 
@@ -47,13 +47,14 @@
     --green-3: 141, 158, 111;
     --green-4: 82, 101, 52;
     --green-5: 47, 59, 28;
+    --green-1_5: 220, 231, 203;
     --white: 244, 245, 240;
     --black: 22, 22, 22;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --foreground-rgb: 255, 255, 255;
+        --foreground-rgb: 229, 246, 220;
         --background-start-rgb: 0, 0, 0;
         --background-end-rgb: 0, 0, 0;
 
@@ -136,6 +137,21 @@ section, summary, time, mark, audio, video {
 
 ol, ul {
     list-style: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: rgb(var(--black));
+    -webkit-box-shadow: 0 0 0px 1000px rgb(var(--green-1)) inset;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 
