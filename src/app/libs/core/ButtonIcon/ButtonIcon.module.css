@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    padding: 0;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    background: rgb(var(--green-5));
+    outline: none;
+    border: none;
+    transition: all .2s ease-in-out;
+}
+
+.container:hover {
+    cursor: pointer;
+    box-shadow: 0 0 2px 2px rgb(var(--green-2));
+    opacity: .8;
+}
+
+.pin {
+    background: rgb(var(--green-3));
+}
+
+.notPin {
+    background: #9e6f6f;
+}
+
+.change {
+    opacity: .5;
+}
+
+.change:hover {
+    cursor: auto;
+    box-shadow: none;
+    opacity: .5;
+}
+
+
+.delete {
+    background: #72161f;
+}

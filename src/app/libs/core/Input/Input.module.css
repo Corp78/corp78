@@ -1,0 +1,128 @@
+.inputContainer {
+    width: 100%;
+    position: relative;
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all ease-in-out 0.3s;
+    border-radius: 8px;
+    border-left: solid 2px rgba(var(--green-5), 0.8); /* replaced var(--color-transparentDarkGray) with the value */
+    border-right: solid 2px rgba(var(--green-5), 0.8); /* replaced var(--color-transparentDarkGray) with the value */
+    border-bottom: 2px solid rgba(var(--green-4), 0.5); /* replaced var(--color-lightGray) with the value */
+}
+
+.inputContainer:hover {
+    border-bottom: 2px solid rgba(var(--green-4), 1);
+}
+
+.textAreaContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px; /* replaced var(--borderRadius-std) with the value */
+    width: 100%;
+    position: relative;
+    margin-top: 64px; /* replaced var(--marginBase) with the value 8 * 8 */
+    overflow: hidden;
+    border: 0 solid transparent;
+}
+
+.textAreaHolder {
+    height: 0;
+    width: 0;
+    border-top: 20px solid #fff;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    position: absolute;
+    bottom: -4px;
+    transform: rotate(-45deg);
+    right: -15px;
+    pointer-events: none;
+}
+
+.eyeContainer {
+    padding: 4px; /* replaced var(--marginBase) with the value 8 / 2 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    bottom: 6px;
+    margin-right: 10px;
+}
+
+.eye {
+    font-size: 20px; /* replaced var(--icon-normal) with the value */
+    color: #2d3134; /* replaced var(--color-lightGray) with the value */
+}
+
+
+.input {
+    resize: none;
+    outline: none;
+    border-radius: 8px; /* replaced var(--borderRadius-std) with the value */
+    background-color: transparent !important;
+    color: rgb(var(--black)) !important;
+    flex: 1;
+    margin: auto;
+    font-family: Montserrat, sans-serif; /* replaced var(--font-caption) with the value */
+    font-weight: 500;
+    padding: 8px; /* replaced var(--marginBase) with the value 8 * 8 */
+    border: none;
+}
+
+
+.input:focus + label {
+    top: -24px;
+    left: 0;
+    color: rgb(var(--green-5));
+}
+
+.textarea {
+    resize: block;
+    outline: none;
+    border-radius: 8px; /* replaced var(--borderRadius-std) with the value */
+    background-color: transparent;
+    flex: 1;
+    margin: auto;
+    font-family: Montserrat, sans-serif; /* replaced var(--font-caption) with the value */
+    padding: 64px; /* replaced var(--marginBase) with the value 8 * 8 */
+    height: fit-content;
+    border: none;
+}
+
+.label {
+    position: absolute;
+    left: 8px; /* replaced var(--marginBase) with the value 8 * 8 */
+    font-family: Montserrat, sans-serif; /* replaced var(--font-label) with the value */
+    margin-left: 0;
+    color: rgb(var(--green-4));
+    top: 6px;
+    padding-left: 4px; /* replaced var(--marginBase) / 2 with the value 8 / 2 */
+    transition: all ease-in-out 0.2s;
+    pointer-events: none;
+}
+
+.hasValue {
+    font-weight: 700;
+    top: -24px;
+    left: 0;
+    transition: all ease-in-out 0.2s;
+    padding-left: 1%;
+}
+
+.error {
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    margin-left: 4px;
+    padding-left: 4px;
+    padding-top: 4px;
+    font-weight: 500;
+    color: #e05767;
+}
+
+.container {
+    width: 100%;
+}

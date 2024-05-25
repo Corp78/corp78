@@ -5,19 +5,11 @@
 
 
 const nextConfig = {
-    output: 'export',
+    output: 'standalone',
     reactStrictMode: true,
     images: {
         unoptimized: true,
     }
 }
-
-
-/*const nextConfig = {
-
-}*/
-
-
-
 
 export default nextConfig;

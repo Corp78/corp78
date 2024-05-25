@@ -3,14 +3,31 @@ import Image from "next/image";
 import React from "react";
 import classnames from "classnames";
 
-export const Loading = () => {
+interface Props {
+    addDiv?: boolean
+}
 
+export const Loading = ({addDiv}: Props) => {
 
-    return (
+    const load = (
         <div className={classes.container}>
             <Image className={classnames(classes.image, classes.container)} src={"/contour_eye.svg"} alt="contour"
-                   fill/>
-            <Image className={classnames(classes.image, classes.iris)} src={"iris.svg"} alt="eye" fill/>
+                   fill priority/>
+            <Image className={classnames(classes.image, classes.iris)} src={"/iris.svg"} alt="eye" fill priority/>
+        </div>
+    )
+
+    if (addDiv) {
+        return (
+            <div className={classes.page}>
+                {load}
+            </div>
+        )
+    }
+
+    return (
+        <div>
+            {load}
         </div>
     );
 };
