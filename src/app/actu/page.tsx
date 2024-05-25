@@ -7,7 +7,7 @@ import {Article} from "@/app/interfaces/articles";
 import {getArticles} from "@/app/libs/utils/utilsFunction";
 
 
-export default function Actu() {
+const Actu = () => {
 
     const [articles, setArticles] = useState<Article[] | null>()
 
@@ -39,3 +39,5 @@ export default function Actu() {
         </div>
     );
 }
+
+export default Actu;

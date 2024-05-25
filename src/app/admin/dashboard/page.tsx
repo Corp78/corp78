@@ -4,17 +4,15 @@ import {ActuCard, Header, Loading} from "@/app/libs/core";
 import classes from "./page.module.css";
 import {useEffect, useState} from "react";
 import {Article} from "@/app/interfaces/articles";
-import {useRouter} from "next/navigation";
 import {getArticles} from "@/app/libs/utils/utilsFunction";
 import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
 
 
-export default function Actu() {
+const Dashboard = () => {
 
     const {user, loading} = useRequireAuth()
     const [articles, setArticles] = useState<Article[] | null>(null)
     const [reload, setReload] = useState(false)
-    const router = useRouter();
 
 
     useEffect(() => {
@@ -22,7 +20,7 @@ export default function Actu() {
             const _articles = await getArticles();
             setArticles(_articles);
         })()
-    }, [router, reload]);
+    }, [reload]);
 
     if (loading || !user) {
         return <Loading addDiv/>
@@ -52,3 +50,5 @@ export default function Actu() {
         </div>
     );
 }
+
+export default Dashboard;

@@ -16,7 +16,7 @@ import firebase_app from "@/app/firebase";
 import {useRequireAuth} from "@/app/libs/hooks/useRequireAuth";
 import {addDoc, collection, getFirestore} from "@firebase/firestore";
 import {MdDelete, MdPushPin} from "react-icons/md";
-import {useRouter, useSearchParams} from "next/navigation";
+import {useRouter} from "next/navigation";
 import * as Yup from 'yup';
 import {
     deepEqual,
@@ -57,9 +57,14 @@ const Page = () => {
     const [modalCloseIsOpen, setModalCLoseIsOpen] = useState<boolean>(false);
 
     const router = useRouter()
-    const searchParams = useSearchParams()
 
-    const id = searchParams.get('id')
+    const [id, setId] = useState<string | null>(null);
+
+    useEffect(() => {
+        const searchParams = new URLSearchParams(window.location.search);
+        console.log(searchParams.get('id'))
+        setId(searchParams.get('id'));
+    }, []);
 
 
     const resizeImage = (file: File, maxWidth: number, maxHeight: number): Promise<string | null> => {
@@ -254,6 +259,10 @@ const Page = () => {
     const [articleIsSet, setArticleIsSet] = useState(false)
 
     const getInitialValues = async () => {
+
+        const searchParams = new URLSearchParams(window.location.search);
+        const idd = searchParams.get('id');
+
         const def: Values = {
             title: null,
             image: null,
@@ -261,10 +270,10 @@ const Page = () => {
             pin: true,
             date: new Date()
         }
-        if (!id) {
+        if (!idd) {
             return def;
         }
-        const article = await getArticleById(id)
+        const article = await getArticleById(idd)
         if (!article) return def;
         setArticleIsSet(true)
         return {

@@ -4,15 +4,18 @@ import {Expertise} from "@/app/Expertise";
 import {Review} from "@/app/Review";
 import {Contact} from "@/app/Contact";
 
-export default function Home() {
+const Home = () => {
     return (
         <Page>
             <Header/>
             <Acceuil/>
             <Expertise/>
-            <Review />
-            <Contact />
-            <Footer />
+            <Review/>
+            <Contact/>
+            <Footer/>
         </Page>
     );
 }
+
+export default Home;
+
