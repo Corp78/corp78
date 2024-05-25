@@ -1,4 +1,3 @@
-
 name: publish-to-github-pages
 on:
   push:
@@ -24,6 +23,16 @@ jobs:
 
       - name: Install depedencies
         run: npm install
+
+      - name: Create .env file
+        run: |
+          echo "NEXT_PUBLIC_FIREBASE_APIKEY=${{ secrets.NEXT_PUBLIC_FIREBASE_APIKEY }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_AUTHDOMAIN=${{ secrets.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_PROJECTID=${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECTID }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_STORAGEBUCKET=${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID=${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_APPID=${{ secrets.NEXT_PUBLIC_FIREBASE_APPID }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_MEASUREMENTID=${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENTID }}" >> .env
 
       - name: Build with Next.js 🏗️
         run: npm run build
