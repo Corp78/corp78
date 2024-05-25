@@ -24,6 +24,9 @@ jobs:
       - name: Install depedencies
         run: npm install
 
+      - name: test
+        run: echo ${{ secrets.NEXT_PUBLIC_FIREBASE_APIKEY }}
+
       - name: Create .env file
         run: |
           echo "NEXT_PUBLIC_FIREBASE_APIKEY=${{ secrets.NEXT_PUBLIC_FIREBASE_APIKEY }}" >> .env
