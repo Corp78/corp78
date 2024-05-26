@@ -50,7 +50,7 @@ export const ActuCard = ({id, pin, title, image, date = new Date(), description,
             if (isAdd) {
                 router.push("/admin/dashboard/addArticle")
             } else {
-                router.push(`/actu/${id}`)
+                router.push(`/actu/article?id=${id}`)
             }
         }}>
             {

@@ -1,7 +1,7 @@
 "use client"
 
 import classes from "@/app/admin/dashboard/addArticle/page.module.css";
-import classes_2 from "./page.module.css";
+import classes_2 from "./ArticlePage.module.css";
 import NextImage from "next/image";
 import ReactMarkdown from "react-markdown";
 import React, {useEffect, useState} from "react";
@@ -10,8 +10,12 @@ import {IoMdArrowRoundBack} from "react-icons/io";
 import {useRouter} from "next/navigation";
 import {getArticleById} from "@/app/libs/utils/utilsFunction";
 
+interface Props {
+    id: string;
+}
 
-const ArticlePage = ({params}: { params: { id: string } }) => {
+
+const ArticlePage = ({id}: Props) => {
 
     const [article, setArticle] = useState<Article | null>(null);
     const router = useRouter()
@@ -20,7 +24,7 @@ const ArticlePage = ({params}: { params: { id: string } }) => {
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const articleData = await getArticleById(params.id);
+                const articleData = await getArticleById(id);
                 setArticle(articleData);
             } catch (error) {
                 console.error('Error fetching article:', error);
@@ -32,7 +36,7 @@ const ArticlePage = ({params}: { params: { id: string } }) => {
             await fetchArticle()
         })();
 
-    }, [params.id]);
+    }, [id]);
 
     return (
         <div className={classes_2.container_view_block}>
