@@ -1,4 +1,5 @@
 import {getApps, initializeApp} from "firebase/app";
+import {getAnalytics} from "firebase/analytics";
 
 const firebaseConfig = {
     apiKey: `${process.env.NEXT_PUBLIC_FIREBASE_APIKEY}`,
@@ -11,5 +12,9 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+
+if (typeof window !== "undefined" && firebase_app) {
+    getAnalytics(firebase_app);
+}
 
 export default firebase_app;
