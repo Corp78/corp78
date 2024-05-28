@@ -335,7 +335,7 @@ const Page = () => {
                                 </ButtonIcon>
                             }
                             {articleIsSet && id &&
-                                <Modal title="Etes vous sur de vouloir supprimer cette article ? " isOpen={modalIsOpen}
+                                <Modal title="Êtes-vous sûr de vouloir supprimer cet article ? " isOpen={modalIsOpen}
                                        onRequestClose={() => {
                                            setModalIsOpen(false)
                                        }} onSubmit={async () => {
@@ -354,7 +354,7 @@ const Page = () => {
                                 <IoClose className={classes.icon}/>
                             </ButtonIcon>
 
-                            <Modal title="Etes vous sur de vouloir quitter sans sauvegarder ? "
+                            <Modal title="Êtes-vous sûr de vouloir quitter sans sauvegarder ? "
                                    isOpen={modalCloseIsOpen}
                                    onRequestClose={() => {
                                        setModalCLoseIsOpen(false)

@@ -4,7 +4,7 @@ import firebase_app from "@/app/firebase";
 import {deleteObject, getDownloadURL, getStorage, ref, uploadString} from "@firebase/storage";
 import {v4 as uuidv4} from "uuid";
 import {getAuth} from "firebase/auth";
-import {getAnalytics, logEvent} from "firebase/analytics";
+import {getAnalytics, logEvent, setAnalyticsCollectionEnabled} from "firebase/analytics";
 import {AnalyticsEventName} from "@/app/libs/data/Analytics";
 
 export function deepEqual<T>(obj1: T, obj2: T): boolean {
@@ -162,12 +162,8 @@ export const formatDateDMY = (date: Date): string => {
     return formatter.format(date) // Add spaces around slashes
 };
 
-export const addLogAnalytics = async (eventName: AnalyticsEventName) => {
+export const addLogAnalytics = (eventName: AnalyticsEventName) => {
     const analytics = getAnalytics(firebase_app);
-    await logEvent(analytics, 'page_view', {
-        page_title: eventName.toString(),
-        page_location: '/',
-        page_path: '/'
-    })
-    console.log("add event = ", eventName.toString())
+    setAnalyticsCollectionEnabled(analytics, true);
+    logEvent(analytics, eventName);
 }
