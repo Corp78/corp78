@@ -164,5 +164,5 @@ export const formatDateDMY = (date: Date): string => {
 
 export const addLogAnalytics = (eventName: AnalyticsEventName) => {
     const analytics = getAnalytics(firebase_app);
-    logEvent(analytics, 'select_item', {name: eventName})
+    logEvent(analytics, 'screen_view', {name: eventName})
 }
