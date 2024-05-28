@@ -6,6 +6,8 @@ import {FaMapMarkerAlt, FaTrain} from "react-icons/fa";
 import {FaPhoneFlip} from "react-icons/fa6";
 import {MdEmail} from "react-icons/md";
 import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
+import {addLogAnalytics} from "@/app/libs/utils/utilsFunction";
+import {AnalyticsEventName} from "@/app/libs/data/Analytics";
 
 
 export const Contact = () => {
@@ -49,6 +51,9 @@ export const Contact = () => {
                         <div>
                             <ButtonLink text="Prendre rendez-vous" white
                                         href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
+                                        onClick={() => {
+                                            addLogAnalytics(AnalyticsEventName.click_meeting)
+                                        }}
                             ></ButtonLink>
                         </div>
                     </div>

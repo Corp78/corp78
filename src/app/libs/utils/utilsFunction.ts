@@ -4,6 +4,8 @@ import firebase_app from "@/app/firebase";
 import {deleteObject, getDownloadURL, getStorage, ref, uploadString} from "@firebase/storage";
 import {v4 as uuidv4} from "uuid";
 import {getAuth} from "firebase/auth";
+import {getAnalytics, logEvent} from "firebase/analytics";
+import {AnalyticsEventName} from "@/app/libs/data/Analytics";
 
 export function deepEqual<T>(obj1: T, obj2: T): boolean {
     if (typeof obj1 !== 'object' || typeof obj2 !== 'object' || obj1 === null || obj2 === null) {
@@ -159,3 +161,8 @@ export const formatDateDMY = (date: Date): string => {
     });
     return formatter.format(date) // Add spaces around slashes
 };
+
+export const addLogAnalytics = (eventName: AnalyticsEventName) => {
+    const analytics = getAnalytics(firebase_app);
+    logEvent(analytics, 'select_item', {name: eventName})
+}

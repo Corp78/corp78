@@ -8,7 +8,8 @@ import classnames from "classnames";
 import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 import {useRouter} from "next/navigation";
 import {Button} from "@/app/libs/core";
-import {signOut} from "@/app/libs/utils/utilsFunction";
+import {addLogAnalytics, signOut} from "@/app/libs/utils/utilsFunction";
+import {AnalyticsEventName} from "@/app/libs/data/Analytics";
 
 interface Props {
     admin?: boolean;
@@ -95,14 +96,21 @@ export const Header = ({admin}: Props) => {
                         <div className={classes.meetingMenu}>
                             <div>
                                 <ButtonLink className={classes.test} text="Prendre rendez-vous" white
-                                            href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"/>
+                                            href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
+                                            onClick={() => {
+                                                addLogAnalytics(AnalyticsEventName.click_meeting)
+                                            }}/>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 {!admin && <div className={classes.meeting}>
                     <ButtonLink text="Prendre rendez-vous"
-                                href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"/>
+                                href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
+                                onClick={() => {
+                                    addLogAnalytics(AnalyticsEventName.click_meeting)
+                                }}/>
                 </div>}
                 {admin && <Button text="Se déconnecter" onClick={async () => {
                     await signOut();
