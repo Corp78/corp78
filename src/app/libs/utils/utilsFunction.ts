@@ -162,7 +162,12 @@ export const formatDateDMY = (date: Date): string => {
     return formatter.format(date) // Add spaces around slashes
 };
 
-export const addLogAnalytics = (eventName: AnalyticsEventName) => {
+export const addLogAnalytics = async (eventName: AnalyticsEventName) => {
     const analytics = getAnalytics(firebase_app);
-    logEvent(analytics, 'screen_view', {name: eventName})
+    await logEvent(analytics, 'page_view', {
+        page_title: eventName.toString(),
+        page_location: '/',
+        page_path: '/'
+    })
+    console.log("add event = ", eventName.toString())
 }

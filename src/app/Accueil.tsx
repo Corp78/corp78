@@ -3,6 +3,8 @@
 import React, {useEffect, useState} from 'react';
 import classes from "./Acceuil.module.css";
 import {DoctorCard} from "@/app/libs/core";
+import {addLogAnalytics} from "@/app/libs/utils/utilsFunction";
+import {AnalyticsEventName} from "@/app/libs/data/Analytics";
 
 
 export const Acceuil = () => {
@@ -10,6 +12,9 @@ export const Acceuil = () => {
 
     useEffect(() => {
         setRandom(Math.round(Math.random())); // Update random state on component mount
+        (async () => {
+            await addLogAnalytics(AnalyticsEventName.home_page);
+        })();
     }, []); // Run only once on component mount
 
 

@@ -49,6 +49,7 @@ export const Header = ({admin}: Props) => {
         // Encapsulez l'utilisation des hooks dans useEffect
         const searchParams = new URLSearchParams(window.location.search);
         const pathname = window.location.pathname;
+        
 
         const param = searchParams.get("tab");
         if (param) {
