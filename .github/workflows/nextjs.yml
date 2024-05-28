@@ -33,7 +33,7 @@ jobs:
           echo NEXT_PUBLIC_FIREBASE_STORAGEBUCKET=cop78-7f0a4.appspot.com >> .env
           echo NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID=34808723389 >> .env
           echo NEXT_PUBLIC_FIREBASE_APPID=1:34808723389:web:e7216c7ceaad1d203bc4d4 >> .env
-          echo NEXT_PUBLIC_FIREBASE_MEASUREMENTID=G-HN4DVP7YE1np >> .env
+          echo NEXT_PUBLIC_FIREBASE_MEASUREMENTID=G-HN4DVP7YE1 >> .env
           cat .env
 
       - name: Build with Next.js 🏗️
