@@ -24,28 +24,17 @@ jobs:
       - name: Install depedencies
         run: npm install
 
-      - name: Test secrets
-        run: |
-          echo ${{ secrets.NEXT_PUBLIC_FIREBASE_APIKEY }}
-          echo ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN }}
-          echo ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECTID }}
-          echo ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET }}
-          echo ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID }}
-          echo ${{ secrets.NEXT_PUBLIC_FIREBASE_APPID }}
-          echo ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENTID }}
-
       - name: Create .env file
         run: |
-          envsubst < .env.template > .env
+          touch .env
+          echo "NEXT_PUBLIC_FIREBASE_APIKEY=${{ secrets.NEXT_PUBLIC_FIREBASE_APIKEY }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_AUTHDOMAIN=${{ secrets.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_PROJECTID=${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECTID }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_STORAGEBUCKET=${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID=${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_APPID=${{ secrets.NEXT_PUBLIC_FIREBASE_APPID }}" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_MEASUREMENTID=${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENTID }}" >> .env
           cat .env
-        env:
-          NEXT_PUBLIC_FIREBASE_APIKEY: ${{ vars.NEXT_PUBLIC_FIREBASE_APIKEY }}
-          NEXT_PUBLIC_FIREBASE_AUTHDOMAIN: ${{ vars.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN }}
-          NEXT_PUBLIC_FIREBASE_PROJECTID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECTID }}
-          NEXT_PUBLIC_FIREBASE_STORAGEBUCKET: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET }}
-          NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID }}
-          NEXT_PUBLIC_FIREBASE_APPID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APPID }}
-          NEXT_PUBLIC_FIREBASE_MEASUREMENTID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENTID }}
 
       - name: Build with Next.js 🏗️
         run: npm run build
