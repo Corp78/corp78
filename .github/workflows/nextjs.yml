@@ -27,6 +27,7 @@ jobs:
       - name: Create .env file
         run: |
           envsubst < .env.template > .env
+          cat .env
         env:
           NEXT_PUBLIC_FIREBASE_APIKEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_APIKEY }}
           NEXT_PUBLIC_FIREBASE_AUTHDOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN }}
