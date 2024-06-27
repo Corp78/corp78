@@ -13,7 +13,6 @@ interface Props {
 }
 
 
-
 export const DoctorCard = ({name, specialities, image, left, right}: Props) => {
 
     return (
@@ -22,13 +21,13 @@ export const DoctorCard = ({name, specialities, image, left, right}: Props) => {
             [classes.right]: !!right,
         })}>
             <div className={classes.imageContainer}>
-                <Image className={classes.image} src={image} alt="quentin" fill sizes="(max-width: 768px) , (max-width: 1200px)"/>
+                <Image className={classes.image} src={image} alt="quentin" fill/>
             </div>
             <h5 className={classes.name}>{name}</h5>
             <div className={classes.specialistDescription}>
                 <p className={classnames(classes.description, classes.specialist)}>Spécialiste en :</p>
                 {specialities.map(speciality => (
-                    <ListPoint key={speciality} text={speciality} />
+                    <ListPoint key={speciality} text={speciality}/>
                 ))}
             </div>
 
