@@ -21,7 +21,7 @@ export const Contact = () => {
                 <div className={classes.box}>
                     <div className={classes.mapContainer}>
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5259.884900618742!2d1.9174343770609292!3d48.76389530735092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e68349e77c59d5%3A0xff696012b18ae0b6!2s14%20Rue%20de%20Montfort%2C%2078310%20Maurepas!5e0!3m2!1sfr!2sfr!4v1710938746777!5m2!1sfr!2sfr"
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2629.9414243235146!2d1.9199986!3d48.7639149!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6832cf6edb5a1%3A0xd8bcc6bdc37c1cea!2sCabinet%20Ophtalmologique%20Pariwest!5e0!3m2!1sfr!2sfr!4v1719875371851!5m2!1sfr!2sfr"
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
                             className={classes.map}
@@ -31,7 +31,7 @@ export const Contact = () => {
                         <div className={classes.infoContent}>
                             <FaMapMarkerAlt className={classes.icon}/>
                             <div className={classes.separatorRight}/>
-                            <a href="https://www.google.com/maps/search/?api=1&query=14+rue+de+Monfort,+Maurepas,+78310"
+                            <a href="https://maps.app.goo.gl/N6C2V8UEHqhPPpy9A"
                                className={classes.info}>14 rue de Monfort, Maurepas, 78310</a>
                         </div>
                         <div className={classes.infoContent}>
