@@ -31,17 +31,19 @@ export const Contact = () => {
                         <div className={classes.infoContent}>
                             <FaMapMarkerAlt className={classes.icon}/>
                             <div className={classes.separatorRight}/>
-                            <p className={classes.info}> 14 rue de Monfort, Maurepas, 78310</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=14+rue+de+Monfort,+Maurepas,+78310"
+                               className={classes.info}>14 rue de Monfort, Maurepas, 78310</a>
                         </div>
                         <div className={classes.infoContent}>
                             <FaPhoneFlip className={classes.icon}/>
                             <div className={classes.separatorRight}/>
-                            <p className={classes.info}>0600000000</p>
+                            <a href="tel:0130622324" className={classes.info}>01 30 62 23 24</a>
                         </div>
                         <div className={classes.infoContent}>
                             <MdEmail className={classes.icon}/>
                             <div className={classes.separatorRight}/>
-                            <p className={classes.info}>cab.oph.pariwest@gmail.com</p>
+                            <a href="mailto:cab.oph.pariwest@gmail.com"
+                               className={classes.info}>cab.oph.pariwest@gmail.com</a>
                         </div>
                         <div className={classes.infoContent}>
                             <FaTrain className={classes.icon}/>

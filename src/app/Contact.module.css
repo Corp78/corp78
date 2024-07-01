@@ -61,7 +61,7 @@
 }
 
 .map {
-    filter: invert(90%)  saturate(100%) hue-rotate(200deg) brightness(100%) contrast(100%);
+    filter: invert(90%) saturate(100%) hue-rotate(200deg) brightness(100%) contrast(100%);
     width: 100%;
     height: 100%;
     border-radius: 16px;
@@ -95,6 +95,7 @@
 }
 
 .info {
+    font-family: 'Montserrat', sans-serif;
     color: rgb(var(--green-1));
     font-weight: 500;
 }
