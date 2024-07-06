@@ -98,8 +98,8 @@ export const Header = ({admin}: Props) => {
                         <div className={classes.meetingMenu}>
                             <div>
                                 <ButtonLink className={classes.test} text="Prendre rendez-vous" white
-                                            href={Link.doctolib}>
-                                    eventAnalytics={AnalyticsEventName.click_meeting}
+                                            href={Link.doctolib}
+                                            eventAnalytics={AnalyticsEventName.click_meeting}>
                                 </ButtonLink>
                             </div>
                         </div>
@@ -109,7 +109,7 @@ export const Header = ({admin}: Props) => {
                     <ButtonLink text="Prendre rendez-vous"
                                 href={Link.doctolib}
                                 eventAnalytics={AnalyticsEventName.click_meeting}
-                    ></ButtonLink>
+                    />
                 </div>}
                 {admin && <Button text="Se déconnecter" onClick={async () => {
                     await signOut();
