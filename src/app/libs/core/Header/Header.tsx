@@ -8,8 +8,9 @@ import classnames from "classnames";
 import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 import {useRouter} from "next/navigation";
 import {Button} from "@/app/libs/core";
-import {addLogAnalytics, signOut} from "@/app/libs/utils/utilsFunction";
+import {signOut} from "@/app/libs/utils/utilsFunction";
 import {AnalyticsEventName} from "@/app/libs/data/Analytics";
+import {Link} from "@/app/Data";
 
 interface Props {
     admin?: boolean;
@@ -49,7 +50,7 @@ export const Header = ({admin}: Props) => {
         // Encapsulez l'utilisation des hooks dans useEffect
         const searchParams = new URLSearchParams(window.location.search);
         const pathname = window.location.pathname;
-        
+
 
         const param = searchParams.get("tab");
         if (param) {
@@ -97,21 +98,18 @@ export const Header = ({admin}: Props) => {
                         <div className={classes.meetingMenu}>
                             <div>
                                 <ButtonLink className={classes.test} text="Prendre rendez-vous" white
-                                            href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
-                                            onClick={() => {
-                                                addLogAnalytics(AnalyticsEventName.click_meeting)
-                                            }}/>
-
+                                            href={Link.doctolib}>
+                                    eventAnalytics={AnalyticsEventName.click_meeting}
+                                </ButtonLink>
                             </div>
                         </div>
                     </div>
                 </div>
                 {!admin && <div className={classes.meeting}>
                     <ButtonLink text="Prendre rendez-vous"
-                                href="https://www.doctolib.fr/ophtalmologue/maurepas/quentin-hays/booking?bookingFunnelSource=profile"
-                                onClick={() => {
-                                    addLogAnalytics(AnalyticsEventName.click_meeting)
-                                }}/>
+                                href={Link.doctolib}
+                                eventAnalytics={AnalyticsEventName.click_meeting}
+                    ></ButtonLink>
                 </div>}
                 {admin && <Button text="Se déconnecter" onClick={async () => {
                     await signOut();

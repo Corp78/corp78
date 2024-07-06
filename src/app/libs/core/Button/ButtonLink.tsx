@@ -2,6 +2,8 @@ import React from "react";
 import classnames from 'classnames';
 import Link from 'next/link';
 import classes from "./Buttton.module.css";
+import {addLogAnalytics} from "@/app/libs/utils/utilsFunction";
+import {AnalyticsEventName} from "@/app/libs/data/Analytics";
 
 interface BaseButtonProps {
     className?: string;
@@ -14,6 +16,7 @@ interface BaseButtonProps {
     line?: boolean;
     white?: boolean;
     href: string;
+    eventAnalytics?: AnalyticsEventName;
 }
 
 type ButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
@@ -32,6 +35,12 @@ export const ButtonLink = (props: BaseButtonProps & GenericButtonProps) => {
         ...rest
     } = props;
 
+    const addAnalytics = () => {
+        if (props.eventAnalytics) {
+            addLogAnalytics(props.eventAnalytics);
+        }
+    }
+
     return (
         <Link href={href} target="_blank"
               rel="noopener noreferrer"
@@ -44,7 +53,7 @@ export const ButtonLink = (props: BaseButtonProps & GenericButtonProps) => {
                   },
                   className,
               )}
-              onClick={onClick}
+              onClick={addAnalytics}
               type={type}
         >
             {props.children}
