@@ -38,14 +38,6 @@
     justify-content: center; /* Center the content horizontally */
     padding-bottom: 40px;
     gap: 16px;
-
-    @media only screen and  (max-width: 1550px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    @media only screen and  (max-width: 1050px) {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 0;
-    }
 }
 
 .backgroundCircle1 {
@@ -77,4 +69,17 @@
     display: flex;
     justify-content: center;
     padding-bottom: 64px;
+}
+
+@media only screen and  (max-width: 1550px) {
+    .reviewContent {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and  (max-width: 1050px) {
+    .reviewContent {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0;
+    }
 }

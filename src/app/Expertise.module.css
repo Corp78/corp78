@@ -27,16 +27,21 @@
 }
 
 .expertiseContent {
-    display: grid; /* Use CSS Grid */
-    grid-template-columns: repeat(3, 1fr); /* Define columns with a minimum width of 250px and auto-fill behavior */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 48px;
-    justify-content: center; /* Center the content horizontally */
+    justify-content: center;
     padding-bottom: 40px;
+}
 
-    @media only screen and (max-width: 1350px) {
+@media only screen and (max-width: 1350px) {
+    .expertiseContent {
         grid-template-columns: repeat(2, 1fr);
     }
-    @media only screen and (max-width: 880px) {
+}
+
+@media only screen and (max-width: 880px) {
+    .expertiseContent {
         grid-template-columns: repeat(1, 1fr);
         gap: 24px;
     }

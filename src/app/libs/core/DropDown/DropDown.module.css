@@ -7,7 +7,6 @@
     align-items: center;
     position: relative;
     user-select: none;
-
 }
 
 .titleContainer {
@@ -20,32 +19,18 @@
     border-right: solid 2px transparent;
     border-left: solid 2px transparent;
     border-radius: 8px;
-
-    @media only screen and (max-width: 1170px) {
-        padding: 8px 0;
-    }
-
 }
 
 .dropDownIcon {
     transform: rotate(-90deg);
     transition: transform .2s ease-in-out;
-    @media only screen and (max-width: 1250px) {
-        transform: rotate(0deg);
-    }
 }
 
 .dropDownBlack {
-    @media only screen and  (max-width: 1250px) {
-        display: none;
-    }
 }
 
 .dropDownWhite {
     display: none;
-    @media only screen and (max-width: 1250px) {
-        display: block;
-    }
 }
 
 .container:hover .dropDownIcon {
@@ -56,10 +41,6 @@
     border-left: solid 2px rgb(var(--green-4));
     border-right: solid 2px rgb(var(--green-4));
     border-radius: 8px;
-    @media only screen and  (max-width: 990px) {
-        border-left: solid 2px rgb(var(--green-3));
-        border-right: solid 2px rgb(var(--green-2));
-    }
 }
 
 .linksContainer {
@@ -78,14 +59,6 @@
     border-radius: 16px;
     box-shadow: 0 4px 16px 0 rgba(var(--black), .1);
     padding: 8px;
-    @media only screen and  (max-width: 1170px) {
-        position: relative;
-        margin-top: 16px;
-        display: flex;
-        background: transparent;
-        box-shadow: none;
-        animation: slideFromTop 0.3s ease-in;
-    }
 }
 
 .container:hover > .linksContainer {
@@ -96,17 +69,6 @@
 .linksContainer:hover {
     display: flex;
 }
-
-@keyframes slideFromTop {
-    0% {
-        max-height: 0;
-    }
-    100% {
-        max-height: 400px;
-        height: fit-content;
-    }
-}
-
 
 .linkBox {
     width: 100%;
@@ -121,10 +83,6 @@
 
 .linkTitle {
     font-weight: 500;
-    @media only screen and (max-width: 1170px) {
-        color: rgb(var(--white));
-        font-weight: 400;
-    }
 }
 
 .stroke-expand-down {
@@ -135,14 +93,67 @@
     border-left: solid 2px rgb(var(--green-4));
     border-right: solid 2px rgb(var(--green-4));
     border-radius: 8px;
-    @media only screen and (max-width: 990px) {
-        border-left: solid 2px rgb(var(--green-3));
-        border-right: solid 2px rgb(var(--green-3));
-    }
 }
 
 .mainTitle {
-    @media only screen and  (max-width: 1250px) {
+}
+
+@keyframes slideFromTop {
+    0% {
+        max-height: 0;
+    }
+    100% {
+        max-height: 400px;
+        height: fit-content;
+    }
+}
+
+@media only screen and (max-width: 1250px) {
+    .dropDownIcon {
+        transform: rotate(0deg);
+    }
+
+    .dropDownBlack {
+        display: none;
+    }
+
+    .dropDownWhite {
+        display: block;
+    }
+
+    .mainTitle {
         color: rgb(var(--white));
+    }
+}
+
+@media only screen and (max-width: 1170px) {
+    .titleContainer {
+        padding: 8px 0;
+    }
+
+    .linksContainer {
+        position: relative;
+        margin-top: 16px;
+        display: flex;
+        background: transparent;
+        box-shadow: none;
+        animation: slideFromTop 0.3s ease-in;
+    }
+
+    .linkTitle {
+        color: rgb(var(--white));
+        font-weight: 400;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .titleContainer:hover {
+        border-left: solid 2px rgb(var(--green-3));
+        border-right: solid 2px rgb(var(--green-2));
+    }
+
+    .linkBox:hover {
+        border-left: solid 2px rgb(var(--green-3));
+        border-right: solid 2px rgb(var(--green-3));
     }
 }

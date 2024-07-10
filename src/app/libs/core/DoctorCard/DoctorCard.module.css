@@ -7,8 +7,6 @@
     background: rgba(var(--white), .8);
     box-shadow: 0 4px 16px 0 rgba(var(--black), .2);
     border: solid 1px rgba(var(--black), .15);
-
-
 }
 
 .imageContainer {
@@ -38,21 +36,7 @@
     line-height: 1.5;
     text-align: left;
     width: 100%;
-    color: rgb(var(--black))
-}
-
-.left {
-    transform: rotate(-5deg);
-    @media only screen and (max-width: 712px) {
-        transform: rotate(0deg);
-    }
-}
-
-.right {
-    transform: rotate(5deg);
-    @media only screen and (max-width: 712px) {
-        transform: rotate(0deg);
-    }
+    color: rgb(var(--black));
 }
 
 .specialistDescription {
@@ -62,5 +46,22 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+}
 
+.left {
+    transform: rotate(-5deg);
+}
+
+.right {
+    transform: rotate(5deg);
+}
+
+@media only screen and (max-width: 712px) {
+    .left {
+        transform: rotate(0deg);
+    }
+
+    .right {
+        transform: rotate(0deg);
+    }
 }
