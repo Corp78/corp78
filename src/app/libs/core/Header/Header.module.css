@@ -6,7 +6,7 @@
     justify-content: space-between;
     align-items: center;
     max-width: 1600px;
-    margin: 0 auto 0px;
+    margin: 0 auto 0;
 }
 
 .mainContainer {
@@ -26,7 +26,7 @@
     align-items: flex-start;
     gap: 16px;
 
-    @media (max-width: 1170px) {
+    @media only screen and (max-width: 1250px) {
         flex-direction: column;
         align-items: center;
         width: 100%;
@@ -35,7 +35,7 @@
 }
 
 .meeting {
-    @media (max-width: 1170px) {
+    @media only screen and (max-width: 1250px) {
         display: none;
     }
 }
@@ -45,7 +45,7 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
-    @media (max-width: 1170px) {
+    @media only screen and (max-width: 1250px) {
         display: block;
     }
 }
@@ -55,7 +55,7 @@
     width: 100%;
     flex-direction: row-reverse;
     padding: 0 16px;
-    @media (max-width: 1170px) {
+    @media only screen and (max-width: 1250px) {
         display: flex;
     }
 }
@@ -64,7 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @media (max-width: 1170px) {
+    @media only screen and (max-width: 1250px) {
         z-index: 100;
         transform: translateX(400px);
         position: fixed;
@@ -97,7 +97,7 @@
 .separator {
     background: transparent;
 
-    @media (max-width: 1170px) {
+    @media only screen and (max-width: 1250px) {
         display: block;
         border-radius: 2px;
         width: 90%;
@@ -109,7 +109,7 @@
 
 .meetingMenu {
     display: none;
-    @media (max-width: 1170px) {
+    @media only screen and (max-width: 1250px) {
         display: block;
         padding-bottom: 16px;
     }
@@ -149,7 +149,7 @@
     align-items: center;
     position: relative;
 
-    @media (max-width: 1170px) {
+    @media only screen and (max-width: 1170px) {
         width: 48px;
         height: 48px;
     }
@@ -164,7 +164,7 @@
     height: 64px;
     object-fit: cover;
 
-    @media (max-width: 1170px) {
+    @media only screen and (max-width: 1250px) {
         width: 48px;
         height: 48px;
     }

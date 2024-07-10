@@ -39,10 +39,10 @@
     padding-bottom: 40px;
     gap: 16px;
 
-    @media (max-width: 1550px) {
+    @media only screen and  (max-width: 1550px) {
         grid-template-columns: repeat(2, 1fr);
     }
-    @media (max-width: 1050px) {
+    @media only screen and  (max-width: 1050px) {
         grid-template-columns: repeat(1, 1fr);
         gap: 0;
     }

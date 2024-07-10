@@ -23,11 +23,11 @@
     gap: 40px;
     padding-bottom: 40px;
 
-    @media (max-width: 1350px) {
+    @media only screen and  (max-width: 1350px) {
         grid-template-columns: 1fr 1fr;
     }
 
-    @media (max-width: 910px) {
+    @media only screen and  (max-width: 910px) {
         grid-template-columns: 1fr;
     }
 }
@@ -43,11 +43,11 @@
     align-self: center;
     max-width: 1450px;
 
-    @media (max-width: 990px) {
+    @media only screen and  (max-width: 990px) {
         gap: 20px;
     }
 
-    @media (max-width: 700px) {
+    @media only screen and  (max-width: 700px) {
         grid-template-columns: 1fr;
         padding: 16px;
     }

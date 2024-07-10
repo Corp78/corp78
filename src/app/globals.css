@@ -52,7 +52,7 @@
     --black: 22, 22, 22;
 }
 
-@media (prefers-color-scheme: dark) {
+@media only screen and (prefers-color-scheme: dark) {
     :root {
         --foreground-rgb: 229, 246, 220;
         --background-start-rgb: 0, 0, 0;
@@ -111,7 +111,7 @@ a {
     text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
+@media only screen and (prefers-color-scheme: dark) {
     html {
         color-scheme: dark;
     }
@@ -162,15 +162,15 @@ h1 {
     font-size: 65px;
     line-height: 1.5;
 
-    @media (max-width: 990px) {
+    @media only screen and  (max-width: 990px) {
         font-size: 50px;
     }
 
-    @media (max-width: 600px) {
+    @media only screen and  (max-width: 600px) {
         font-size: 40px;
     }
 
-    @media (max-width: 480px) {
+    @media only screen and  (max-width: 480px) {
         font-size: 30px;
     }
 }
@@ -190,15 +190,15 @@ h2 {
     font-size: 30px;
     line-height: 1.5;
 
-    @media (max-width: 990px) {
+    @media only screen and  (max-width: 990px) {
         font-size: 27px;
     }
 
-    @media (max-width: 600px) {
+    @media only screen and  (max-width: 600px) {
         font-size: 23px;
     }
 
-    @media (max-width: 480px) {
+    @media only screen and  (max-width: 480px) {
         font-size: 20px;
     }
 }
@@ -210,7 +210,7 @@ h3 {
     font-size: 20px;
     line-height: 1.5;
 
-    @media (max-width: 990px) {
+    @media only screen and  (max-width: 990px) {
         font-size: 18px;
     }
 }

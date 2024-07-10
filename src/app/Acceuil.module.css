@@ -9,16 +9,17 @@
     gap: 16px;
     max-width: 1600px;
 
-    @media (max-width: 1378px) {
+    @media only screen and  (max-width: 1378px) {
         flex-direction: column;
         padding: 0;
     }
 }
+
 .title {
     color: rgb(var(--green-5));
     width: auto;
     text-align: left;
-    @media (max-width: 1378px) {
+    @media only screen and (max-width: 1378px) {
         text-align: center;
         padding: 0 30px 32px;
     }
@@ -28,33 +29,34 @@
     color: rgb(var(--green-3));
     width: auto;
     text-align: left;
-    @media (max-width: 1378px) {
+    @media only screen and  (max-width: 1378px) {
         text-align: center;
     }
 
-    @media (max-width: 700px) {
+    @media only screen and  (max-width: 700px) {
         padding-bottom: 0px;
     }
 }
 
 .titleContainer {
     max-width: 50%;
-    @media (max-width: 1378px) {
+    @media only screen and  (max-width: 1378px) {
         max-width: 100%;
     }
 }
+
 .doctorCardsContainer {
     display: flex;
     gap: 80px;
     padding-bottom: 24px;
 
-    @media (max-width: 712px) {
+    @media only screen and  (max-width: 712px) {
         gap: 16px;
         width: 100%;
         justify-content: center;
     }
 
-    @media (max-width: 600px) {
+    @media only screen and  (max-width: 600px) {
         justify-content: center;
         flex-direction: column;
         flex-wrap: wrap;
