@@ -1,12 +1,10 @@
 .page_container {
-    background: rgba(var(--green-1), 1);
+    background: rgba(var(--green-0), 1);
     width: 100%;
     min-height: 100vh;
     position: absolute;
     display: flex;
     flex-direction: column;
-
-
 }
 
 .actuMainContainer {
@@ -22,14 +20,6 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
     padding-bottom: 40px;
-
-    @media only screen and  (max-width: 1350px) {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    @media only screen and  (max-width: 910px) {
-        grid-template-columns: 1fr;
-    }
 }
 
 .container {
@@ -41,14 +31,29 @@
     padding: 40px 20px;
     align-self: center;
     max-width: 1450px;
+}
 
-    @media only screen and  (max-width: 990px) {
+@media only screen and (max-width: 1350px) {
+    .actuContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 910px) {
+    .actuContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .container {
         gap: 20px;
     }
+}
 
-    @media only screen and  (max-width: 700px) {
+@media only screen and (max-width: 700px) {
+    .container {
         grid-template-columns: 1fr;
         padding: 16px;
     }
-
 }

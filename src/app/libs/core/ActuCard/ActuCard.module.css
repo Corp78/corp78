@@ -95,6 +95,7 @@
     align-self: center;
     overflow: hidden;
     width: 100%;
+    position: relative;
 }
 
 .title h3 {
@@ -130,9 +131,6 @@
         padding-top: 0;
         align-self: flex-end;
     }
-
-    .title h3, .title p {
-        display: block;
-    }
+    
 }
 

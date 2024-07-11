@@ -13,7 +13,7 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgb(var(--green-1));
+    background: rgb(var(--green-0));
     width: 100%;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;

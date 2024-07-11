@@ -8,6 +8,10 @@
 
 @media only screen and  (max-width: 800px) {
     .container_view_block {
-        padding: 16px;
+        padding: 24px;
     }
+}
+
+.container {
+
 }

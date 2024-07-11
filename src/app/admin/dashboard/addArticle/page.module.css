@@ -1,13 +1,8 @@
-
 .page {
     width: 100%;
     height: 100vh;
     background: rgb(var(--black));
     padding: 20px;
-
-    @media only screen and  (max-width: 800px) {
-        padding: 0;
-    }
 }
 
 .editor_content {
@@ -24,27 +19,10 @@
     "select select"
     "header header"
     "editor view";
-
-    @media only screen and  (max-width: 800px) {
-        box-shadow: none;
-        border-radius: 0;
-    }
 }
 
 .editor_content_book {
     grid-template-columns: 50% 50%;
-
-    @media only screen and  (max-width: 800px) {
-        grid-template-columns: 100%;
-        grid-template-rows: auto auto auto 1fr 1fr;
-        grid-template-areas:
-        "save"
-        "select"
-        "header"
-        "editor"
-        "view"
-    }
-
 }
 
 .editor_content_view {
@@ -60,7 +38,6 @@
     font-size: 20px;
 }
 
-
 .select {
     grid-area: select;
     display: flex;
@@ -70,11 +47,6 @@
     padding: 16px;
     background: rgb(var(--green-1_5));
     border-bottom: 1px solid rgb(var(--green-2));
-
-    @media only screen and  (max-width: 990px) {
-        gap: 8px;
-        padding: 8px;
-    }
 }
 
 .select input {
@@ -92,11 +64,10 @@
 }
 
 .imageText {
-
 }
 
 .select input[type="file"] {
-    display: none
+    display: none;
 }
 
 .select .fileInput {
@@ -146,11 +117,6 @@
     padding: 8px 16px;
     background: rgb(var(--green-1_5));
     border-bottom: 1px solid rgb(var(--green-2));
-
-    @media only screen and  (max-width: 990px) {
-        gap: 4px;
-        padding: 8px 4px;
-    }
 }
 
 .save {
@@ -161,13 +127,7 @@
     gap: 8px;
     padding: 8px 16px;
     background: rgb(var(--green-1));
-
     border-bottom: 1px solid rgb(var(--green-2));
-
-    @media only screen and  (max-width: 990px) {
-        gap: 4px;
-        padding: 4px;
-    }
 }
 
 .content {
@@ -176,7 +136,6 @@
     display: flex;
 }
 
-
 .container_editable {
     background: rgb(var(--green-5));
     grid-area: editor;
@@ -184,7 +143,7 @@
 }
 
 .container_view_block {
-    background: rgb(var(--green-1));
+    background: rgb(var(--green-0));
     grid-area: view;
     overflow-x: hidden;
     overflow-y: auto;
@@ -194,22 +153,17 @@
 }
 
 .container_view {
-
-    background: rgb(var(--green-1));
+    background: rgb(var(--green-0));
     display: flex;
     align-items: center;
     flex-direction: column;
     max-width: 900px;
     margin: 0 auto;
-
-
 }
 
 .markdown {
     color: rgb(var(--black));
-
 }
-
 
 .textarea {
     width: 100%;
@@ -233,43 +187,46 @@
     border: none;
 }
 
-/* Style des titres */
 .markdown h1 {
     font-size: 30px;
     font-weight: 900;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 20px;
     color: rgb(var(--green-5));
-    @media only screen and  (max-width: 990px) {
-        font-size: 26px;
-        line-height: 1.2;
-    }
 }
 
 .markdown h2 {
     font-size: 24px;
     font-weight: 800;
     margin-top: 25px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     color: rgb(var(--green-5));
+}
 
-    @media only screen and  (max-width: 990px) {
-        font-size: 22px;
-        line-height: 1.2;
-    }
+.markdown img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 6px 3px rgba(var(--green-2), .8);
+    border: 1px solid rgba(var(--green-2), .5);
+    max-height: 350px;
+    object-fit: cover;
+    margin: 20px auto 24px;
 }
 
 .markdown h3 {
     font-size: 20px;
     font-weight: 800;
-    margin-top: 20px;
-    margin-bottom: 15px;
+    margin-top: 16px;
+    margin-bottom: 8px;
     color: rgb(var(--green-5));
+}
 
-    @media only screen and  (max-width: 990px) {
-        font-size: 18px;
-        line-height: 1.2;
-    }
+.markdown h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    color: rgb(var(--green-5));
 }
 
 .markdown strong {
@@ -280,71 +237,34 @@
     font-style: italic;
 }
 
-/* Style des paragraphes */
 .markdown p {
-    margin-bottom: 15px;
     font-weight: normal;
 }
 
-.markdown li {
-    font-family: 'Montserrat', sans-serif;
-    color: rgb(var(--black));
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-/* Style des listes */
 .markdown ul,
 .markdown ol {
-    margin-bottom: 15px;
-    margin-left: 20px;
-}
-
-.markdown ol {
-    margin-bottom: 15px;
-    margin-left: 20px;
-    list-style: none; /* Remove default markers */
-    counter-reset: custom-counter; /* Reset the counter */
-}
-
-.markdown ol li {
-    position: relative; /* Position relative for absolute positioning of marker */
-    margin-bottom: 8px;
-    padding-left: 20px;
-}
-
-/* Style des marqueurs personnalisés pour les listes ordonnées */
-.markdown ol li::before {
-    content: counter(custom-counter) "."; /* Use a counter for the marker */
-    counter-increment: custom-counter; /* Increment the counter */
-    position: absolute;
-    left: -20px; /* Position the marker */
-    top: 0;
-    font-weight: 600;
-    font-size: 15px;
-    padding-left: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    padding-left: 2em;
+    margin-bottom: 16px;
 }
 
 .markdown ul li {
-    position: relative; /* Position relative for absolute positioning of marker */
-    margin-bottom: 8px;
-    padding-left: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    list-style-type: disc;
 }
 
-/* Style des marqueurs personnalisés pour les listes non ordonnées */
-.markdown ul li::before {
-    content: ''; /* No content for the marker */
-    position: absolute;
-    left: 0; /* Position the marker */
-    top: 50%;
-    transform: translateY(-50%); /* Center the marker vertically */
-    width: 8px; /* Marker width */
-    height: 8px; /* Marker height */
-    background-color: rgb(var(--green-5)); /* Marker color */
-    border-radius: 50%; /* Make the marker round */
+.markdown ol li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    list-style-type: decimal;
 }
 
-/* Style des liens */
 .markdown a {
     color: #007bff;
     text-decoration: none;
@@ -354,7 +274,6 @@
     text-decoration: underline;
 }
 
-/* Style des blocs de code */
 .markdown pre {
     background-color: #f8f9fa;
     border-radius: 5px;
@@ -366,11 +285,10 @@
     font-family: Consolas, Monaco, 'Courier New', Courier, monospace;
 }
 
-/* Style des citations */
 .markdown blockquote {
     margin: 10px;
     border: 1px solid rgb(var(--green-3));
-    background: rgba(var(--green-2), .3);
+    background: rgba(var(--green-1), .5);
     padding: 10px;
     border-radius: 8px;
     width: fit-content;
@@ -388,11 +306,9 @@
     margin: 20px auto;
 }
 
-
 .separator {
     flex: 1;
 }
-
 
 .imageContainer {
     width: 100%;
@@ -445,5 +361,63 @@
     font-size: 13px;
     font-weight: 500;
     padding: 0 0 0 8px;
+}
 
+@media only screen and (max-width: 800px) {
+    .page {
+        padding: 0;
+    }
+
+    .editor_content {
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .editor_content_book {
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto auto 1fr 1fr;
+        grid-template-areas:
+        "save"
+        "select"
+        "header"
+        "editor"
+        "view";
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .select {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .header {
+        gap: 4px;
+        padding: 8px 4px;
+    }
+
+    .save {
+        gap: 4px;
+        padding: 4px;
+    }
+
+    .markdown h1 {
+        font-size: 26px;
+        line-height: 1.2;
+    }
+
+    .markdown h2 {
+        font-size: 22px;
+        line-height: 1.2;
+    }
+
+    .markdown h3 {
+        font-size: 18px;
+        line-height: 1.2;
+    }
+
+    .markdown h4 {
+        font-size: 18px;
+        line-height: 1.2;
+    }
 }

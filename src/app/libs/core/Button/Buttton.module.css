@@ -40,10 +40,10 @@
 }
 
 .white {
-    background: rgb(var(--green-2));
+    background: rgb(var(--green-0), .8);
     color: rgb(var(--black));
 }
 
 .white:hover {
-    background: rgba(var(--green-1), .8);
+    background: rgba(var(--green-0), .6);
 }

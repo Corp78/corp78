@@ -83,12 +83,11 @@ export const Header = ({admin}: Props) => {
                         <DropDown title="Accueil" onClick={() => goTo('home')}></DropDown>
                         {!admin && <div className={classes.separator}/>}
                         {!admin && <DropDown title="Expertises" linksDropDown={[
-                            {title: "Chirurgie Réfractive", href: "/réfractive"},
+                            {title: "Chirurgie Réfractive", href: "/refractive"},
                             {title: "Chirurgie Cataracte", href: "/cataracte"},
                             {title: "Chirurgie Rétine", href: "/rétine"},
-                            {title: "Chirurgie Paupiere", href: "/paupière"},
+                            {title: "Chirurgie Paupiere", href: "/eyelid"},
                             {title: "Glaucome", href: "/glaucome"},
-                            {title: "Lentilles", href: "/lentilles"},
                             {title: "DMLA", href: "/dmla"}
                         ]} onClick={() => goTo('expertise')}></DropDown>}
                         <div className={classes.separator}/>

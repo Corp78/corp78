@@ -104,7 +104,6 @@
 
     .mapContainer {
         width: 100%;
-        padding-top: 100%;
         position: relative;
         overflow: hidden;
     }
@@ -113,6 +112,8 @@
         position: absolute;
         top: 0;
         left: 0;
+        right: 0;
+        bottom: 0;
         padding: 8px;
     }
 }

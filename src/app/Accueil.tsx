@@ -36,7 +36,7 @@ export const Acceuil = () => {
         <div className={classes.container} id="home">
             <div className={classes.titleContainer}>
                 <h1 className={classes.title}>Cabinet Ophtalmologique Pariwest</h1>
-                <h2 className={classes.open}>Ouverture début juillet</h2>
+                <h2 className={classes.open}>Prenez rendez-vous dès maintenant !</h2>
             </div>
             <div className={classes.doctorCardsContainer}>
                 <DoctorCard name={doctor1.name} specialities={doctor1.specialities} image={doctor1.image} left/>

@@ -54,10 +54,10 @@
     overflow: hidden;
     margin-top: 40px;
     max-height: fit-content;
-    background: rgb(var(--green-1));
+    background: rgb(var(--green-0));
     z-index: 90;
     border-radius: 16px;
-    box-shadow: 0 4px 16px 0 rgba(var(--black), .1);
+    box-shadow: 0 4px 16px 0 rgba(var(--black), .3);
     padding: 8px;
 }
 
