@@ -1,11 +1,11 @@
-"use client"
-
 import classes_2 from "./page.module.css";
 import classes from "@/app/admin/dashboard/addArticle/page.module.css";
 import ReactMarkdown from "react-markdown";
 import React from "react";
-import {Header, Page} from "@/app/libs/core";
-import Head from "next/head";
+import {Footer, Header, Page} from "@/app/libs/core";
+import type {Metadata} from "next";
+import {Contact} from "@/app/Contact";
+import Image from "next/image";
 
 interface Props {
     id: string;
@@ -99,38 +99,36 @@ Chez l’enfant, une intervention chirurgicale est envisagée si le larmoiement 
 
     `
 
+export const metadata: Metadata = {
+    title: "Pathologies des Paupières et Voies Lacrymales - Ophtalmologie Maurepas",
+    description: "Découvrez les pathologies des paupières et des voies lacrymales : symptômes, diagnostics, et traitements disponibles. Informez-vous sur les solutions adaptées pour chaque type de pathologie oculaire.",
+    keywords: "pathologies des paupières, pathologies des voies lacrymales, symptômes des paupières, traitements des paupières, santé oculaire, maladies oculaires, ophtalmo",
+    applicationName: "Cabinet Ophtalmologique Pariwest",
+    authors: [{name: "canonical", url: "https://ophtalmologie-maurepas.fr/eyelid"}],
+    generator: "Next.js",
+    creator: "Cabinet Ophtalmologique Pariwest",
+    publisher: "GitHub",
+};
+
 const EyeLidPage = () => {
 
 
     return (
         <Page>
-            <Head>
-                <title>Pathologies des Paupières et Voies Lacrymales - Ophtalmologie Maurepas</title>
-                <meta name="description"
-                      content="Découvrez les pathologies des paupières et des voies lacrymales : symptômes, diagnostics, et traitements disponibles. Informez-vous sur les solutions adaptées pour chaque type de pathologie oculaire."/>
-                <meta name="keywords"
-                      content="pathologies des paupières, pathologies des voies lacrymales, symptômes des paupières, traitements des paupières, santé oculaire, maladies oculaires, ophtalmo"/>
-                <link rel="canonical" href="https://ophtalmologie-maurepas.fr/eyelid"/>
-                <meta property="og:title"
-                      content="Pathologies des Paupières et Voies Lacrymales - Symptômes, Diagnostics et Traitements"/>
-                <meta property="og:description"
-                      content="Informez-vous sur les pathologies des paupières et des voies lacrymales, leurs symptômes et traitements. Accédez à des informations fiables pour une meilleure santé oculaire."/>
-                <meta property="og:url" content="https://ophtalmologie-maurepas.fr/eyelid"/>
-                <meta property="og:type" content="article"/>
-                <meta property="twitter:title"
-                      content="Pathologies des Paupières et Voies Lacrymales - Symptômes, Diagnostics et Traitements"/>
-                <meta property="twitter:description"
-                      content="Découvrez les pathologies des paupières et des voies lacrymales, leurs symptômes, diagnostics et traitements. Informez-vous pour une meilleure santé oculaire."/>
-            </Head>
             <Header/>
             <div className={classes_2.container_view_block}>
                 <div className={classes.container_view}>
+                    <div className={classes.imageContainer}>
+                        <Image src="/eyelid.png" alt="eyelid" fill/>
+                    </div>
                     <ReactMarkdown
                         className={classes.markdown}>
                         {article}
                     </ReactMarkdown>
                 </div>
             </div>
+            <Contact/>
+            <Footer/>
         </Page>
     );
 };

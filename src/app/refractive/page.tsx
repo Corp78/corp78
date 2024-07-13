@@ -1,11 +1,10 @@
-"use client"
-
 import classes_2 from "@/app/actu/ActuPage/ArticlePage.module.css";
 import classes from "@/app/admin/dashboard/addArticle/page.module.css";
 import ReactMarkdown from "react-markdown";
 import React from "react";
-import {Header, Page} from "@/app/libs/core";
-import Head from "next/head";
+import {Footer, Header, Page} from "@/app/libs/core";
+import {Contact} from "@/app/Contact";
+import type {Metadata} from "next";
 
 
 const article =
@@ -53,25 +52,21 @@ La chirurgie réfractive offre des options variées pour améliorer la vision et
 
     `
 
+export const metadata: Metadata = {
+    title: "Chirurgie Réfractive - Correction Visuelle Avancée - Ophtalmologie Maurepas",
+    description: "La chirurgie réfractive offre des solutions avancées pour la correction de la myopie, l'hypermétropie, l'astigmatisme et la presbytie. Découvrez les techniques les plus modernes comme le LASIK, PRK, SMILE et les implants phakes.",
+    keywords: "chirurgie réfractive, LASIK, PRK, SMILE, implants phakes, correction visuelle, myopie, hypermétropie, astigmatisme, presbytie, ophtalmo",
+    applicationName: "Cabinet Ophtalmologique Pariwest",
+    authors: [{name: "canonical", url: "https://ophtalmologie-maurepas.fr/refractive"}],
+    generator: "Next.js",
+    creator: "Cabinet Ophtalmologique Pariwest",
+    publisher: "GitHub",
+};
+
 const RefractivePage = () => {
     return (
+
         <Page>
-            <Head>
-                <title>Chirurgie Réfractive - Correction Visuelle Avancée</title>
-                <meta name="description"
-                      content="La chirurgie réfractive offre des solutions avancées pour la correction de la myopie, l'hypermétropie, l'astigmatisme et la presbytie. Découvrez les techniques les plus modernes comme le LASIK, PRK, SMILE et les implants phakes."/>
-                <meta name="keywords"
-                      content="chirurgie réfractive, LASIK, PRK, SMILE, implants phakes, correction visuelle, myopie, hypermétropie, astigmatisme, presbytie"/>
-                <link rel="canonical" href="https://ophtalmologie-maurepas.fr/refractive"/>
-                <meta property="og:title" content="Chirurgie Réfractive - Correction Visuelle Avancée"/>
-                <meta property="og:description"
-                      content="Explorez les options de chirurgie réfractive pour la correction de la myopie, l'hypermétropie, l'astigmatisme et la presbytie. Techniques modernes comme le LASIK, PRK, SMILE et plus."/>
-                <meta property="og:url" content="https://ophtalmologie-maurepas.fr/refractive"/>
-                <meta property="og:type" content="website"/>
-                <meta property="twitter:title" content="Chirurgie Réfractive - Correction Visuelle Avancée"/>
-                <meta property="twitter:description"
-                      content="La chirurgie réfractive offre des solutions pour la myopie, l'hypermétropie, l'astigmatisme, et la presbytie. Techniques comme le LASIK, PRK, SMILE disponibles."/>
-            </Head>
             <Header/>
             <div className={classes_2.container_view_block}>
                 <div className={classes.container_view}>
@@ -81,6 +76,8 @@ const RefractivePage = () => {
                     </ReactMarkdown>
                 </div>
             </div>
+            <Contact/>
+            <Footer/>
         </Page>
     );
 };

@@ -17,7 +17,11 @@ export const ExpertiseCard = ({title, description, image = "/IoClose.svg", href}
     const router = useRouter();
 
     return (
-        <div className={classes.container}>
+        <div className={classes.container} onClick={() => {
+            if (href) {
+                router.push(href);
+            }
+        }}>
             <div className={classes.titleContainer}>
                 <div className={classes.imageContainer}>
                     <Image className={classes.image} src={image} alt="menu" width={48} height={48}/>

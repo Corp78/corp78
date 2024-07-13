@@ -1,11 +1,11 @@
-"use client"
-
 import classes_2 from "@/app/actu/ActuPage/ArticlePage.module.css";
 import classes from "@/app/admin/dashboard/addArticle/page.module.css";
 import ReactMarkdown from "react-markdown";
 import React from "react";
-import {Header, Page} from "@/app/libs/core";
-import Head from "next/head";
+import {Footer, Header, Page} from "@/app/libs/core";
+import type {Metadata} from "next";
+import {Contact} from "@/app/Contact";
+import Image from "next/image";
 
 const article =
     `
@@ -57,38 +57,37 @@ Le principal traitement du glaucome repose sur l’abaissement de la tension int
 
     `
 
+export const metadata: Metadata = {
+    title: "Glaucome: Causes, Symptômes, et Traitements - Ophtalmologie Maurepas",
+    description: "Le glaucome est une cause majeure de cécité. Découvrez les facteurs de risque, les symptômes, les types de glaucome, et les options de traitement disponibles.",
+    keywords: "glaucome, cécité, hypertonie oculaire, traitement du glaucome, santé oculaire, ophtalmologie, dépistage du glaucome, ophtalmo",
+    applicationName: "Cabinet Ophtalmologique Pariwest",
+    authors: [{name: "canonical", url: "https://ophtalmologie-maurepas.fr/glaucome"}],
+    generator: "Next.js",
+    creator: "Cabinet Ophtalmologique Pariwest",
+    publisher: "GitHub",
+};
+
+
 const EyeLidPage = () => {
 
 
     return (
         <Page>
-            <Head>
-                <title>Glaucome: Causes, Symptômes, et Traitements - Ophtalmologie Maurepas</title>
-                <meta name="description"
-                      content="Le glaucome est une cause majeure de cécité. Découvrez les facteurs de risque, les symptômes, les types de glaucome, et les options de traitement disponibles."/>
-                <meta name="keywords"
-                      content="glaucome, cécité, hypertonie oculaire, traitement du glaucome, santé oculaire, ophtalmologie, dépistage du glaucome"/>
-                <link rel="canonical" href="https://ophtalmologie-maurepas.fr/glaucome"/>
-                <meta property="og:title"
-                      content="Glaucome: Causes, Symptômes, et Traitements - Ophtalmologie Maurepas"/>
-                <meta property="og:description"
-                      content="Informez-vous sur le glaucome, ses causes, symptômes, et les traitements pour prévenir la cécité. Consultez notre guide complet sur le glaucome."/>
-                <meta property="og:url" content="https://ophtalmologie-maurepas.fr/glaucome"/>
-                <meta property="og:type" content="article"/>
-                <meta property="twitter:title"
-                      content="Glaucome: Causes, Symptômes, et Traitements - Ophtalmologie Maurepas"/>
-                <meta property="twitter:description"
-                      content="Le glaucome est une cause majeure de cécité. Découvrez comment le dépister, ses symptômes, et les traitements disponibles."/>
-            </Head>
             <Header/>
             <div className={classes_2.container_view_block}>
                 <div className={classes.container_view}>
+                    <div className={classes.imageContainer}>
+                        <Image src="/glaucoma.png" alt="eyelid" fill/>
+                    </div>
                     <ReactMarkdown
                         className={classes.markdown}>
                         {article}
                     </ReactMarkdown>
                 </div>
             </div>
+            <Contact/>
+            <Footer/>
         </Page>
     );
 };

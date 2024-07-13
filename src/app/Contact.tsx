@@ -9,7 +9,6 @@ import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 import {Link} from "@/app/Data";
 import {AnalyticsEventName} from "@/app/libs/data/Analytics";
 
-
 export const Contact = () => {
 
 

@@ -47,7 +47,6 @@ export const Header = ({admin}: Props) => {
     };
 
     useEffect(() => {
-        // Encapsulez l'utilisation des hooks dans useEffect
         const searchParams = new URLSearchParams(window.location.search);
         const pathname = window.location.pathname;
 
@@ -68,6 +67,7 @@ export const Header = ({admin}: Props) => {
                     <div className={classes.logoContainer} onClick={() => goTo('home')}>
                         <Image className={classes.logo} src="/logo.svg" alt="corp78" fill
                                sizes="(max-width: 64px) , (max-width: 64px)"/>
+
                     </div>
                 </div>
                 <div className={classnames(classes.menuContainer, {
