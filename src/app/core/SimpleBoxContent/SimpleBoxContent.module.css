@@ -1,0 +1,132 @@
+.container {
+    padding: 16px;
+    border-radius: 8px;
+    background: rgb(var(--green-5));
+    min-width: 200px;
+    max-width: 600px;
+}
+
+.white {
+    background: rgba(var(--green-0), 0.8);
+    box-shadow: 0 0 16px rgba(var(--green-5), 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 16px;
+    position: relative;
+}
+
+.container h3 {
+    color: rgb(var(--green-1)) !important;
+    text-align: left !important;
+    margin: 0 !important;
+}
+
+.container h4 {
+    color: rgb(var(--green-5)) !important;
+    text-align: left !important;
+    margin: 0 !important;
+}
+
+.white h3 {
+    color: rgb(var(--green-5)) !important;
+}
+
+.white p {
+    color: rgb(var(--green-5)) !important;
+}
+
+.blueLight {
+    background: rgba(var(--green-0), 0.8);
+    box-shadow: 0 0 10px 1px rgba(var(--green-5), 0.4);
+}
+
+.blueLight h3 {
+    color: rgb(var(--green-5)) !important;
+}
+
+.blueLight p {
+    color: rgb(var(--green-5)) !important;
+}
+
+.blueLight li {
+    color: rgb(var(--green-5)) !important;
+}
+
+.light {
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 16px rgba(var(--green-5), 0.8);
+    padding: 16px;
+    border-left: 2px solid rgb(var(--green-2));
+    border-right: 2px solid rgb(var(--green-2));
+}
+
+.transparent {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+
+.container p {
+    font-weight: normal;
+    color: rgb(var(--green-0));
+}
+
+.container strong {
+    font-weight: 700;
+}
+
+.container ul {
+    list-style: disc;
+    padding-left: 24px;
+}
+
+.container li {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgb(var(--green-0));
+    margin-bottom: 4px;
+}
+
+.white li {
+    color: rgb(var(--green-5)) !important;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 16px;
+}
+
+.timeContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon {
+    font-size: 28px;
+    color: rgb(var(--green-5));
+}
+
+.time {
+    font-size: 14px;
+    font-weight: 700 !important;
+    color: rgb(var(--green-5));
+
+    white-space: nowrap;
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        width: 100%;
+    }
+}
+

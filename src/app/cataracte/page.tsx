@@ -97,7 +97,7 @@ const CataractPage = () => {
                 <div className={classes.container_view}>
                     <div className={classes.imageContainer}>
                         <Image src="/cataract.png" alt="eyelid" fill
-                               style={{filter: 'blur(3px) sepia(0.7) '}}/>
+                               style={{filter: 'blur(2px) sepia(0.7) '}}/>
                     </div>
                     <div className={classes.container_view}>
                         <ReactMarkdown

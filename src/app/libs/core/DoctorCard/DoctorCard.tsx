@@ -21,7 +21,7 @@ export const DoctorCard = ({name, specialities, image, left, right}: Props) => {
             [classes.right]: !!right,
         })}>
             <div className={classes.imageContainer}>
-                <Image className={classes.image} src={image} alt="quentin" fill/>
+                <Image className={classes.image} src={image} alt="doctor" fill/>
             </div>
             <h5 className={classes.name}>{name}</h5>
             <div className={classes.specialistDescription}>

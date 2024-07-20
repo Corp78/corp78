@@ -80,7 +80,6 @@ export const Header = ({admin}: Props) => {
                                 <Image className={classes.image} src="/IoClose.svg" alt="menu" width={40} height={40}/>
                             </div>
                         </div>
-                        <DropDown title="Accueil" onClick={() => goTo('home')}></DropDown>
                         {!admin && <div className={classes.separator}/>}
                         {!admin && <DropDown title="Expertises" linksDropDown={[
                             {title: "Chirurgie Réfractive", href: "/refractive"},
@@ -92,6 +91,8 @@ export const Header = ({admin}: Props) => {
                         ]} onClick={() => goTo('expertise')}></DropDown>}
                         <div className={classes.separator}/>
                         <DropDown title="Actualités" onClick={() => router.push("/actu")}/>
+                        <div className={classes.separator}/>
+                        <DropDown title="Le cabinet" onClick={() => router.push("/cabinet")}/>
                         <div className={classes.separator}/>
                         {!admin && <DropDown title="Contact" onClick={() => goTo('contact')}></DropDown>}
                         <div className={classes.meetingMenu}>
