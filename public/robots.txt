@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ophtalmologie-maurepas.fr/
+
+# Sitemaps
+Sitemap: https://ophtalmologie-maurepas.fr/sitemap.xml

@@ -69,8 +69,8 @@ Notre équipe médicale spécialisée, dirigée par les Dr Hays et Bitton-Chappe
 
 export const metadata: Metadata = {
     title: "Le Cabinet Ophtalmologique Pariwest",
-    description: "Le Cabinet Ophtalmologique Pariwest est un cabinet d'ophtalmologie situé à Maurepas. Nous sommes spécialisés dans le traitement de la cataracte, de la myopie, de l'hypermétropie, de l'astigmatisme et du glaucome. Nous proposons des consultations, des examens et des interventions chirurgicales.",
-    keywords: "ophtalmologue, ophtalmo, ophtalmologiste, cabinet d'ophtalmologie, Maurepas, cataracte, myopie, hypermétropie, astigmatisme, glaucome, consultation, examen, chirurgie",
+    description: "Découvrez le Cabinet Ophtalmologique Pariwest, votre espace dédié à la santé visuelle au cœur des Yvelines. Niché dans le tout nouvel Espace Santé Pariwest à Maurepas, notre cabinet est équipé des technologies les plus avancées pour répondre à toutes vos attentes en matière de santé oculaire.",
+    keywords: "cabinet ophtalmologique, ophtalmologie, santé visuelle, santé oculaire, chirurgie ophtalmologique, chirurgie réfractive, chirurgie cataracte, chirurgie rétine, chirurgie paupière, glaucome, DMLA, cabinet ophtalmologique Pariwest, Espace Santé Pariwest, Maurepas, Yvelines, ophtalmo",
     applicationName: "Cabinet Ophtalmologique Pariwest",
     authors: [{name: "canonical", url: "https://ophtalmologie-maurepas.fr/cabinet"}],
     generator: "Next.js",

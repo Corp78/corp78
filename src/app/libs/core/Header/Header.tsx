@@ -80,14 +80,15 @@ export const Header = ({admin}: Props) => {
                                 <Image className={classes.image} src="/IoClose.svg" alt="menu" width={40} height={40}/>
                             </div>
                         </div>
+                        <DropDown title="Accueil" onClick={() => goTo("home")} variantDisplay/>
                         {!admin && <div className={classes.separator}/>}
                         {!admin && <DropDown title="Expertises" linksDropDown={[
                             {title: "Chirurgie Réfractive", href: "/refractive"},
                             {title: "Chirurgie Cataracte", href: "/cataracte"},
-                            {title: "Chirurgie Rétine", href: "/rétine"},
+                            {title: "Chirurgie Rétine", href: "/"},
                             {title: "Chirurgie Paupiere", href: "/eyelid"},
                             {title: "Glaucome", href: "/glaucome"},
-                            {title: "DMLA", href: "/dmla"}
+                            {title: "DMLA", href: "/"}
                         ]} onClick={() => goTo('expertise')}></DropDown>}
                         <div className={classes.separator}/>
                         <DropDown title="Actualités" onClick={() => router.push("/actu")}/>

@@ -30,11 +30,12 @@ export const ExpertiseCard = ({title, description, image = "/IoClose.svg", href}
             </div>
             <p className={classes.description}>{description}</p>
             <div style={{flex: 1}}></div>
-            <Button text="En savoir plus ..." line onClick={() => {
+            {href && <Button text="En savoir plus ..." line onClick={() => {
                 if (href) {
                     router.push(href);
                 }
             }}/>
+            }
         </div>
 
     );

@@ -18,7 +18,8 @@ export const Expertise = () => {
                                    image="/Refractive.svg" href="/refractive"/>
                     <ExpertiseCard title="Chirurgie Cataracte"
                                    description="Microchirurgie du cristallin devenu opaque, avec ultrason, et correction des troubles visuels associés."
-                                   image="/cataracte.svg"/>
+                                   image="/cataracte.svg"
+                                   href="/cataracte"/>
                     <ExpertiseCard title="Chirurgie Rétine"
                                    description="Prise en charge du trou maculaire, des membranes rétiniennes, du décollement de la rétine en urgence, de la myopie forte."
                                    image="/retine.svg"/>

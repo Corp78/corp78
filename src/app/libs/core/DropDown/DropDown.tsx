@@ -15,16 +15,18 @@ interface Props {
     title: string;
     linksDropDown?: LinkDropDown[];
     onClick?: () => void;
-
+    variantDisplay?: boolean;
 }
 
 
-export const DropDown = ({title, linksDropDown, onClick}: Props) => {
+export const DropDown = ({title, linksDropDown, onClick, variantDisplay}: Props) => {
 
     const router = useRouter()
 
     return (
-        <div className={classes.container} onClick={onClick}>
+        <div className={classnames(classes.container, {
+            [classes.variantDisplay]: variantDisplay,
+        })} onClick={onClick}>
             <div className={classes.titleContainer}>
                 <p className={classes.mainTitle}>{title}</p>
                 {linksDropDown &&

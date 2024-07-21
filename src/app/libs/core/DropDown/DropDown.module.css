@@ -9,6 +9,10 @@
     user-select: none;
 }
 
+.variantDisplay {
+    display: flex;
+}
+
 .titleContainer {
     width: 100%;
     display: flex;
@@ -108,6 +112,13 @@
     }
 }
 
+@media only screen and (max-width: 1600px) {
+    .variantDisplay {
+        display: none;
+    }
+}
+
+
 @media only screen and (max-width: 1250px) {
     .dropDownIcon {
         transform: rotate(0deg);
@@ -143,6 +154,10 @@
     .linkTitle {
         color: rgb(var(--white));
         font-weight: 400;
+    }
+
+    .variantDisplay {
+        display: flex;
     }
 }
 
