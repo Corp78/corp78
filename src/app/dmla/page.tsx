@@ -72,9 +72,9 @@ La DMLA est une maladie chronique nécessitant une surveillance et des traitemen
     `
 
 export const metadata: Metadata = {
-    title: "La Cataracte - Ophtalmologie Maurepas",
-    description: "Informez-vous sur la cataracte : symptômes, diagnostics, et traitements chirurgicaux. Découvrez comment la chirurgie de la cataracte peut restaurer une vision optimale et améliorer la qualité de vie.",
-    keywords: "cataracte, symptômes cataracte, traitement cataracte, chirurgie cataracte, santé oculaire, maladies oculaires, ophtalmologie, implants oculaires, correction de la vision",
+    title: "Dégénérescence Maculaire Liée à l'Âge (DMLA) - Cabinet Ophtalmologique Pariwest",
+    description: "Découvrez la Dégénérescence Maculaire Liée à l'Âge (DMLA), une maladie affectant la macula et entraînant une perte de vision centrale. Informez-vous sur les facteurs de risque, les stades de la maladie, les traitements disponibles et les perspectives thérapeutiques.",
+    keywords: "DMLA, dégénérescence maculaire liée à l'âge, macula, vision centrale, ophtalmologie, santé oculaire, maladies oculaires, ophtalmo",
     applicationName: "Cabinet Ophtalmologique Pariwest",
     authors: [{name: "canonical", url: "https://ophtalmologie-maurepas.fr/cataracte"}],
     generator: "Next.js",
