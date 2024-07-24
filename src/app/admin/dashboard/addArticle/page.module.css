@@ -208,7 +208,7 @@
     border-radius: 8px;
     box-shadow: 0 0 6px 3px rgba(var(--green-2), .8);
     border: 1px solid rgba(var(--green-2), .5);
-    max-height: 350px;
+    
     object-fit: cover;
     margin: 20px auto 24px;
 }
@@ -305,6 +305,36 @@
     width: 85%;
     margin: 20px auto;
 }
+
+/* beautiful table for markdown */
+
+.markdown table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.markdown th, .markdown td {
+    padding: 8px;
+    border: 1px solid rgba(var(--green-2), .5);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.markdown th {
+    background: rgba(var(--green-1), 1);
+    color: rgb(var(--green-5));
+    font-weight: 700;
+}
+
+.markdown td {
+    background: rgba(var(--green-1), .2);
+    color: rgb(var(--green-5));
+    font-weight: 500;
+}
+
 
 .separator {
     flex: 1;
@@ -419,5 +449,18 @@
     .markdown h4 {
         font-size: 18px;
         line-height: 1.2;
+    }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 410px) {
+    .markdown table, .markdown thead, .markdown tbody, .markdown th, .markdown td, .markdown tr {
+        zoom: .97;
+    }
+}
+
+@media screen and (max-width: 365px) {
+    .markdown table, .markdown thead, .markdown tbody, .markdown th, .markdown td, .markdown tr {
+        zoom: .9;
     }
 }

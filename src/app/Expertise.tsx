@@ -33,7 +33,8 @@ export const Expertise = () => {
                                    href="/glaucome"/>
                     <ExpertiseCard title="DMLA"
                                    description="Suivi de la macula avec analyseur optique de macula et injection intra-vitréenne."
-                                   image={"/dmla.svg"}/>
+                                   image={"/dmla.svg"}
+                                   href="/dmla"/>
                 </div>
             </div>
 

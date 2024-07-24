@@ -88,7 +88,7 @@ export const Header = ({admin}: Props) => {
                             {title: "Chirurgie Rétine", href: "/"},
                             {title: "Chirurgie Paupiere", href: "/eyelid"},
                             {title: "Glaucome", href: "/glaucome"},
-                            {title: "DMLA", href: "/"}
+                            {title: "DMLA", href: "/dmla"}
                         ]} onClick={() => goTo('expertise')}></DropDown>}
                         <div className={classes.separator}/>
                         <DropDown title="Actualités" onClick={() => router.push("/actu")}/>

@@ -66,6 +66,19 @@
     padding: 0;
 }
 
+.transparent li {
+    color: rgb(var(--green-5)) !important;
+}
+
+.transparent h4 {
+    font-size: 16px;
+    padding-bottom: 0;
+}
+
+.transparent .titleContainer {
+    padding-bottom: 4px;
+}
+
 
 .container p {
     font-weight: normal;

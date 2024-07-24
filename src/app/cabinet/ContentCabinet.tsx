@@ -13,9 +13,9 @@ import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
 
 const contentInfo = [
     {
-        title: "Petite Chirurgie",
+        title: "Salle de Chirurgie",
         content: [
-            "Incisions de chalazions",
+            "Chalazions",
             "Injections intravitréennes"
         ]
     },
@@ -25,7 +25,7 @@ const contentInfo = [
             "OCT",
             "Topographie",
             "Champ visuel",
-            "Biométrie"
+            "Biométrie / IOL"
         ]
     },
     {
@@ -45,11 +45,16 @@ const article_part1 =
 
 ## Consultations
 
-- **Consultations classiques** : Renouvellement de lunettes, ajustement de lentilles de contact.
-- **Consultations préopératoires** : Réfractive, cataracte, rétine, glaucome, paupières.
-- **Suivi spécialisé** : Glaucome, rétine, DMLA.
-
     `
+
+const content_article_part1 = [
+    {
+        title: "Consultations classiques :",
+        content: ["Renouvellement de lunettes", "Ajustement de lentilles de contact"]
+    },
+    {title: "Consultations préopératoires :", content: ["Réfractive", "Cataracte", "Rétine", "Glaucome", "Paupières"]},
+    {title: "Suivi spécialisé :", content: ["Glaucome", "Rétine", "DMLA"]}
+]
 
 const article_part2 =
     `
@@ -104,6 +109,17 @@ export const ContentCabinet = () => {
                 className={classesMarkdown.markdown}>
                 {article_part1}
             </ReactMarkdown>
+            <div className={classes.listContainer2}>
+                {content_article_part1.map((item) => (
+                    <SimpleBoxContent title={item.title} transparent>
+                        <ul>
+                            {item.content.map((goal, index) => (
+                                <li key={index} dangerouslySetInnerHTML={{__html: goal}}/>
+                            ))}
+                        </ul>
+                    </SimpleBoxContent>
+                ))}
+            </div>
             <div className={classes.listContainer}>
                 {contentListAdditional.map((item) => (
                     item
