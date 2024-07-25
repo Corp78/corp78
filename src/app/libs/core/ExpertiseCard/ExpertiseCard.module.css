@@ -10,6 +10,7 @@
     gap: 24px;
     border-radius: 16px;
     box-shadow: 0 4px 16px 0 rgba(var(--black), 1);
+    cursor: pointer;
 
 }
 
