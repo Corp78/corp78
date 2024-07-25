@@ -17,7 +17,7 @@ export const Expertise = () => {
                                    description="Spécialité de la chirurgie ophtalmologique qui vise à corriger les défauts visuels comme la myopie, l'hypermétropie, l'astigmatisme et la presbytie."
                                    image="/Refractive.svg" href="/refractive"/>
                     <ExpertiseCard title="Chirurgie Cataracte"
-                                   description="Microchirurgie du cristallin devenu opaque, avec ultrason, et correction des troubles visuels associés."
+                                   description="Une opacification du cristallin, lentille naturelle de l’œil, qui entraîne une baisse de la vision. La chirurgie de la cataracte consiste à retirer le cristallin opacifié pour le remplacer par un implant."
                                    image="/cataracte.svg"
                                    href="/cataracte"/>
                     <ExpertiseCard title="Chirurgie Rétine"
@@ -32,7 +32,7 @@ export const Expertise = () => {
                                    image="/glaucome.svg"
                                    href="/glaucome"/>
                     <ExpertiseCard title="DMLA"
-                                   description="Suivi de la macula avec analyseur optique de macula et injection intra-vitréenne."
+                                   description="La dégénérescence maculaire liée à l'âge (DMLA) est une maladie affectant la macula, essentielle pour une vision centrale nette."
                                    image={"/dmla.svg"}
                                    href="/dmla"/>
                 </div>
