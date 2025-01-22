@@ -5,6 +5,8 @@ import classes from "./Acceuil.module.css";
 import {DoctorCard} from "@/app/libs/core";
 import {addLogAnalytics} from "@/app/libs/utils/utilsFunction";
 import {AnalyticsEventName} from "@/app/libs/data/Analytics";
+import {ButtonLink} from "@/app/libs/core/Button/ButtonLink";
+import {Link} from "@/app/Data";
 
 
 export const Acceuil = () => {
@@ -36,7 +38,13 @@ export const Acceuil = () => {
         <div className={classes.container} id="home">
             <div className={classes.titleContainer}>
                 <h1 className={classes.title}>Cabinet Ophtalmologique Pariwest</h1>
-                <h2 className={classes.open}>Prenez rendez-vous dès maintenant !</h2>
+                <h2 className={classes.open}>Prenez rendez-vous dès maintenant&nbsp;!</h2>
+                <div className={classes.meeting}>
+                    <ButtonLink text="Prendre rendez-vous"
+                                href={Link.doctolib}
+                                eventAnalytics={AnalyticsEventName.click_meeting}
+                    />
+                </div>
             </div>
             <div className={classes.doctorCardsContainer}>
                 <DoctorCard name={doctor1.name} specialities={doctor1.specialities} image={doctor1.image} left/>
